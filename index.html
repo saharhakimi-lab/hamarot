@@ -108,6 +108,39 @@
         .alert-info { background-color: var(--primary-light); border-right: 4px solid var(--primary); padding: 16px; border-radius: 0 8px 8px 0; font-size: 14px; color: #0f2d2a; margin-bottom: 16px; }
         .alert-warning { background-color: #fffbeb; border-right: 4px solid var(--warning); padding: 16px; border-radius: 0 8px 8px 0; color: #78350f; margin-bottom: 16px; }
 
+        /* External Drive Banner Style */
+        .drive-link-banner {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 2px solid var(--primary-border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 12px rgba(15, 118, 110, 0.15);
+        }
+        .drive-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 14px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(15, 118, 110, 0.4);
+        }
+        .drive-btn:hover {
+            background-color: #0d9488;
+            transform: translateY(-2px);
+        }
+
         .table-responsive { overflow-x: auto; width: 100%; margin-top: 12px; }
         table { width: 100%; border-collapse: collapse; text-align: center; font-size: 14px; }
         th { background-color: var(--dark); color: white; padding: 12px; font-weight: 700; }
@@ -225,7 +258,7 @@
             <nav>
                 <button onclick="switchTab('importance')" id="tab-importance" class="tab-btn active">1. חשיבות בסיסי הספירה בתקשוב</button>
                 <button onclick="switchTab('bases-overview')" id="tab-bases-overview" class="tab-btn">2. הבסיסים הנפוצים והסיבה לשימוש בהם</button>
-                <button onclick="switchTab('conversion-methods')" id="tab-conversion-methods" class="tab-btn">3. שיטות החישוב והמחשה בטבלה (1-128)</button>
+                <button onclick="switchTab('conversion-methods')" id="tab-conversion-methods" class="tab-btn">3. שיטות החישוב וטבלאות עזר לבגרות</button>
                 <button onclick="switchTab('practice-solutions')" id="tab-practice-solutions" class="tab-btn">4. תרגול פרונטלי מודרך (60 תרגילים פתורים)</button>
             </nav>
         </div>
@@ -320,27 +353,99 @@
                     </div>
                 </section>
 
-                <!-- Tab 3: Conversion Methods with Table 1 to 128 -->
+                <!-- Tab 3: Conversion Methods & Helper Tables -->
                 <section id="content-conversion-methods" class="tab-content">
                     <div class="card">
-                        <h2 class="card-title"><span style="color: var(--primary);">■</span> טבלת משקלי אוקטטה (1 מימין עד 128 משמאל) ושיטות המרה</h2>
                         
-                        <p style="font-size: 14px; color: #475569; margin-bottom: 12px;">
-                            בשיעור פרונטלי על הלוח, זוהי הטבלה המרכזית אותה תשרטט. האוקטטה מכילה <span dir="ltr" class="ltr-text font-mono font-bold">8</span> ביטים, כשהמשקל הקטן ביותר (<span dir="ltr" class="ltr-text font-mono font-bold">1</span>) נמצא מימין והגדול ביותר (<span dir="ltr" class="ltr-text font-mono font-bold">128</span>) משמאל:
+                        <!-- Drive Link Banner Window -->
+                        <div class="drive-link-banner">
+                            <div>
+                                <h3 style="font-size: 16px; font-weight: 800; color: #38bdf8; margin-bottom: 4px;">📄 דף עזר להמרות - טבלאות לבגרות (יואל - סהר)</h3>
+                                <p style="font-size: 13px; color: #94a3b8;">צפה או הורד את מסמך ה-PDF המלא עם טבלאות העזר והשיטות המהירות להמרת בסיסים.</p>
+                            </div>
+                            <a href="https://drive.google.com/file/d/1FsoHiyyFYIElgTkhWrbIuExRMT-EQ5da/view?usp=sharing" target="_blank" class="drive-btn">
+                                <span>לחץ לדף עזר המרות</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            </a>
+                        </div>
+
+                        <h2 class="card-title"><span style="color: var(--primary);">■</span> טבלאות עזר לבגרות להפיכת בסיסים</h2>
+                        <p style="font-size: 13px; color: #64748b; margin-bottom: 16px;">
+                            הטבלה המאוחדת שלהלן מסנכרנת בין ספרות ה-HEX, הערך העשרוני (1-15) ומשקלי הביטים של האוקטטה (1 מימין עד 128 משמאל):
                         </p>
 
-                        <!-- Weight Table (Right to Left: 1 to 128) -->
+                        <!-- Unified Helper Table -->
                         <div class="table-responsive">
                             <table style="background-color: var(--dark); color: white;">
                                 <thead>
                                     <tr style="background-color: #1e293b; color: #38bdf8;">
-                                        <th>מיקום הביט (משמאל לימין)</th>
+                                        <th>סוג הערך</th>
+                                        <th colspan="7">ספרות הקסדצימליות (<span dir="ltr" class="ltr-text">HEX</span>) גבוהות</th>
+                                        <th colspan="8">ספרות עשרוניות ובינאריות (1 עד 9)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="color: #fbbf24; font-weight: 800;">
+                                        <td style="color: white; font-weight: 700;">ספרה הקסדצימלית</td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">F</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">E</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">D</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">C</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">B</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">A</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">9</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">8</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">7</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">6</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">5</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">4</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">3</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">2</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">1</span></td>
+                                    </tr>
+                                    <tr style="color: #38bdf8;">
+                                        <td style="color: white; font-weight: 700;">ערך עשרוני מקביל</td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">15</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">14</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">13</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">12</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">11</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">10</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">9</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">8</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">7</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">6</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">5</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">4</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">3</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">2</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">1</span></td>
+                                    </tr>
+                                    <tr style="color: #34d399; font-weight: 800; border-top: 2px solid #334155;">
+                                        <td style="color: white; font-weight: 700;">משקל אוקטטה (מימין לשמאל)</td>
+                                        <td colspan="7" style="background-color: #020617; color: #94a3b8; font-size: 11px;">(משקלי אוקטטה שמאליים: 128, 64, 32, 16)</td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">8</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">4</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">2</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">1</span></td>
+                                        <td colspan="4" style="background-color: #020617; color: #94a3b8; font-size: 11px;">(חצי אוקטטה ימנית)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- 8-Bit Complete Weight Table -->
+                        <div style="margin-top: 16px;" class="table-responsive">
+                            <table style="background-color: #020617; color: white;">
+                                <thead>
+                                    <tr style="color: #38bdf8;">
+                                        <th>מיקום ביט באוקטטה</th>
                                         <th>ביט 7</th><th>ביט 6</th><th>ביט 5</th><th>ביט 4</th><th>ביט 3</th><th>ביט 2</th><th>ביט 1</th><th>ביט 0</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr style="font-size: 18px; font-weight: 800; color: #10b981;">
-                                        <td style="color: white; font-size: 14px;">ערך / משקל עשרוני</td>
+                                    <tr style="color: #10b981; font-weight: 800; font-size: 16px;">
+                                        <td style="color: white; font-size: 13px;">משקל עשרוני למחשב</td>
                                         <td><span dir="ltr" class="ltr-text font-mono">128</span></td>
                                         <td><span dir="ltr" class="ltr-text font-mono">64</span></td>
                                         <td><span dir="ltr" class="ltr-text font-mono">32</span></td>
@@ -350,50 +455,80 @@
                                         <td><span dir="ltr" class="ltr-text font-mono">2</span></td>
                                         <td><span dir="ltr" class="ltr-text font-mono">1</span></td>
                                     </tr>
-                                    <tr style="font-size: 12px; color: #94a3b8;">
-                                        <td style="color: white;">חזקת 2 (<span dir="ltr" class="ltr-text font-mono">2^n</span>)</td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">2^7</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">2^6</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">2^5</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">2^4</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">2^3</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">2^2</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">2^1</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">2^0</span></td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
 
-                        <!-- Explanation Methods -->
+                        <!-- Methods & Rules -->
                         <div style="display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 24px;">
                             
-                            <!-- Dec to Bin & Hex -->
+                            <!-- Dec to Bin -->
                             <div class="method-box">
-                                <h3 style="font-weight: 800; font-size: 16px; color: var(--primary);">1. המרה מעשרוני לבינארי ולהקסדצימלי (שיטת החיסור על הלוח)</h3>
+                                <h3 style="font-weight: 800; font-size: 16px; color: var(--primary);">1. עשרוני (רגיל) לבינארי - שיטת "האם נכנס"</h3>
                                 <p style="font-size: 13px; color: #334155; margin-top: 6px;">
-                                    <strong>מעשרוני לבינארי:</strong> עוברים בטבלה משמאל לימין (מ-<span dir="ltr" class="ltr-text font-mono">128</span> עד <span dir="ltr" class="ltr-text font-mono">1</span>). אם המספר גדול/שווה למשקל הביט, שמים '<span dir="ltr" class="ltr-text font-mono">1</span>' ומחסרים את המשקל מהמספר. אם הוא קטן יותר, שמים '<span dir="ltr" class="ltr-text font-mono">0</span>'.<br>
-                                    <em>דוגמה (<span dir="ltr" class="ltr-text font-mono">192</span>):</em> <span dir="ltr" class="ltr-text font-mono">192</span> גדול מ-<span dir="ltr" class="ltr-text font-mono">128</span>? כן (שמים <span dir="ltr" class="ltr-text font-mono">1</span>, נשאר <span dir="ltr" class="ltr-text font-mono">64</span>). <span dir="ltr" class="ltr-text font-mono">64</span> גדול/שווה ל-<span dir="ltr" class="ltr-text font-mono">64</span>? כן (שמים <span dir="ltr" class="ltr-text font-mono">1</span>, נשאר <span dir="ltr" class="ltr-text font-mono">0</span>). כל השאר <span dir="ltr" class="ltr-text font-mono">0</span>. קיבלנו: <span dir="ltr" class="ltr-text font-mono font-bold">11000000</span>.<br>
-                                    <strong>מעשרוני להקסדצימלי:</strong> הדרך הקלה ביותר על הלוח היא להמיר קודם לבינארי, לחלק ל-<span dir="ltr" class="ltr-text font-mono">2</span> רביעיות (<span dir="ltr" class="ltr-text font-mono">Nibbles</span>), ולהמיר כל רביעייה לפי ערכה (<span dir="ltr" class="ltr-text font-mono">0-9, A-F</span>).<br>
-                                    <em>דוגמה (<span dir="ltr" class="ltr-text font-mono">192</span>):</em> הבינארי הוא <span dir="ltr" class="ltr-text font-mono font-bold">1100 | 0000</span>. הרביעייה השמאלית <span dir="ltr" class="ltr-text font-mono">1100 = 8 + 4 = 12 = C</span>. הימנית <span dir="ltr" class="ltr-text font-mono">0000 = 0</span>. תוצאה: <span dir="ltr" class="ltr-text font-mono font-bold">C0</span>.
+                                    בודקים משמאל לימין בטבלה: <strong>"האם 128 נכנס?"</strong><br>
+                                    • אם <strong>כן</strong> – רושמים <span dir="ltr" class="ltr-text font-mono font-bold">1</span> ומחשבים שארית.<br>
+                                    • אם <strong>לא</strong> – רושמים <span dir="ltr" class="ltr-text font-mono font-bold">0</span>.<br>
+                                    ושוב בודקים לגבי המשקל הבא (<span dir="ltr" class="ltr-text font-mono">64</span>): האם נכנס בשארית? אם כן רושמים <span dir="ltr" class="ltr-text font-mono font-bold">1</span>, אם לא רושמים <span dir="ltr" class="ltr-text font-mono font-bold">0</span>.
                                 </p>
                             </div>
 
-                            <!-- Bin to Dec & Hex -->
+                            <!-- Bin to Dec -->
                             <div class="method-box">
-                                <h3 style="font-weight: 800; font-size: 16px; color: var(--secondary);">2. המרה מבינארי לעשרוני ולהקסדצימלי</h3>
+                                <h3 style="font-weight: 800; font-size: 16px; color: var(--secondary);">2. בינארי לעשרוני (רגיל)</h3>
                                 <p style="font-size: 13px; color: #334155; margin-top: 6px;">
-                                    <strong>מבינארי לעשרוני:</strong> מציבים את <span dir="ltr" class="ltr-text font-mono">8</span> הביטים בטבלה, וסוכמים את הבלוקים בהם מופיע '<span dir="ltr" class="ltr-text font-mono">1</span>'.<br>
-                                    <strong>מבינארי להקסדצימלי:</strong> חוצים את <span dir="ltr" class="ltr-text font-mono">8</span> הביטים במרכז ל-<span dir="ltr" class="ltr-text font-mono">2</span> קבוצות של <span dir="ltr" class="ltr-text font-mono">4</span> ביטים (משקלי <span dir="ltr" class="ltr-text font-mono">8, 4, 2, 1</span> בכל צד). ממירים כל צד בנפרד לתו הקסדצימלי.
+                                    רושמים את המספר הבינארי מתחת לטבלת המשקלים (<span dir="ltr" class="ltr-text font-mono">128, 64, 32, 16, 8, 4, 2, 1</span>) ו<strong>מסכמים רק איפה שכתוב 1</strong>.
                                 </p>
                             </div>
 
-                            <!-- Hex to Dec & Bin -->
+                            <!-- Dec to Hex -->
                             <div class="method-box">
-                                <h3 style="font-weight: 800; font-size: 16px; color: #b45309;">3. המרה מהקסדצימלי לעשרוני ולבינארי</h3>
+                                <h3 style="font-weight: 800; font-size: 16px; color: #b45309;">3. המרת עשרוני (רגיל) להקסדצימלי - שיטת החלוקה ב-16</h3>
                                 <p style="font-size: 13px; color: #334155; margin-top: 6px;">
-                                    <strong>מהקס לבינארי:</strong> ממירים כל תו הקסדצימלי בנפרד לרביעיית ביטים (<span dir="ltr" class="ltr-text font-mono">4</span> ביט). מחברים את שתי הרביעיות לאוקטטה של <span dir="ltr" class="ltr-text font-mono">8</span> ביט.<br>
-                                    <strong>מהקס לעשרוני:</strong> ממירים לבינארי ומחשבים לפי הטבלה, או כופלים את התו השמאלי ב-<span dir="ltr" class="ltr-text font-mono">16</span> ומוסיפים את התו הימני: <span dir="ltr" class="ltr-text font-mono">(Hex_1 * 16) + Hex_2</span>.
+                                    מבצעים חלוקה ב-<span dir="ltr" class="ltr-text font-mono font-bold">16</span>. את השארית רושמים. שוב מחלקים את התוצאה ב-<span dir="ltr" class="ltr-text font-mono font-bold">16</span> ורושמים את השארית <strong>משמאל למה שכתבנו קודם</strong>.<br>
+                                    <strong>קביעת השארית:</strong> קובעים לפי הכפלת התוצאה השלמה מחדש ב-<span dir="ltr" class="ltr-text font-mono font-bold">16</span>.<br>
+                                    <em>דוגמה מהמסמך (<span dir="ltr" class="ltr-text font-mono">100</span>):</em> מחלקים ב-<span dir="ltr" class="ltr-text font-mono">16</span>. התוצאה השלמה היא <span dir="ltr" class="ltr-text font-mono">6</span>. מכפילים <span dir="ltr" class="ltr-text font-mono">6 * 16</span> ומקבלים <span dir="ltr" class="ltr-text font-mono">96</span>. השארית היא <span dir="ltr" class="ltr-text font-mono">100 - 96 = 4</span>. רושמים <span dir="ltr" class="ltr-text font-mono font-bold">64</span> ב-HEX.
+                                </p>
+                            </div>
+
+                            <!-- Hex to Dec -->
+                            <div class="method-box">
+                                <h3 style="font-weight: 800; font-size: 16px; color: #0f766e;">4. המרת הקסדצימלי לעשרוני (רגיל) - סולם חזקות 16</h3>
+                                <p style="font-size: 13px; color: #334155; margin-top: 6px;">
+                                    רושמים את התווים מימין לשמאל ומכפילים לפי ערכי החזקות של <span dir="ltr" class="ltr-text font-mono">16</span>:
+                                </p>
+                                <div class="table-responsive" style="margin-top: 8px;">
+                                    <table style="font-size: 11px; background-color: #1e293b; color: white;">
+                                        <thead>
+                                            <tr style="color: #38bdf8;">
+                                                <th>חזקת 16</th>
+                                                <th><span dir="ltr" class="ltr-text font-mono">16^7</span></th>
+                                                <th><span dir="ltr" class="ltr-text font-mono">16^6</span></th>
+                                                <th><span dir="ltr" class="ltr-text font-mono">16^5</span></th>
+                                                <th><span dir="ltr" class="ltr-text font-mono">16^4</span></th>
+                                                <th><span dir="ltr" class="ltr-text font-mono">16^3</span></th>
+                                                <th><span dir="ltr" class="ltr-text font-mono">16^2</span></th>
+                                                <th><span dir="ltr" class="ltr-text font-mono">16^1</span></th>
+                                                <th><span dir="ltr" class="ltr-text font-mono">16^0</span></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="color: #34d399; font-weight: 700;">
+                                                <td>ערך עשרוני</td>
+                                                <td><span dir="ltr" class="ltr-text font-mono">268,435,456</span></td>
+                                                <td><span dir="ltr" class="ltr-text font-mono">16,777,216</span></td>
+                                                <td><span dir="ltr" class="ltr-text font-mono">1,048,576</span></td>
+                                                <td><span dir="ltr" class="ltr-text font-mono">65,536</span></td>
+                                                <td><span dir="ltr" class="ltr-text font-mono">4,096</span></td>
+                                                <td><span dir="ltr" class="ltr-text font-mono">256</span></td>
+                                                <td><span dir="ltr" class="ltr-text font-mono">16</span></td>
+                                                <td><span dir="ltr" class="ltr-text font-mono">1</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p style="font-size: 11px; color: #64748b; margin-top: 6px;">
+                                    * הערה מדף העזר: אם תו הקסדצימלי מתחיל ב-<span dir="ltr" class="ltr-text font-mono font-bold">0</span>, מורידים אותו בחישוב השמאלי.
                                 </p>
                             </div>
 
@@ -446,7 +581,7 @@
                             <h3 style="font-weight: 800; font-size: 16px; margin-bottom: 12px; color: var(--primary);">10 תרגילי המרה מעשרוני להקסדצימלי (<span dir="ltr" class="ltr-text font-mono">Dec → Hex</span>)</h3>
                             <div class="table-responsive">
                                 <table>
-                                    <thead><tr><th>#</th><th>מספר עשרוני</th><th>תשובה הקסדצימלית</th><th>דרך חישוב (פירוק לרביעיות בינאריות)</th></tr></thead>
+                                    <thead><tr><th>#</th><th>מספר עשרוני</th><th>תשובה הקסדצימלית</th><th>דרך חישוב (פירוק לרביעיות בינאריות / חלוקה ב-16)</th></tr></thead>
                                     <tbody>
                                         <tr><td>1</td><td><strong dir="ltr" class="ltr-text font-mono">10</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">0A</td><td><span dir="ltr" class="ltr-text font-mono">10</span> בעשרוני שווה ל-<span dir="ltr" class="ltr-text font-mono">A</span> בבסיס <span dir="ltr" class="ltr-text font-mono">16</span></td></tr>
                                         <tr><td>2</td><td><strong dir="ltr" class="ltr-text font-mono">31</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">1F</td><td><span dir="ltr" class="ltr-text font-mono">31 = 0001 | 1111</span> ← <span dir="ltr" class="ltr-text font-mono">1</span> ו-<span dir="ltr" class="ltr-text font-mono">15 (F)</span></td></tr>
@@ -607,7 +742,7 @@
                 </div>
             </div>
             <p id="bot-tip-text" style="font-size: 13px; line-height: 1.5; color: #e2e8f0;">
-                "טיפ למורה: תסתכל בסרגל הצד! כשעובדים על תרגול הקס לבינארי, פשוט מחברים שתי שלשות/רביעיות בינאריות מהטבלה הצדדית!"
+                "טיפ לבגרות מתוך הדף עזר: כשממירים מעשרוני להקס, פשוט מחלקים ב-16, והשארית מהכפלת התוצאה השלמה מביאה לך את התו הימני!"
             </p>
             <div style="display: flex; gap: 8px;">
                 <button onclick="generateBotTip()" class="btn" style="font-size: 11px; padding: 6px 12px; flex-grow: 1;">תן לי עוד טיפ פדגוגי ⚡</button>
