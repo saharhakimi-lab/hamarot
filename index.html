@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מערך שיעור למורה: המרת בסיסים בתקשורת מחשבים</title>
+    
+    <!-- Lucide Icons & Tailwind CSS -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            --primary: #0f766e;
+            --primary-light: #f0fdfa;
+            --primary-border: #99f6e4;
+            --secondary: #0369a1;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 16px; }
+
+        header {
+            background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%);
+            color: white;
+            padding: 24px 0;
+            box-shadow: 0 4px 15px rgba(15, 118, 110, 0.2);
+        }
+
+        .header-content { display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 16px; }
+        @media (min-width: 768px) { .header-content { flex-direction: row; } }
+
+        .header-title-area { display: flex; align-items: center; gap: 12px; }
+        .header-logo-box {
+            background-color: white; color: #0f766e; padding: 10px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .crazy-avatar {
+            width: 52px; height: 52px; border-radius: 50%; object-fit: cover;
+            transform: rotate(30deg); border: 2px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        .header-badges { display: flex; gap: 8px; }
+        .badge {
+            background-color: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.4);
+            color: white; font-size: 11px; font-weight: 600; padding: 6px 12px; border-radius: 9999px;
+        }
+        .badge-success { background-color: rgba(16, 185, 129, 0.3); color: #ecfdf5; border-color: #34d399; }
+
+        .nav-tabs-container {
+            background-color: white; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 40;
+        }
+        nav { display: flex; gap: 8px; overflow-x: auto; padding: 4px 0; }
+        .tab-btn {
+            background: none; border: none; padding: 14px 16px; font-size: 13px; font-weight: 700;
+            color: var(--gray); cursor: pointer; white-space: nowrap; transition: all 0.2s; border-bottom: 3px solid transparent;
+        }
+        .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+        .sub-tab-btn {
+            background-color: #f1f5f9; border: 1px solid #cbd5e1; padding: 8px 12px; font-size: 12px; font-weight: 700;
+            color: #475569; border-radius: 6px; cursor: pointer; transition: all 0.2s;
+        }
+        .sub-tab-btn.active { background-color: var(--primary); color: white; border-color: var(--primary); }
+
+        /* Main Layout Grid (Content + Hex Sidebar) */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+        @media (min-width: 1024px) {
+            .layout-grid {
+                grid-template-columns: 1fr 280px;
+            }
+        }
+
+        main { flex-grow: 1; padding: 32px 0; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .sub-tab-content { display: none; }
+        .sub-tab-content.active { display: block; }
+
+        .card {
+            background-color: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0; margin-bottom: 24px;
+        }
+        .card-title { font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+
+        .alert-info { background-color: var(--primary-light); border-right: 4px solid var(--primary); padding: 16px; border-radius: 0 8px 8px 0; font-size: 14px; color: #0f2d2a; margin-bottom: 16px; }
+        .alert-warning { background-color: #fffbeb; border-right: 4px solid var(--warning); padding: 16px; border-radius: 0 8px 8px 0; color: #78350f; margin-bottom: 16px; }
+
+        .table-responsive { overflow-x: auto; width: 100%; margin-top: 12px; }
+        table { width: 100%; border-collapse: collapse; text-align: center; font-size: 14px; }
+        th { background-color: var(--dark); color: white; padding: 12px; font-weight: 700; }
+        td { padding: 10px 12px; border: 1px solid #e2e8f0; }
+
+        .method-box { background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 16px; margin-top: 16px; }
+
+        /* Hexadecimal Reference Sidebar Styles */
+        .hex-sidebar-card {
+            background-color: #0f172a;
+            border: 2px solid #0f766e;
+            border-radius: 12px;
+            padding: 16px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 80px;
+        }
+        .hex-sidebar-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #38bdf8;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .hex-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .hex-table th {
+            background-color: #1e293b;
+            color: #94a3b8;
+            font-size: 11px;
+            padding: 4px;
+        }
+        .hex-table td {
+            padding: 4px 6px;
+            border: 1px solid #334155;
+            font-size: 12px;
+        }
+        .hex-table tr:nth-child(even) {
+            background-color: rgba(255,255,255,0.03);
+        }
+
+        /* Floating Crazy Bot Widget (+20% size and 12s rotation) */
+        @keyframes spinAround {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .floating-bot-container {
+            position: fixed; bottom: 24px; left: 24px; z-index: 1000;
+            display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+        }
+
+        .floating-bot-card {
+            width: 380px; background-color: #0f172a; border: 2px solid #38bdf8; border-radius: 16px;
+            padding: 20px; color: white; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            display: flex; flex-direction: column; gap: 12px; transition: all 0.3s ease;
+        }
+
+        .bot-header { display: flex; align-items: center; gap: 14px; border-bottom: 1px solid #334155; padding-bottom: 12px; }
+
+        .bot-avatar-spinning {
+            width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
+            border: 3px solid #38bdf8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+            animation: spinAround 12s linear infinite;
+        }
+
+        .bot-toggle-btn {
+            background-color: #0f172a; border: 2px solid #38bdf8; color: white; padding: 12px 20px;
+            border-radius: 9999px; font-weight: 800; font-size: 15px; cursor: pointer;
+            display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn { background-color: var(--primary); color: white; border: none; padding: 8px 16px; font-size: 12px; font-weight: 700; border-radius: 6px; cursor: pointer; }
+        .btn-dark { background-color: var(--dark); }
+
+        footer { background-color: var(--dark); color: #94a3b8; padding: 24px 0; text-align: center; font-size: 12px; margin-top: auto; }
+        .font-mono { font-family: monospace; }
+        .ltr-text { direction: ltr; display: inline-block; unicode-bidi: embed; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="header-title-area">
+                <img src="https://lh3.googleusercontent.com/d/1BHxytxfATgrv3wpk_8slqpRX08p2Dzml" alt="אווטאר" class="crazy-avatar">
+                <div class="header-logo-box">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h1 style="font-size: 24px; font-weight: 800;">מערך שיעור פתיחה: המרת בסיסי ספירה</h1>
+                    <p style="font-size: 13px; opacity: 0.9;">מערך הקניה ותרגול פרונטלי (ללא מחשבים) למורה במגמת תקשוב</p>
+                </div>
+            </div>
+            <div class="header-badges">
+                <span class="badge">תקשוב ותקשורת מחשבים</span>
+                <span class="badge badge-success">לשימוש המורה בלבד</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Nav Tabs -->
+    <div class="nav-tabs-container">
+        <div class="container">
+            <nav>
+                <button onclick="switchTab('importance')" id="tab-importance" class="tab-btn active">1. חשיבות בסיסי הספירה בתקשוב</button>
+                <button onclick="switchTab('bases-overview')" id="tab-bases-overview" class="tab-btn">2. הבסיסים הנפוצים והסיבה לשימוש בהם</button>
+                <button onclick="switchTab('conversion-methods')" id="tab-conversion-methods" class="tab-btn">3. שיטות החישוב והמחשה בטבלה (1-128)</button>
+                <button onclick="switchTab('practice-solutions')" id="tab-practice-solutions" class="tab-btn">4. תרגול פרונטלי מודרך (60 תרגילים פתורים)</button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content Area with Layout Grid -->
+    <main class="container">
+        <div class="layout-grid">
+            
+            <!-- Dynamic Content Column -->
+            <div>
+                <!-- Tab 1: Importance -->
+                <section id="content-importance" class="tab-content active">
+                    <div class="card">
+                        <h2 class="card-title"><span style="color: var(--primary);">■</span> חשיבות בסיסי ספירה למקצוע התקשוב ותקשורת מחשבים</h2>
+                        <div class="alert-info">
+                            <strong>מטרת השיעור ללוח:</strong> להבין כיצד רכיבי תקשורת (מתגים, נתבים, כרטיסי רשת) מעבדים, מנתבים ומציגים כתובות ומידע.
+                        </div>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 16px;">
+                            <div style="background-color: #f8fafc; padding: 16px; border-radius: 8px; border-right: 4px solid var(--secondary);">
+                                <h3 style="font-weight: 800; font-size: 16px; color: #0369a1; margin-bottom: 8px;">1. השפה הפיזיקלית של החומרה (הבסיס הבינארי)</h3>
+                                <p style="font-size: 14px; color: #334155;">
+                                    ציוד תקשורת ומחשבים פועלים באמצעות אותות חשמליים (מתח גבוה/נמוך), אור בסיבים אופטיים או גלי רדיו. הבסיס הבינארי (<span dir="ltr" class="ltr-text font-mono font-bold">0</span> ו-<span dir="ltr" class="ltr-text font-mono font-bold">1</span>) הוא הייצוג היחיד שמשקף את המצב הפיזי של החומרה ("יש מתח" / "אין מתח").
+                                </p>
+                            </div>
+
+                            <div style="background-color: #f8fafc; padding: 16px; border-radius: 8px; border-right: 4px solid var(--primary);">
+                                <h3 style="font-weight: 800; font-size: 16px; color: var(--primary); margin-bottom: 8px;">2. חישובי כתובות IP ומסכות רשת (<span dir="ltr" class="ltr-text font-mono">Subnetting</span>)</h3>
+                                <p style="font-size: 14px; color: #334155;">
+                                    כל כתובת <span dir="ltr" class="ltr-text font-mono font-bold">IPv4</span> מורכבת מ-<span dir="ltr" class="ltr-text font-mono font-bold">32</span> ביטים המחולקים ל-<span dir="ltr" class="ltr-text font-mono font-bold">4</span> אוקטטות בנות <span dir="ltr" class="ltr-text font-mono font-bold">8</span> ביטים. כדי להבין כיצד נתב מקבל החלטת ניתוב, כיצד מבוצעת פעולת <span dir="ltr" class="ltr-text font-mono font-bold">AND</span> לוגי, וכדי לחלק רשתות לתתי-רשתות – חובה לשלוט בהמרה מבינארי לעשרוני ולהיפך.
+                                </p>
+                            </div>
+
+                            <div style="background-color: #f8fafc; padding: 16px; border-radius: 8px; border-right: 4px solid var(--warning);">
+                                <h3 style="font-weight: 800; font-size: 16px; color: #b45309; margin-bottom: 8px;">3. ייצוג תמציתי של כתובות ארוכות (הבסיס ההקסדצימלי)</h3>
+                                <p style="font-size: 14px; color: #334155;">
+                                    כתובות פיזיות (<span dir="ltr" class="ltr-text font-mono font-bold">MAC Address</span>) בנות <span dir="ltr" class="ltr-text font-mono font-bold">48</span> ביט וכתובות <span dir="ltr" class="ltr-text font-mono font-bold">IPv6</span> בנות <span dir="ltr" class="ltr-text font-mono font-bold">128</span> ביט הן ארוכות מדי לצפייה אנושית בבינארית. הבסיס ההקסדצימלי מאפשר לכווץ <span dir="ltr" class="ltr-text font-mono font-bold">4</span> ביטים לספרה אחת, מה שמקל על אנשי תקשורת לקרוא ולהגדיר רכיבים.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab 2: Bases Overview -->
+                <section id="content-bases-overview" class="tab-content">
+                    <div class="card">
+                        <h2 class="card-title"><span style="color: var(--primary);">■</span> סקירת הבסיסים והסיבה שרק הם נפוצים בתקשורת</h2>
+                        
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>שם הבסיס</th>
+                                        <th>בסיס (<span dir="ltr" class="ltr-text">Base</span>)</th>
+                                        <th>ספרות בשימוש</th>
+                                        <th>שימוש מרכזי בתקשורת מחשבים</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="font-bold">עשרוני (<span dir="ltr" class="ltr-text">Decimal</span>)</td>
+                                        <td><span dir="ltr" class="ltr-text font-mono font-bold">10</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">0, 1, 2, 3, 4, 5, 6, 7, 8, 9</span></td>
+                                        <td>ייצוג קריא לבני אדם של כתובות <span dir="ltr" class="ltr-text font-mono">IPv4</span> (למשל <span dir="ltr" class="ltr-text font-mono">192.168.1.1</span>)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-bold">בינארי (<span dir="ltr" class="ltr-text">Binary</span>)</td>
+                                        <td><span dir="ltr" class="ltr-text font-mono font-bold">2</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">0, 1</span></td>
+                                        <td>עיבוד נתונים בחומרה, חישובי מסכות רשת, <span dir="ltr" class="ltr-text font-mono">AND</span> לוגי, אוקטטות</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-bold">הקסדצימלי (<span dir="ltr" class="ltr-text">Hexadecimal</span>)</td>
+                                        <td><span dir="ltr" class="ltr-text font-mono font-bold">16</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">0-9, A, B, C, D, E, F</span></td>
+                                        <td>כתובות <span dir="ltr" class="ltr-text font-mono">MAC</span>, כתובות <span dir="ltr" class="ltr-text font-mono">IPv6</span>, פורנזיקה וניתוח פילוח חבילות (<span dir="ltr" class="ltr-text font-mono">Wireshark</span>)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="alert-warning" style="margin-top: 24px;">
+                            <h3 style="font-weight: 800; font-size: 16px; margin-bottom: 8px;">מדוע רק 3 הבסיסים הללו נפוצים בתקשורת?</h3>
+                            <ul style="list-style-type: disc; margin-right: 20px; font-size: 14px; line-height: 1.8;">
+                                <li><strong>העשרוני:</strong> נועד אך ורק בשביל <strong>נוחות האדם</strong> (מערכת הספירה הטבעית לנו).</li>
+                                <li><strong>הבינארי:</strong> משקף בדיוק את <strong>הפיזיקה של המחשב</strong> (ספרה אחת = ביט אחד = חיווי חשמלי).</li>
+                                <li><strong>ההקסדצימלי:</strong> משמש כ<strong>גשר מושלם בין הבינארי לאדם</strong>. מכיוון ש-<span dir="ltr" class="ltr-text font-mono">2^4 = 16</span>, כל ספרה הקסדצימלית מייצגת בדיוק <span dir="ltr" class="ltr-text font-mono font-bold">Nibble</span> (ארבעה ביטים). זה מונע את הצורך בחישובים מורכבים במעבר מבינארי להקס.</li>
+                                <li><strong>למה לא בסיס 8 (אוקטלי) או בסיסים אחרים?</strong> בסיס 8 מייצג 3 ביטים (<span dir="ltr" class="ltr-text font-mono">2^3=8</span>). מכיוון שכל אוגרי המחשב, הכתובות והפרוטוקולים בנויים מאינטרוולים של 8 ביט (<span dir="ltr" class="ltr-text font-mono">Byte / Octet</span>), בסיס 16 (4 ביטים כפול 2 = 8 ביטים) מתחלק בצורה מיושרת ונקייה בהרבה.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab 3: Conversion Methods with Table 1 to 128 -->
+                <section id="content-conversion-methods" class="tab-content">
+                    <div class="card">
+                        <h2 class="card-title"><span style="color: var(--primary);">■</span> טבלת משקלי אוקטטה (1 מימין עד 128 משמאל) ושיטות המרה</h2>
+                        
+                        <p style="font-size: 14px; color: #475569; margin-bottom: 12px;">
+                            בשיעור פרונטלי על הלוח, זוהי הטבלה המרכזית אותה תשרטט. האוקטטה מכילה <span dir="ltr" class="ltr-text font-mono font-bold">8</span> ביטים, כשהמשקל הקטן ביותר (<span dir="ltr" class="ltr-text font-mono font-bold">1</span>) נמצא מימין והגדול ביותר (<span dir="ltr" class="ltr-text font-mono font-bold">128</span>) משמאל:
+                        </p>
+
+                        <!-- Weight Table (Right to Left: 1 to 128) -->
+                        <div class="table-responsive">
+                            <table style="background-color: var(--dark); color: white;">
+                                <thead>
+                                    <tr style="background-color: #1e293b; color: #38bdf8;">
+                                        <th>מיקום הביט (משמאל לימין)</th>
+                                        <th>ביט 7</th><th>ביט 6</th><th>ביט 5</th><th>ביט 4</th><th>ביט 3</th><th>ביט 2</th><th>ביט 1</th><th>ביט 0</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="font-size: 18px; font-weight: 800; color: #10b981;">
+                                        <td style="color: white; font-size: 14px;">ערך / משקל עשרוני</td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">128</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">64</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">32</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">16</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">8</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">4</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">2</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">1</span></td>
+                                    </tr>
+                                    <tr style="font-size: 12px; color: #94a3b8;">
+                                        <td style="color: white;">חזקת 2 (<span dir="ltr" class="ltr-text font-mono">2^n</span>)</td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">2^7</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">2^6</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">2^5</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">2^4</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">2^3</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">2^2</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">2^1</span></td>
+                                        <td><span dir="ltr" class="ltr-text font-mono">2^0</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Explanation Methods -->
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 24px;">
+                            
+                            <!-- Dec to Bin & Hex -->
+                            <div class="method-box">
+                                <h3 style="font-weight: 800; font-size: 16px; color: var(--primary);">1. המרה מעשרוני לבינארי ולהקסדצימלי (שיטת החיסור על הלוח)</h3>
+                                <p style="font-size: 13px; color: #334155; margin-top: 6px;">
+                                    <strong>מעשרוני לבינארי:</strong> עוברים בטבלה משמאל לימין (מ-<span dir="ltr" class="ltr-text font-mono">128</span> עד <span dir="ltr" class="ltr-text font-mono">1</span>). אם המספר גדול/שווה למשקל הביט, שמים '<span dir="ltr" class="ltr-text font-mono">1</span>' ומחסרים את המשקל מהמספר. אם הוא קטן יותר, שמים '<span dir="ltr" class="ltr-text font-mono">0</span>'.<br>
+                                    <em>דוגמה (<span dir="ltr" class="ltr-text font-mono">192</span>):</em> <span dir="ltr" class="ltr-text font-mono">192</span> גדול מ-<span dir="ltr" class="ltr-text font-mono">128</span>? כן (שמים <span dir="ltr" class="ltr-text font-mono">1</span>, נשאר <span dir="ltr" class="ltr-text font-mono">64</span>). <span dir="ltr" class="ltr-text font-mono">64</span> גדול/שווה ל-<span dir="ltr" class="ltr-text font-mono">64</span>? כן (שמים <span dir="ltr" class="ltr-text font-mono">1</span>, נשאר <span dir="ltr" class="ltr-text font-mono">0</span>). כל השאר <span dir="ltr" class="ltr-text font-mono">0</span>. קיבלנו: <span dir="ltr" class="ltr-text font-mono font-bold">11000000</span>.<br>
+                                    <strong>מעשרוני להקסדצימלי:</strong> הדרך הקלה ביותר על הלוח היא להמיר קודם לבינארי, לחלק ל-<span dir="ltr" class="ltr-text font-mono">2</span> רביעיות (<span dir="ltr" class="ltr-text font-mono">Nibbles</span>), ולהמיר כל רביעייה לפי ערכה (<span dir="ltr" class="ltr-text font-mono">0-9, A-F</span>).<br>
+                                    <em>דוגמה (<span dir="ltr" class="ltr-text font-mono">192</span>):</em> הבינארי הוא <span dir="ltr" class="ltr-text font-mono font-bold">1100 | 0000</span>. הרביעייה השמאלית <span dir="ltr" class="ltr-text font-mono">1100 = 8 + 4 = 12 = C</span>. הימנית <span dir="ltr" class="ltr-text font-mono">0000 = 0</span>. תוצאה: <span dir="ltr" class="ltr-text font-mono font-bold">C0</span>.
+                                </p>
+                            </div>
+
+                            <!-- Bin to Dec & Hex -->
+                            <div class="method-box">
+                                <h3 style="font-weight: 800; font-size: 16px; color: var(--secondary);">2. המרה מבינארי לעשרוני ולהקסדצימלי</h3>
+                                <p style="font-size: 13px; color: #334155; margin-top: 6px;">
+                                    <strong>מבינארי לעשרוני:</strong> מציבים את <span dir="ltr" class="ltr-text font-mono">8</span> הביטים בטבלה, וסוכמים את הבלוקים בהם מופיע '<span dir="ltr" class="ltr-text font-mono">1</span>'.<br>
+                                    <strong>מבינארי להקסדצימלי:</strong> חוצים את <span dir="ltr" class="ltr-text font-mono">8</span> הביטים במרכז ל-<span dir="ltr" class="ltr-text font-mono">2</span> קבוצות של <span dir="ltr" class="ltr-text font-mono">4</span> ביטים (משקלי <span dir="ltr" class="ltr-text font-mono">8, 4, 2, 1</span> בכל צד). ממירים כל צד בנפרד לתו הקסדצימלי.
+                                </p>
+                            </div>
+
+                            <!-- Hex to Dec & Bin -->
+                            <div class="method-box">
+                                <h3 style="font-weight: 800; font-size: 16px; color: #b45309;">3. המרה מהקסדצימלי לעשרוני ולבינארי</h3>
+                                <p style="font-size: 13px; color: #334155; margin-top: 6px;">
+                                    <strong>מהקס לבינארי:</strong> ממירים כל תו הקסדצימלי בנפרד לרביעיית ביטים (<span dir="ltr" class="ltr-text font-mono">4</span> ביט). מחברים את שתי הרביעיות לאוקטטה של <span dir="ltr" class="ltr-text font-mono">8</span> ביט.<br>
+                                    <strong>מהקס לעשרוני:</strong> ממירים לבינארי ומחשבים לפי הטבלה, או כופלים את התו השמאלי ב-<span dir="ltr" class="ltr-text font-mono">16</span> ומוסיפים את התו הימני: <span dir="ltr" class="ltr-text font-mono">(Hex_1 * 16) + Hex_2</span>.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab 4: Practice & Full Solutions (60 Exercises) -->
+                <section id="content-practice-solutions" class="tab-content">
+                    <div class="card">
+                        <h2 class="card-title"><span style="color: var(--primary);">■</span> דף תרגול פרונטלי ומפתח תשובות מלא (60 תרגילים - עד 255)</h2>
+                        <p style="font-size: 13px; color: #64748b; margin-bottom: 16px;">
+                            טאב זה חולק ל-<span dir="ltr" class="ltr-text font-mono">6</span> תתי-לשוניות, <span dir="ltr" class="ltr-text font-mono">10</span> תרגילים בכל נושא כולל פתרון מלא ודרך חישוב (נועד להקראה ולבדיקה מהירה על הלוח).
+                        </p>
+
+                        <!-- Sub Tab Nav -->
+                        <div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 16px; border-bottom: 1px solid #e2e8f0;">
+                            <button onclick="switchSubTab('dec2bin')" id="subtab-dec2bin" class="sub-tab-btn active">עשרוני ← בינארי</button>
+                            <button onclick="switchSubTab('dec2hex')" id="subtab-dec2hex" class="sub-tab-btn">עשרוני ← הקס</button>
+                            <button onclick="switchSubTab('bin2dec')" id="subtab-bin2dec" class="sub-tab-btn">בינארי ← עשרוני</button>
+                            <button onclick="switchSubTab('bin2hex')" id="subtab-bin2hex" class="sub-tab-btn">בינארי ← הקס</button>
+                            <button onclick="switchSubTab('hex2dec')" id="subtab-hex2dec" class="sub-tab-btn">הקס ← עשרוני</button>
+                            <button onclick="switchSubTab('hex2bin')" id="subtab-hex2bin" class="sub-tab-btn">הקס ← בינארי</button>
+                        </div>
+
+                        <!-- Sub Tab 1: Dec to Bin -->
+                        <div id="subcontent-dec2bin" class="sub-tab-content active">
+                            <h3 style="font-weight: 800; font-size: 16px; margin-bottom: 12px; color: var(--primary);">10 תרגילי המרה מעשרוני לבינארי (<span dir="ltr" class="ltr-text font-mono">Dec → Bin</span>)</h3>
+                            <div class="table-responsive">
+                                <table>
+                                    <thead><tr><th>#</th><th>מספר עשרוני</th><th>תשובה בינארית (8 ביט)</th><th>דרך חישוב פירוק משקלים על הלוח</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>1</td><td><strong dir="ltr" class="ltr-text font-mono">12</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">00001100</td><td><span dir="ltr" class="ltr-text font-mono">8 + 4</span></td></tr>
+                                        <tr><td>2</td><td><strong dir="ltr" class="ltr-text font-mono">45</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">00101101</td><td><span dir="ltr" class="ltr-text font-mono">32 + 8 + 4 + 1</span></td></tr>
+                                        <tr><td>3</td><td><strong dir="ltr" class="ltr-text font-mono">87</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">01010111</td><td><span dir="ltr" class="ltr-text font-mono">64 + 16 + 4 + 2 + 1</span></td></tr>
+                                        <tr><td>4</td><td><strong dir="ltr" class="ltr-text font-mono">101</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">01100101</td><td><span dir="ltr" class="ltr-text font-mono">64 + 32 + 4 + 1</span></td></tr>
+                                        <tr><td>5</td><td><strong dir="ltr" class="ltr-text font-mono">128</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">10000000</td><td><span dir="ltr" class="ltr-text font-mono">128</span> בלבד</td></tr>
+                                        <tr><td>6</td><td><strong dir="ltr" class="ltr-text font-mono">150</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">10010110</td><td><span dir="ltr" class="ltr-text font-mono">128 + 16 + 4 + 2</span></td></tr>
+                                        <tr><td>7</td><td><strong dir="ltr" class="ltr-text font-mono">192</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">11000000</td><td><span dir="ltr" class="ltr-text font-mono">128 + 64</span> (מזהה רשת <span dir="ltr" class="ltr-text font-mono">Class C</span> נפוץ)</td></tr>
+                                        <tr><td>8</td><td><strong dir="ltr" class="ltr-text font-mono">210</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">11010010</td><td><span dir="ltr" class="ltr-text font-mono">128 + 64 + 16 + 2</span></td></tr>
+                                        <tr><td>9</td><td><strong dir="ltr" class="ltr-text font-mono">240</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">11110000</td><td><span dir="ltr" class="ltr-text font-mono">128 + 64 + 32 + 16</span></td></tr>
+                                        <tr><td>10</td><td><strong dir="ltr" class="ltr-text font-mono">255</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">11111111</td><td>כל הביטים דלוקים (<span dir="ltr" class="ltr-text font-mono">128+64+32+16+8+4+2+1</span>)</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Sub Tab 2: Dec to Hex -->
+                        <div id="subcontent-dec2hex" class="sub-tab-content">
+                            <h3 style="font-weight: 800; font-size: 16px; margin-bottom: 12px; color: var(--primary);">10 תרגילי המרה מעשרוני להקסדצימלי (<span dir="ltr" class="ltr-text font-mono">Dec → Hex</span>)</h3>
+                            <div class="table-responsive">
+                                <table>
+                                    <thead><tr><th>#</th><th>מספר עשרוני</th><th>תשובה הקסדצימלית</th><th>דרך חישוב (פירוק לרביעיות בינאריות)</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>1</td><td><strong dir="ltr" class="ltr-text font-mono">10</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">0A</td><td><span dir="ltr" class="ltr-text font-mono">10</span> בעשרוני שווה ל-<span dir="ltr" class="ltr-text font-mono">A</span> בבסיס <span dir="ltr" class="ltr-text font-mono">16</span></td></tr>
+                                        <tr><td>2</td><td><strong dir="ltr" class="ltr-text font-mono">31</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">1F</td><td><span dir="ltr" class="ltr-text font-mono">31 = 0001 | 1111</span> ← <span dir="ltr" class="ltr-text font-mono">1</span> ו-<span dir="ltr" class="ltr-text font-mono">15 (F)</span></td></tr>
+                                        <tr><td>3</td><td><strong dir="ltr" class="ltr-text font-mono">58</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">3A</td><td><span dir="ltr" class="ltr-text font-mono">58 = 0011 | 1010</span> ← <span dir="ltr" class="ltr-text font-mono">3</span> ו-<span dir="ltr" class="ltr-text font-mono">10 (A)</span></td></tr>
+                                        <tr><td>4</td><td><strong dir="ltr" class="ltr-text font-mono">99</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">63</td><td><span dir="ltr" class="ltr-text font-mono">99 = 0110 | 0011</span> ← <span dir="ltr" class="ltr-text font-mono">6</span> ו-<span dir="ltr" class="ltr-text font-mono">3</span></td></tr>
+                                        <tr><td>5</td><td><strong dir="ltr" class="ltr-text font-mono">127</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">7F</td><td><span dir="ltr" class="ltr-text font-mono">127 = 0111 | 1111</span> ← <span dir="ltr" class="ltr-text font-mono">7</span> ו-<span dir="ltr" class="ltr-text font-mono">15 (F)</span></td></tr>
+                                        <tr><td>6</td><td><strong dir="ltr" class="ltr-text font-mono">160</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">A0</td><td><span dir="ltr" class="ltr-text font-mono">160 = 1010 | 0000</span> ← <span dir="ltr" class="ltr-text font-mono">10 (A)</span> ו-<span dir="ltr" class="ltr-text font-mono">0</span></td></tr>
+                                        <tr><td>7</td><td><strong dir="ltr" class="ltr-text font-mono">188</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">BC</td><td><span dir="ltr" class="ltr-text font-mono">188 = 1011 | 1100</span> ← <span dir="ltr" class="ltr-text font-mono">11 (B)</span> ו-<span dir="ltr" class="ltr-text font-mono">12 (C)</span></td></tr>
+                                        <tr><td>8</td><td><strong dir="ltr" class="ltr-text font-mono">202</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">CA</td><td><span dir="ltr" class="ltr-text font-mono">202 = 1100 | 1010</span> ← <span dir="ltr" class="ltr-text font-mono">12 (C)</span> ו-<span dir="ltr" class="ltr-text font-mono">10 (A)</span></td></tr>
+                                        <tr><td>9</td><td><strong dir="ltr" class="ltr-text font-mono">224</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">E0</td><td><span dir="ltr" class="ltr-text font-mono">224 = 1110 | 0000</span> ← <span dir="ltr" class="ltr-text font-mono">14 (E)</span> ו-<span dir="ltr" class="ltr-text font-mono">0</span></td></tr>
+                                        <tr><td>10</td><td><strong dir="ltr" class="ltr-text font-mono">254</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">FE</td><td><span dir="ltr" class="ltr-text font-mono">254 = 1111 | 1110</span> ← <span dir="ltr" class="ltr-text font-mono">15 (F)</span> ו-<span dir="ltr" class="ltr-text font-mono">14 (E)</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Sub Tab 3: Bin to Dec -->
+                        <div id="subcontent-bin2dec" class="sub-tab-content">
+                            <h3 style="font-weight: 800; font-size: 16px; margin-bottom: 12px; color: var(--primary);">10 תרגילי המרה מבינארי לעשרוני (<span dir="ltr" class="ltr-text font-mono">Bin → Dec</span>)</h3>
+                            <div class="table-responsive">
+                                <table>
+                                    <thead><tr><th>#</th><th>מחרוזת בינארית</th><th>תשובה עשרונית</th><th>חישוב סכום משקלים</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>1</td><td class="font-mono" dir="ltr">00000101</td><td class="font-bold text-teal-700" dir="ltr">5</td><td><span dir="ltr" class="ltr-text font-mono">4 + 1</span></td></tr>
+                                        <tr><td>2</td><td class="font-mono" dir="ltr">00010010</td><td class="font-bold text-teal-700" dir="ltr">18</td><td><span dir="ltr" class="ltr-text font-mono">16 + 2</span></td></tr>
+                                        <tr><td>3</td><td class="font-mono" dir="ltr">00110000</td><td class="font-bold text-teal-700" dir="ltr">48</td><td><span dir="ltr" class="ltr-text font-mono">32 + 16</span></td></tr>
+                                        <tr><td>4</td><td class="font-mono" dir="ltr">01001001</td><td class="font-bold text-teal-700" dir="ltr">73</td><td><span dir="ltr" class="ltr-text font-mono">64 + 8 + 1</span></td></tr>
+                                        <tr><td>5</td><td class="font-mono" dir="ltr">01111000</td><td class="font-bold text-teal-700" dir="ltr">120</td><td><span dir="ltr" class="ltr-text font-mono">64 + 32 + 16 + 8</span></td></tr>
+                                        <tr><td>6</td><td class="font-mono" dir="ltr">10000001</td><td class="font-bold text-teal-700" dir="ltr">129</td><td><span dir="ltr" class="ltr-text font-mono">128 + 1</span></td></tr>
+                                        <tr><td>7</td><td class="font-mono" dir="ltr">10101000</td><td class="font-bold text-teal-700" dir="ltr">168</td><td><span dir="ltr" class="ltr-text font-mono">128 + 32 + 8</span> (אוקטטה נפוצה ב-<span dir="ltr" class="ltr-text font-mono">IP</span>)</td></tr>
+                                        <tr><td>8</td><td class="font-mono" dir="ltr">11000001</td><td class="font-bold text-teal-700" dir="ltr">193</td><td><span dir="ltr" class="ltr-text font-mono">128 + 64 + 1</span></td></tr>
+                                        <tr><td>9</td><td class="font-mono" dir="ltr">11100000</td><td class="font-bold text-teal-700" dir="ltr">224</td><td><span dir="ltr" class="ltr-text font-mono">128 + 64 + 32</span></td></tr>
+                                        <tr><td>10</td><td class="font-mono" dir="ltr">11111100</td><td class="font-bold text-teal-700" dir="ltr">252</td><td><span dir="ltr" class="ltr-text font-mono">255 - 3 = 252</span> (מסכת <span dir="ltr" class="ltr-text font-mono">/30</span>)</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Sub Tab 4: Bin to Hex -->
+                        <div id="subcontent-bin2hex" class="sub-tab-content">
+                            <h3 style="font-weight: 800; font-size: 16px; margin-bottom: 12px; color: var(--primary);">10 תרגילי המרה מבינארי להקסדצימלי (<span dir="ltr" class="ltr-text font-mono">Bin → Hex</span>)</h3>
+                            <div class="table-responsive">
+                                <table>
+                                    <thead><tr><th>#</th><th>מחרוזת בינארית</th><th>תשובה הקסדצימלית</th><th>פיצול לשני Nibbles</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>1</td><td class="font-mono" dir="ltr">00001111</td><td class="font-bold text-teal-700" dir="ltr">0F</td><td><span dir="ltr" class="ltr-text font-mono">0000 (0) | 1111 (15=F)</span></td></tr>
+                                        <tr><td>2</td><td class="font-mono" dir="ltr">00100110</td><td class="font-bold text-teal-700" dir="ltr">26</td><td><span dir="ltr" class="ltr-text font-mono">0010 (2) | 0110 (6)</span></td></tr>
+                                        <tr><td>3</td><td class="font-mono" dir="ltr">01011011</td><td class="font-bold text-teal-700" dir="ltr">5B</td><td><span dir="ltr" class="ltr-text font-mono">0101 (5) | 1011 (11=B)</span></td></tr>
+                                        <tr><td>4</td><td class="font-mono" dir="ltr">01111101</td><td class="font-bold text-teal-700" dir="ltr">7D</td><td><span dir="ltr" class="ltr-text font-mono">0111 (7) | 1101 (13=D)</span></td></tr>
+                                        <tr><td>5</td><td class="font-mono" dir="ltr">10010011</td><td class="font-bold text-teal-700" dir="ltr">93</td><td><span dir="ltr" class="ltr-text font-mono">1001 (9) | 0011 (3)</span></td></tr>
+                                        <tr><td>6</td><td class="font-mono" dir="ltr">10101111</td><td class="font-bold text-teal-700" dir="ltr">AF</td><td><span dir="ltr" class="ltr-text font-mono">1010 (10=A) | 1111 (15=F)</span></td></tr>
+                                        <tr><td>7</td><td class="font-mono" dir="ltr">11001000</td><td class="font-bold text-teal-700" dir="ltr">C8</td><td><span dir="ltr" class="ltr-text font-mono">1100 (12=C) | 1000 (8)</span></td></tr>
+                                        <tr><td>8</td><td class="font-mono" dir="ltr">11010101</td><td class="font-bold text-teal-700" dir="ltr">D5</td><td><span dir="ltr" class="ltr-text font-mono">1101 (13=D) | 0101 (5)</span></td></tr>
+                                        <tr><td>9</td><td class="font-mono" dir="ltr">11110010</td><td class="font-bold text-teal-700" dir="ltr">F2</td><td><span dir="ltr" class="ltr-text font-mono">1111 (15=F) | 0010 (2)</span></td></tr>
+                                        <tr><td>10</td><td class="font-mono" dir="ltr">11111010</td><td class="font-bold text-teal-700" dir="ltr">FA</td><td><span dir="ltr" class="ltr-text font-mono">1111 (15=F) | 1010 (10=A)</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Sub Tab 5: Hex to Dec -->
+                        <div id="subcontent-hex2dec" class="sub-tab-content">
+                            <h3 style="font-weight: 800; font-size: 16px; margin-bottom: 12px; color: var(--primary);">10 תרגילי המרה מהקסדצימלי לעשרוני (<span dir="ltr" class="ltr-text font-mono">Hex → Dec</span>)</h3>
+                            <div class="table-responsive">
+                                <table>
+                                    <thead><tr><th>#</th><th>ערך הקסדצימלי</th><th>תשובה עשרונית</th><th>דרך חישוב מהירה על הלוח</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>1</td><td class="font-mono" dir="ltr">0B</td><td class="font-bold text-teal-700" dir="ltr">11</td><td><span dir="ltr" class="ltr-text font-mono">B</span> שווה <span dir="ltr" class="ltr-text font-mono">11</span> בעשרוני</td></tr>
+                                        <tr><td>2</td><td class="font-mono" dir="ltr">15</td><td class="font-bold text-teal-700" dir="ltr">21</td><td><span dir="ltr" class="ltr-text font-mono">(1 * 16) + 5 = 21</span></td></tr>
+                                        <tr><td>3</td><td class="font-mono" dir="ltr">2E</td><td class="font-bold text-teal-700" dir="ltr">46</td><td><span dir="ltr" class="ltr-text font-mono">(2 * 16) + 14 (E) = 32 + 14 = 46</span></td></tr>
+                                        <tr><td>4</td><td class="font-mono" dir="ltr">4B</td><td class="font-bold text-teal-700" dir="ltr">75</td><td><span dir="ltr" class="ltr-text font-mono">(4 * 16) + 11 (B) = 64 + 11 = 75</span></td></tr>
+                                        <tr><td>5</td><td class="font-mono" dir="ltr">64</td><td class="font-bold text-teal-700" dir="ltr">100</td><td><span dir="ltr" class="ltr-text font-mono">(6 * 16) + 4 = 96 + 4 = 100</span></td></tr>
+                                        <tr><td>6</td><td class="font-mono" dir="ltr">80</td><td class="font-bold text-teal-700" dir="ltr">128</td><td><span dir="ltr" class="ltr-text font-mono">(8 * 16) + 0 = 128</span></td></tr>
+                                        <tr><td>7</td><td class="font-mono" dir="ltr">9F</td><td class="font-bold text-teal-700" dir="ltr">159</td><td><span dir="ltr" class="ltr-text font-mono">(9 * 16) + 15 (F) = 144 + 15 = 159</span></td></tr>
+                                        <tr><td>8</td><td class="font-mono" dir="ltr">B8</td><td class="font-bold text-teal-700" dir="ltr">184</td><td><span dir="ltr" class="ltr-text font-mono">(11 * 16) + 8 = 176 + 8 = 184</span></td></tr>
+                                        <tr><td>9</td><td class="font-mono" dir="ltr">D2</td><td class="font-bold text-teal-700" dir="ltr">210</td><td><span dir="ltr" class="ltr-text font-mono">(13 * 16) + 2 = 208 + 2 = 210</span></td></tr>
+                                        <tr><td>10</td><td class="font-mono" dir="ltr">FF</td><td class="font-bold text-teal-700" dir="ltr">255</td><td><span dir="ltr" class="ltr-text font-mono">(15 * 16) + 15 = 240 + 15 = 255</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Sub Tab 6: Hex to Bin -->
+                        <div id="subcontent-hex2bin" class="sub-tab-content">
+                            <h3 style="font-weight: 800; font-size: 16px; margin-bottom: 12px; color: var(--primary);">10 תרגילי המרה מהקסדצימלי לבינארי (<span dir="ltr" class="ltr-text font-mono">Hex → Bin</span>)</h3>
+                            <div class="table-responsive">
+                                <table>
+                                    <thead><tr><th>#</th><th>ערך הקסדצימלי</th><th>תשובה בינארית (8 ביט)</th><th>הרכבת שתי רביעיות ביטים</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>1</td><td class="font-mono" dir="ltr">03</td><td class="font-mono text-teal-700 font-bold" dir="ltr">00000011</td><td><span dir="ltr" class="ltr-text font-mono">0 (0000) | 3 (0011)</span></td></tr>
+                                        <tr><td>2</td><td class="font-mono" dir="ltr">1A</td><td class="font-mono text-teal-700 font-bold" dir="ltr">00011010</td><td><span dir="ltr" class="ltr-text font-mono">1 (0001) | A=10 (1010)</span></td></tr>
+                                        <tr><td>3</td><td class="font-mono" dir="ltr">3C</td><td class="font-mono text-teal-700 font-bold" dir="ltr">00111100</td><td><span dir="ltr" class="ltr-text font-mono">3 (0011) | C=12 (1100)</span></td></tr>
+                                        <tr><td>4</td><td class="font-mono" dir="ltr">5F</td><td class="font-mono text-teal-700 font-bold" dir="ltr">01011111</td><td><span dir="ltr" class="ltr-text font-mono">5 (0101) | F=15 (1111)</span></td></tr>
+                                        <tr><td>5</td><td class="font-mono" dir="ltr">72</td><td class="font-mono text-teal-700 font-bold" dir="ltr">01110010</td><td><span dir="ltr" class="ltr-text font-mono">7 (0111) | 2 (0010)</span></td></tr>
+                                        <tr><td>6</td><td class="font-mono" dir="ltr">8E</td><td class="font-mono text-teal-700 font-bold" dir="ltr">10001110</td><td><span dir="ltr" class="ltr-text font-mono">8 (1000) | E=14 (1110)</span></td></tr>
+                                        <tr><td>7</td><td class="font-mono" dir="ltr">A5</td><td class="font-mono text-teal-700 font-bold" dir="ltr">10100101</td><td><span dir="ltr" class="ltr-text font-mono">A=10 (1010) | 5 (0101)</span></td></tr>
+                                        <tr><td>8</td><td class="font-mono" dir="ltr">C1</td><td class="font-mono text-teal-700 font-bold" dir="ltr">11000001</td><td><span dir="ltr" class="ltr-text font-mono">C=12 (1100) | 1 (0001)</span></td></tr>
+                                        <tr><td>9</td><td class="font-mono" dir="ltr">E4</td><td class="font-mono text-teal-700 font-bold" dir="ltr">11100100</td><td><span dir="ltr" class="ltr-text font-mono">E=14 (1110) | 4 (0100)</span></td></tr>
+                                        <tr><td>10</td><td class="font-mono" dir="ltr">FD</td><td class="font-mono text-teal-700 font-bold" dir="ltr">11111101</td><td><span dir="ltr" class="ltr-text font-mono">F=15 (1111) | D=13 (1101)</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+
+            <!-- Side Reference Column: Hex to Binary (Nibbles 0-F) -->
+            <aside>
+                <div class="hex-sidebar-card">
+                    <div class="hex-sidebar-title">
+                        <span>טבלת ניבלים (<span dir="ltr" class="ltr-text">0-F</span>)</span>
+                        <span style="font-size: 10px; background-color: #0f766e; padding: 2px 6px; border-radius: 4px; color: white;" dir="ltr">4 Bits</span>
+                    </div>
+                    <p style="font-size: 11px; color: #94a3b8; margin-bottom: 8px;">ייצוג ספרה הקסדצימלית ב-<span dir="ltr" class="ltr-text font-mono">4</span> ביטים (<span dir="ltr" class="ltr-text font-mono">8-4-2-1</span>):</p>
+                    <table class="hex-table">
+                        <thead>
+                            <tr>
+                                <th>עשרוני</th>
+                                <th>הקס (<span dir="ltr" class="ltr-text">Hex</span>)</th>
+                                <th>בינארי (<span dir="ltr" class="ltr-text">4 Bit</span>)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td class="font-mono font-bold text-teal-400" dir="ltr">0</td><td class="font-mono font-bold text-emerald-400" dir="ltr">0000</td></tr>
+                            <tr><td>1</td><td class="font-mono font-bold text-teal-400" dir="ltr">1</td><td class="font-mono font-bold text-emerald-400" dir="ltr">0001</td></tr>
+                            <tr><td>2</td><td class="font-mono font-bold text-teal-400" dir="ltr">2</td><td class="font-mono font-bold text-emerald-400" dir="ltr">0010</td></tr>
+                            <tr><td>3</td><td class="font-mono font-bold text-teal-400" dir="ltr">3</td><td class="font-mono font-bold text-emerald-400" dir="ltr">0011</td></tr>
+                            <tr><td>4</td><td class="font-mono font-bold text-teal-400" dir="ltr">4</td><td class="font-mono font-bold text-emerald-400" dir="ltr">0100</td></tr>
+                            <tr><td>5</td><td class="font-mono font-bold text-teal-400" dir="ltr">5</td><td class="font-mono font-bold text-emerald-400" dir="ltr">0101</td></tr>
+                            <tr><td>6</td><td class="font-mono font-bold text-teal-400" dir="ltr">6</td><td class="font-mono font-bold text-emerald-400" dir="ltr">0110</td></tr>
+                            <tr><td>7</td><td class="font-mono font-bold text-teal-400" dir="ltr">7</td><td class="font-mono font-bold text-emerald-400" dir="ltr">0111</td></tr>
+                            <tr><td>8</td><td class="font-mono font-bold text-teal-400" dir="ltr">8</td><td class="font-mono font-bold text-emerald-400" dir="ltr">1000</td></tr>
+                            <tr><td>9</td><td class="font-mono font-bold text-teal-400" dir="ltr">9</td><td class="font-mono font-bold text-emerald-400" dir="ltr">1001</td></tr>
+                            <tr><td>10</td><td class="font-mono font-bold text-amber-400" dir="ltr">A</td><td class="font-mono font-bold text-emerald-400" dir="ltr">1010</td></tr>
+                            <tr><td>11</td><td class="font-mono font-bold text-amber-400" dir="ltr">B</td><td class="font-mono font-bold text-emerald-400" dir="ltr">1011</td></tr>
+                            <tr><td>12</td><td class="font-mono font-bold text-amber-400" dir="ltr">C</td><td class="font-mono font-bold text-emerald-400" dir="ltr">1100</td></tr>
+                            <tr><td>13</td><td class="font-mono font-bold text-amber-400" dir="ltr">D</td><td class="font-mono font-bold text-emerald-400" dir="ltr">1101</td></tr>
+                            <tr><td>14</td><td class="font-mono font-bold text-amber-400" dir="ltr">E</td><td class="font-mono font-bold text-emerald-400" dir="ltr">1110</td></tr>
+                            <tr><td>15</td><td class="font-mono font-bold text-amber-400" dir="ltr">F</td><td class="font-mono font-bold text-emerald-400" dir="ltr">1111</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+    <!-- Floating Crazy Bot Widget (+20% Size with Updated Rotating Avatar) -->
+    <div class="floating-bot-container">
+        <div id="bot-card" class="floating-bot-card">
+            <div class="bot-header">
+                <img src="https://lh3.googleusercontent.com/d/1t9QaPCKLvtAhWncetA83ALY8EIvpnFte" alt="Crazy Bot" class="bot-avatar-spinning">
+                <div>
+                    <h4 style="font-size: 16px; font-weight: 800; color: #38bdf8;">הבוט המטורלל למורה</h4>
+                    <span style="font-size: 11px; color: #94a3b8;">עוזר הוראה לפתיחת שיעור</span>
+                </div>
+            </div>
+            <p id="bot-tip-text" style="font-size: 13px; line-height: 1.5; color: #e2e8f0;">
+                "טיפ למורה: תסתכל בסרגל הצד! כשעובדים על תרגול הקס לבינארי, פשוט מחברים שתי שלשות/רביעיות בינאריות מהטבלה הצדדית!"
+            </p>
+            <div style="display: flex; gap: 8px;">
+                <button onclick="generateBotTip()" class="btn" style="font-size: 11px; padding: 6px 12px; flex-grow: 1;">תן לי עוד טיפ פדגוגי ⚡</button>
+                <button onclick="toggleBotCard()" class="btn btn-dark" style="font-size: 11px; padding: 6px 12px;">סגור</button>
+            </div>
+        </div>
+
+        <button onclick="toggleBotCard()" class="bot-toggle-btn">
+            <span style="font-size: 20px;">🤖</span> הבוט המטורלל
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>מערך שיעור פתיחה מותאם למורה למגמת תקשוב | המרת בסיסים ללא צורך במחשבים</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const teacherTips = [
+            "טיפ פדגוגי: כותבים את המספר 192 על הלוח ושואלים 'ממה הוא מורכב?' – 128 ועוד 64, ומראים איך שני הביטים השמאליים נדלקים!",
+            "זכור: בהמרה מהקס לבינארי, תמיד תדגיש לתלמידים להשלים ל-4 ביטים מלאים לכל תו (למשל 3 הופך ל-0011 ולא ל-11)!",
+            "טריק ללוח: 255 בבינארית הוא 8 אחדות. 254 הוא 8 אחדות פחות 1, כלומר 11111110!",
+            "בהמרת הקס לעשרונית: השיטה הקלה ללוח היא לעבור דרך הבינארי – זה מונע כפל מורכב ב-16!"
+        ];
+
+        function toggleBotCard() {
+            const card = document.getElementById('bot-card');
+            card.style.display = (card.style.display === 'none') ? 'flex' : 'none';
+        }
+
+        function generateBotTip() {
+            const randomIndex = Math.floor(Math.random() * teacherTips.length);
+            document.getElementById('bot-tip-text').innerText = `"${teacherTips[randomIndex]}"`;
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+            document.querySelectorAll('.tab-btn').forEach(b => b.className = 'tab-btn');
+            
+            const target = document.getElementById('content-' + tabId);
+            if (target) target.style.display = 'block';
+            
+            const btn = document.getElementById('tab-' + tabId);
+            if (btn) btn.className = 'tab-btn active';
+        }
+
+        function switchSubTab(subTabId) {
+            document.querySelectorAll('.sub-tab-content').forEach(c => c.style.display = 'none');
+            document.querySelectorAll('.sub-tab-btn').forEach(b => b.className = 'sub-tab-btn');
+            
+            const target = document.getElementById('subcontent-' + subTabId);
+            if (target) target.style.display = 'block';
+            
+            const btn = document.getElementById('subtab-' + subTabId);
+            if (btn) btn.className = 'sub-tab-btn active';
+        }
+    </script>
+</body>
+</html>
