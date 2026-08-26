@@ -23,9 +23,19 @@
             --warning: #f59e0b;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        @keyframes spinAround {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: Calibri, system-ui, -apple-system, sans-serif !important;
+        }
+
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
             background-color: #f1f5f9;
             color: #1e293b;
             line-height: 1.6;
@@ -47,14 +57,11 @@
         @media (min-width: 768px) { .header-content { flex-direction: row; } }
 
         .header-title-area { display: flex; align-items: center; gap: 12px; }
-        .header-logo-box {
-            background-color: white; color: #0f766e; padding: 10px; border-radius: 8px;
-            display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
 
         .crazy-avatar {
             width: 52px; height: 52px; border-radius: 50%; object-fit: cover;
-            transform: rotate(30deg); border: 2px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            border: 2px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            animation: spinAround 10s linear infinite;
         }
 
         .header-badges { display: flex; gap: 8px; }
@@ -189,12 +196,6 @@
             background-color: rgba(255,255,255,0.03);
         }
 
-        /* Floating Crazy Bot Widget (+20% size and 12s rotation) */
-        @keyframes spinAround {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
         .floating-bot-container {
             position: fixed; bottom: 24px; left: 24px; z-index: 1000;
             display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
@@ -244,7 +245,7 @@
         .btn-dark { background-color: var(--dark); }
 
         footer { background-color: var(--dark); color: #94a3b8; padding: 24px 0; text-align: center; font-size: 12px; margin-top: auto; }
-        .font-mono { font-family: monospace; }
+        .font-mono { font-family: monospace, Calibri, sans-serif !important; }
         .ltr-text { direction: ltr; display: inline-block; unicode-bidi: embed; }
     </style>
 </head>
@@ -255,11 +256,6 @@
         <div class="container header-content">
             <div class="header-title-area">
                 <img src="https://lh3.googleusercontent.com/d/1BHxytxfATgrv3wpk_8slqpRX08p2Dzml" alt="אווטאר" class="crazy-avatar">
-                <div class="header-logo-box">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
-                    </svg>
-                </div>
                 <div>
                     <h1 style="font-size: 24px; font-weight: 800;">מערך שיעור פתיחה: המרת בסיסי ספירה</h1>
                     <p style="font-size: 13px; opacity: 0.9;">מערך הקניה ותרגול פרונטלי (ללא מחשבים) למורה במגמת תקשוב</p>
@@ -307,7 +303,7 @@
                             </div>
 
                             <div style="background-color: #f8fafc; padding: 16px; border-radius: 8px; border-right: 4px solid var(--primary);">
-                                <h3 style="font-weight: 800; font-size: 16px; color: var(--primary); margin-bottom: 8px;">2. חישובי כתובות IP ומסכות רשת (<span dir="ltr" class="ltr-text font-mono">Subnetting</span>)</h3>
+                                <h3 style="font-weight: 800; font-size: 16px; color: var(--primary); margin-bottom: 8px;">2. חישובי כתובות <span dir="ltr" class="ltr-text font-mono">IP</span> ומסכות רשת (<span dir="ltr" class="ltr-text font-mono">Subnetting</span>)</h3>
                                 <p style="font-size: 14px; color: #334155;">
                                     כל כתובת <span dir="ltr" class="ltr-text font-mono font-bold">IPv4</span> מורכבת מ-<span dir="ltr" class="ltr-text font-mono font-bold">32</span> ביטים המחולקים ל-<span dir="ltr" class="ltr-text font-mono font-bold">4</span> אוקטטות בנות <span dir="ltr" class="ltr-text font-mono font-bold">8</span> ביטים. כדי להבין כיצד נתב מקבל החלטת ניתוב, כיצד מבוצעת פעולת <span dir="ltr" class="ltr-text font-mono font-bold">AND</span> לוגי, וכדי לחלק רשתות לתתי-רשתות – חובה לשלוט בהמרה מבינארי לעשרוני ולהיפך.
                                 </p>
@@ -333,26 +329,26 @@
                                 <thead>
                                     <tr>
                                         <th>שם הבסיס</th>
-                                        <th>בסיס (<span dir="ltr" class="ltr-text">Base</span>)</th>
+                                        <th>בסיס (<span dir="ltr" class="ltr-text font-mono">Base</span>)</th>
                                         <th>ספרות בשימוש</th>
                                         <th>שימוש מרכזי בתקשורת מחשבים</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="font-bold">עשרוני (<span dir="ltr" class="ltr-text">Decimal</span>)</td>
+                                        <td class="font-bold">עשרוני (<span dir="ltr" class="ltr-text font-mono">Decimal</span>)</td>
                                         <td><span dir="ltr" class="ltr-text font-mono font-bold">10</span></td>
                                         <td><span dir="ltr" class="ltr-text font-mono">0, 1, 2, 3, 4, 5, 6, 7, 8, 9</span></td>
                                         <td>ייצוג קריא לבני אדם של כתובות <span dir="ltr" class="ltr-text font-mono">IPv4</span> (למשל <span dir="ltr" class="ltr-text font-mono">192.168.1.1</span>)</td>
                                     </tr>
                                     <tr>
-                                        <td class="font-bold">בינארי (<span dir="ltr" class="ltr-text">Binary</span>)</td>
+                                        <td class="font-bold">בינארי (<span dir="ltr" class="ltr-text font-mono">Binary</span>)</td>
                                         <td><span dir="ltr" class="ltr-text font-mono font-bold">2</span></td>
                                         <td><span dir="ltr" class="ltr-text font-mono">0, 1</span></td>
                                         <td>עיבוד נתונים בחומרה, חישובי מסכות רשת, <span dir="ltr" class="ltr-text font-mono">AND</span> לוגי, אוקטטות</td>
                                     </tr>
                                     <tr>
-                                        <td class="font-bold">הקסדצימלי (<span dir="ltr" class="ltr-text">Hexadecimal</span>)</td>
+                                        <td class="font-bold">הקסדצימלי (<span dir="ltr" class="ltr-text font-mono">Hexadecimal</span>)</td>
                                         <td><span dir="ltr" class="ltr-text font-mono font-bold">16</span></td>
                                         <td><span dir="ltr" class="ltr-text font-mono">0-9, A, B, C, D, E, F</span></td>
                                         <td>כתובות <span dir="ltr" class="ltr-text font-mono">MAC</span>, כתובות <span dir="ltr" class="ltr-text font-mono">IPv6</span>, פורנזיקה וניתוח פילוח חבילות (<span dir="ltr" class="ltr-text font-mono">Wireshark</span>)</td>
@@ -373,7 +369,7 @@
                     </div>
                 </section>
 
-                <!-- Tab 3: Conversion Methods & Helper Tables (Reversed Table Direction) -->
+                <!-- Tab 3: Conversion Methods & Helper Tables -->
                 <section id="content-conversion-methods" class="tab-content">
                     <div class="card">
                         
@@ -381,7 +377,7 @@
                         <div class="drive-link-banner">
                             <div>
                                 <h3 style="font-size: 16px; font-weight: 800; color: #38bdf8; margin-bottom: 4px;">📄 דף עזר להמרות - טבלאות לבגרות (יואל - סהר)</h3>
-                                <p style="font-size: 13px; color: #94a3b8;">צפה או הורד את מסמך ה-PDF המלא עם טבלאות העזר והשיטות המהירות להמרת בסיסים.</p>
+                                <p style="font-size: 13px; color: #94a3b8;">צפה או הורד את מסמך ה-<span dir="ltr" class="ltr-text font-mono">PDF</span> המלא עם טבלאות העזר והשיטות המהירות להמרת בסיסים.</p>
                             </div>
                             <a href="https://drive.google.com/file/d/1FsoHiyyFYIElgTkhWrbIuExRMT-EQ5da/view?usp=sharing" target="_blank" class="drive-btn">
                                 <span>לחץ לדף עזר המרות</span>
@@ -391,17 +387,17 @@
 
                         <h2 class="card-title"><span style="color: var(--primary);">■</span> טבלאות עזר לבגרות להפיכת בסיסים</h2>
                         <p style="font-size: 13px; color: #64748b; margin-bottom: 16px;">
-                            הטבלה המאוחדת שלהלן מסנכרנת בין ספרות ה-HEX, הערך העשרוני (1-15) ומשקלי הביטים של האוקטטה (בסדר הפוך, מ-1 משמאל ועד 128 מימין / מ-1 עד 15 מימין לשמאל):
+                            הטבלה המאוחדת שלהלן מסנכרנת בין ספרות ה-<span dir="ltr" class="ltr-text font-mono">HEX</span>, הערך העשרוני (1-15) ומשקלי הביטים של האוקטטה:
                         </p>
 
-                        <!-- Unified Helper Table (Reversed Order) -->
+                        <!-- Unified Helper Table -->
                         <div class="table-responsive">
                             <table style="background-color: var(--dark); color: white;">
                                 <thead>
                                     <tr style="background-color: #1e293b; color: #38bdf8;">
                                         <th>סוג הערך</th>
                                         <th colspan="8">ספרות עשרוניות ובינאריות (1 עד 8)</th>
-                                        <th colspan="7">ספרות הקסדצימליות (<span dir="ltr" class="ltr-text">HEX</span>) גבוהות (9 עד F)</th>
+                                        <th colspan="7">ספרות הקסדצימליות (<span dir="ltr" class="ltr-text font-mono">HEX</span>) גבוהות (9 עד F)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -454,7 +450,7 @@
                             </table>
                         </div>
 
-                        <!-- 8-Bit Complete Weight Table (Reversed Order 1 to 128) -->
+                        <!-- 8-Bit Complete Weight Table -->
                         <div style="margin-top: 16px;" class="table-responsive">
                             <table style="background-color: #020617; color: white;">
                                 <thead>
@@ -507,11 +503,11 @@
                                 <p style="font-size: 13px; color: #334155; margin-top: 6px;">
                                     מבצעים חלוקה ב-<span dir="ltr" class="ltr-text font-mono font-bold">16</span>. את השארית רושמים. שוב מחלקים את התוצאה ב-<span dir="ltr" class="ltr-text font-mono font-bold">16</span> ורושמים את השארית <strong>משמאל למה שכתבנו קודם</strong>.<br>
                                     <strong>קביעת השארית:</strong> קובעים לפי הכפלת התוצאה השלמה מחדש ב-<span dir="ltr" class="ltr-text font-mono font-bold">16</span>.<br>
-                                    <em>דוגמה מהמסמך (<span dir="ltr" class="ltr-text font-mono">100</span>):</em> מחלקים ב-<span dir="ltr" class="ltr-text font-mono">16</span>. התוצאה השלמה היא <span dir="ltr" class="ltr-text font-mono">6</span>. מכפילים <span dir="ltr" class="ltr-text font-mono">6 * 16</span> ומקבלים <span dir="ltr" class="ltr-text font-mono">96</span>. השארית היא <span dir="ltr" class="ltr-text font-mono">100 - 96 = 4</span>. רושמים <span dir="ltr" class="ltr-text font-mono font-bold">64</span> ב-HEX.
+                                    <em>דוגמה מהמסמך (<span dir="ltr" class="ltr-text font-mono">100</span>):</em> מחלקים ב-<span dir="ltr" class="ltr-text font-mono">16</span>. התוצאה השלמה היא <span dir="ltr" class="ltr-text font-mono">6</span>. מכפילים <span dir="ltr" class="ltr-text font-mono">6 * 16</span> ומקבלים <span dir="ltr" class="ltr-text font-mono">96</span>. השארית היא <span dir="ltr" class="ltr-text font-mono">100 - 96 = 4</span>. רושמים <span dir="ltr" class="ltr-text font-mono font-bold">64</span> ב-<span dir="ltr" class="ltr-text font-mono">HEX</span>.
                                 </p>
                             </div>
 
-                            <!-- Hex to Dec (Reversed Order 16^0 to 16^7) -->
+                            <!-- Hex to Dec -->
                             <div class="method-box">
                                 <h3 style="font-weight: 800; font-size: 16px; color: #0f766e;">4. המרת הקסדצימלי לעשרוני (רגיל) - סולם חזקות 16</h3>
                                 <p style="font-size: 13px; color: #334155; margin-top: 6px;">
@@ -556,7 +552,7 @@
                     </div>
                 </section>
 
-                <!-- Tab 4: Practice & Full Solutions (60 Exercises) -->
+                <!-- Tab 4: Practice & Full Solutions -->
                 <section id="content-practice-solutions" class="tab-content">
                     <div class="card">
                         <h2 class="card-title"><span style="color: var(--primary);">■</span> דף תרגול פרונטלי ומפתח תשובות מלא (60 תרגילים - עד 255)</h2>
@@ -645,7 +641,7 @@
                             <h3 style="font-weight: 800; font-size: 16px; margin-bottom: 12px; color: var(--primary);">10 תרגילי המרה מבינארי להקסדצימלי (<span dir="ltr" class="ltr-text font-mono">Bin → Hex</span>)</h3>
                             <div class="table-responsive">
                                 <table>
-                                    <thead><tr><th>#</th><th>מחרוזת בינארית</th><th>תשובה הקסדצימלית</th><th>פיצול לשני Nibbles</th></tr></thead>
+                                    <thead><tr><th>#</th><th>מחרוזת בינארית</th><th>תשובה הקסדצימלית</th><th>פיצול לשני <span dir="ltr" class="ltr-text font-mono">Nibbles</span></th></tr></thead>
                                     <tbody>
                                         <tr><td>1</td><td class="font-mono" dir="ltr">00001111</td><td class="font-bold text-teal-700" dir="ltr">0F</td><td><span dir="ltr" class="ltr-text font-mono">0000 (0) | 1111 (15=F)</span></td></tr>
                                         <tr><td>2</td><td class="font-mono" dir="ltr">00100110</td><td class="font-bold text-teal-700" dir="ltr">26</td><td><span dir="ltr" class="ltr-text font-mono">0010 (2) | 0110 (6)</span></td></tr>
@@ -714,16 +710,16 @@
             <aside>
                 <div class="hex-sidebar-card">
                     <div class="hex-sidebar-title">
-                        <span>טבלת ניבלים (<span dir="ltr" class="ltr-text">0-F</span>)</span>
-                        <span style="font-size: 10px; background-color: #0f766e; padding: 2px 6px; border-radius: 4px; color: white;" dir="ltr">4 Bits</span>
+                        <span>טבלת ניבלים (<span dir="ltr" class="ltr-text font-mono">0-F</span>)</span>
+                        <span style="font-size: 10px; background-color: #0f766e; padding: 2px 6px; border-radius: 4px; color: white;" dir="ltr" class="ltr-text font-mono">4 Bits</span>
                     </div>
                     <p style="font-size: 11px; color: #94a3b8; margin-bottom: 8px;">ייצוג ספרה הקסדצימלית ב-<span dir="ltr" class="ltr-text font-mono">4</span> ביטים (<span dir="ltr" class="ltr-text font-mono">8-4-2-1</span>):</p>
                     <table class="hex-table">
                         <thead>
                             <tr>
                                 <th>עשרוני</th>
-                                <th>הקס (<span dir="ltr" class="ltr-text">Hex</span>)</th>
-                                <th>בינארי (<span dir="ltr" class="ltr-text">4 Bit</span>)</th>
+                                <th>הקס (<span dir="ltr" class="ltr-text font-mono">Hex</span>)</th>
+                                <th>בינארי (<span dir="ltr" class="ltr-text font-mono">4 Bit</span>)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -751,7 +747,7 @@
         </div>
     </main>
 
-    <!-- Floating Crazy Bot Widget (+20% Size with Gemini External Link Button) -->
+    <!-- Floating Crazy Bot Widget -->
     <div class="floating-bot-container">
         <div id="bot-card" class="floating-bot-card">
             <div class="bot-header">
@@ -766,7 +762,7 @@
             </p>
             <div style="display: flex; flex-direction: column; gap: 8px;">
                 <a href="https://gemini.google.com/gem/167016ac4a4b?usp=sharing" target="_blank" class="gemini-bot-btn">
-                    <span>פתח את הבוט המלא ב-Gemini</span>
+                    <span>פתח את הבוט המלא ב-<span dir="ltr" class="ltr-text font-mono">Gemini</span></span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                 </a>
                 <div style="display: flex; gap: 8px;">
