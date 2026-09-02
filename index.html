@@ -179,7 +179,7 @@
         .hex-table td { padding: 4px 6px; border: 1px solid #334155; font-size: 12px; }
         .hex-table tr:nth-child(even) { background-color: rgba(255,255,255,0.03); }
 
-        /* Student Practice Table Styles */
+        /* Interactive Student Practice Table Styles */
         .student-helper-card {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             border: 2px solid #38bdf8;
@@ -194,6 +194,7 @@
             border-collapse: separate;
             border-spacing: 6px;
             margin-top: 10px;
+            direction: rtl;
         }
         .student-helper-table th {
             background-color: #0f766e;
@@ -207,11 +208,35 @@
         .student-helper-table td {
             background-color: rgba(255, 255, 255, 0.07);
             border: 2px dashed #38bdf8;
-            height: 48px;
+            height: 52px;
             border-radius: 6px;
-            color: #94a3b8;
-            font-size: 12px;
-            font-weight: 600;
+            padding: 0;
+        }
+        .bit-input {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            color: #38bdf8;
+            font-size: 22px;
+            font-weight: 800;
+            text-align: center;
+            outline: none;
+            font-family: monospace, Calibri, sans-serif !important;
+        }
+        .bit-input:focus {
+            background-color: rgba(56, 189, 248, 0.15);
+            border-radius: 4px;
+        }
+        .sum-result-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(15, 23, 42, 0.8);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-top: 12px;
         }
 
         /* Quiz Styles */
@@ -652,16 +677,16 @@
                             טאב זה חולק ל-<span dir="ltr" class="ltr-text font-mono">6</span> תתי-לשוניות, <span dir="ltr" class="ltr-text font-mono">10</span> תרגילים בכל נושא כולל פתרון מלא. מתחת לתרגילים מופיע בוחן אמריקאי אינטראקטיבי לקבלת משוב וציון מיידי, כולל אפשרות לתרגול חוזר עם שאלות חדשות בכל פעם.
                         </p>
 
-                        <!-- STUDENT HELPER TABLE BANNER -->
+                        <!-- INTERACTIVE STUDENT HELPER TABLE BANNER -->
                         <div class="student-helper-card">
                             <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px;">
                                 <h3 style="font-size: 15px; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 8px;">
-                                    <span>✍️ טבלת עזר לחישוב פירוק משקלים (לפתרון תרגילים על הלוח/בדף)</span>
+                                    <span>🧮 מחשבון משקלים אינטראקטיבי לתלמיד (128 עד 1)</span>
                                 </h3>
                                 <span style="font-size: 11px; background-color: #0f766e; padding: 2px 8px; border-radius: 4px; color: white;" dir="ltr" class="ltr-text font-mono">8 Bits Octet</span>
                             </div>
                             <p style="font-size: 12px; color: #94a3b8; margin-bottom: 8px;">
-                                היעזרו בטבלת המשקלים הבינארית של ה-8 ביט. רשמו <strong>1</strong> או <strong>0</strong> תחת המשקל המתאים לפתרון כל תרגיל:
+                                הקלד <strong>1</strong> או <strong>0</strong> במשבצות שלמטה (מימין לשמאל: 128 עד 1) כדי לראות את הסיכום העשרוני האוטומטי מתחת לטבלה:
                             </p>
                             
                             <div class="table-responsive">
@@ -680,17 +705,26 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>משבצת חישוב</td>
-                                            <td>משבצת חישוב</td>
-                                            <td>משבצת חישוב</td>
-                                            <td>משבצת חישוב</td>
-                                            <td>משבצת חישוב</td>
-                                            <td>משבצת חישוב</td>
-                                            <td>משבצת חישוב</td>
-                                            <td>משבצת חישוב</td>
+                                            <td><input type="text" maxlength="1" class="bit-input" data-weight="128" oninput="calculateBitSum()"></td>
+                                            <td><input type="text" maxlength="1" class="bit-input" data-weight="64" oninput="calculateBitSum()"></td>
+                                            <td><input type="text" maxlength="1" class="bit-input" data-weight="32" oninput="calculateBitSum()"></td>
+                                            <td><input type="text" maxlength="1" class="bit-input" data-weight="16" oninput="calculateBitSum()"></td>
+                                            <td><input type="text" maxlength="1" class="bit-input" data-weight="8" oninput="calculateBitSum()"></td>
+                                            <td><input type="text" maxlength="1" class="bit-input" data-weight="4" oninput="calculateBitSum()"></td>
+                                            <td><input type="text" maxlength="1" class="bit-input" data-weight="2" oninput="calculateBitSum()"></td>
+                                            <td><input type="text" maxlength="1" class="bit-input" data-weight="1" oninput="calculateBitSum()"></td>
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
+
+                            <div class="sum-result-box">
+                                <div style="font-size: 13px; font-weight: 700; color: #e2e8f0;">
+                                    פירוק חישוב: <span id="bit-calculation-text" style="color: #38bdf8; font-family: monospace;">0</span>
+                                </div>
+                                <div style="font-size: 15px; font-weight: 800; color: #34d399;">
+                                    סה"כ עשרוני: <span id="bit-total-sum" style="font-size: 20px; font-family: monospace;">0</span>
+                                </div>
                             </div>
                         </div>
 
@@ -1052,6 +1086,37 @@
             "טריק ללוח: 255 בבינארית הוא 8 אחדות. 254 הוא 8 אחדות פחות 1, כלומר 11111110!",
             "בהמרת הקס לעשרונית: השיטה הקלה ללוח היא לעבור דרך הבינארי – זה מונע כפל מורכב ב-16!"
         ];
+
+        // Dynamic Bit Table Calculation Function
+        function calculateBitSum() {
+            const inputs = document.querySelectorAll('.bit-input');
+            let total = 0;
+            let activeWeights = [];
+
+            inputs.forEach(input => {
+                const val = input.value.trim();
+                const weight = parseInt(input.getAttribute('data-weight'));
+
+                // Enforce 0 or 1 input
+                if (val === '1') {
+                    total += weight;
+                    activeWeights.push(weight);
+                } else if (val !== '0' && val !== '') {
+                    input.value = ''; // Reset invalid inputs
+                }
+            });
+
+            const sumDisplay = document.getElementById('bit-total-sum');
+            const calcDisplay = document.getElementById('bit-calculation-text');
+
+            sumDisplay.innerText = total;
+
+            if (activeWeights.length > 0) {
+                calcDisplay.innerText = activeWeights.join(' + ') + ` = ${total}`;
+            } else {
+                calcDisplay.innerText = '0';
+            }
+        }
 
         // Store active quiz data dynamically
         const quizDataStore = {};
