@@ -179,6 +179,41 @@
         .hex-table td { padding: 4px 6px; border: 1px solid #334155; font-size: 12px; }
         .hex-table tr:nth-child(even) { background-color: rgba(255,255,255,0.03); }
 
+        /* Student Practice Table Styles */
+        .student-helper-card {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border: 2px solid #38bdf8;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            color: white;
+            box-shadow: 0 4px 12px rgba(15, 118, 110, 0.2);
+        }
+        .student-helper-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 6px;
+            margin-top: 10px;
+        }
+        .student-helper-table th {
+            background-color: #0f766e;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 800;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #2dd4bf;
+        }
+        .student-helper-table td {
+            background-color: rgba(255, 255, 255, 0.07);
+            border: 2px dashed #38bdf8;
+            height: 48px;
+            border-radius: 6px;
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
         /* Quiz Styles */
         .quiz-container {
             margin-top: 32px;
@@ -616,6 +651,48 @@
                         <p style="font-size: 13px; color: #64748b; margin-bottom: 16px;">
                             טאב זה חולק ל-<span dir="ltr" class="ltr-text font-mono">6</span> תתי-לשוניות, <span dir="ltr" class="ltr-text font-mono">10</span> תרגילים בכל נושא כולל פתרון מלא. מתחת לתרגילים מופיע בוחן אמריקאי אינטראקטיבי לקבלת משוב וציון מיידי, כולל אפשרות לתרגול חוזר עם שאלות חדשות בכל פעם.
                         </p>
+
+                        <!-- STUDENT HELPER TABLE BANNER -->
+                        <div class="student-helper-card">
+                            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px;">
+                                <h3 style="font-size: 15px; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 8px;">
+                                    <span>✍️ טבלת עזר לחישוב פירוק משקלים (לפתרון תרגילים על הלוח/בדף)</span>
+                                </h3>
+                                <span style="font-size: 11px; background-color: #0f766e; padding: 2px 8px; border-radius: 4px; color: white;" dir="ltr" class="ltr-text font-mono">8 Bits Octet</span>
+                            </div>
+                            <p style="font-size: 12px; color: #94a3b8; margin-bottom: 8px;">
+                                היעזרו בטבלת המשקלים הבינארית של ה-8 ביט. רשמו <strong>1</strong> או <strong>0</strong> תחת המשקל המתאים לפתרון כל תרגיל:
+                            </p>
+                            
+                            <div class="table-responsive">
+                                <table class="student-helper-table">
+                                    <thead>
+                                        <tr>
+                                            <th>128</th>
+                                            <th>64</th>
+                                            <th>32</th>
+                                            <th>16</th>
+                                            <th>8</th>
+                                            <th>4</th>
+                                            <th>2</th>
+                                            <th>1</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>משבצת חישוב</td>
+                                            <td>משבצת חישוב</td>
+                                            <td>משבצת חישוב</td>
+                                            <td>משבצת חישוב</td>
+                                            <td>משבצת חישוב</td>
+                                            <td>משבצת חישוב</td>
+                                            <td>משבצת חישוב</td>
+                                            <td>משבצת חישוב</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
                         <!-- Sub Tab Nav -->
                         <div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 16px; border-bottom: 1px solid #e2e8f0;">
