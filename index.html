@@ -42,6 +42,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            font-size: 16px;
         }
 
         .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 16px; }
@@ -59,7 +60,7 @@
         .header-title-area { display: flex; align-items: center; gap: 12px; }
 
         .crazy-avatar {
-            width: 52px; height: 52px; border-radius: 50%; object-fit: cover;
+            width: 60px; height: 60px; border-radius: 50%; object-fit: cover;
             border: 2px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.15);
             animation: spinAround 10s linear infinite;
         }
@@ -67,23 +68,23 @@
         .header-badges { display: flex; gap: 8px; }
         .badge {
             background-color: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.4);
-            color: white; font-size: 11px; font-weight: 600; padding: 6px 12px; border-radius: 9999px;
+            color: white; font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 9999px;
         }
         .badge-success { background-color: rgba(16, 185, 129, 0.3); color: #ecfdf5; border-color: #34d399; }
 
         .nav-tabs-container {
-            background-color: white; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 40;
+            background-color: white; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 50;
         }
-        nav { display: flex; gap: 8px; overflow-x: auto; padding: 4px 0; }
+        nav { display: flex; gap: 8px; overflow-x: auto; padding: 6px 0; }
         .tab-btn {
-            background: none; border: none; padding: 14px 16px; font-size: 13px; font-weight: 700;
+            background: none; border: none; padding: 14px 18px; font-size: 16px; font-weight: 700;
             color: var(--gray); cursor: pointer; white-space: nowrap; transition: all 0.2s; border-bottom: 3px solid transparent;
         }
         .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
 
         .sub-tab-btn {
-            background-color: #f1f5f9; border: 1px solid #cbd5e1; padding: 8px 12px; font-size: 12px; font-weight: 700;
-            color: #475569; border-radius: 6px; cursor: pointer; transition: all 0.2s;
+            background-color: #f1f5f9; border: 1px solid #cbd5e1; padding: 10px 16px; font-size: 15px; font-weight: 700;
+            color: #475569; border-radius: 8px; cursor: pointer; transition: all 0.2s;
         }
         .sub-tab-btn.active { background-color: var(--primary); color: white; border-color: var(--primary); }
 
@@ -94,7 +95,7 @@
         }
         @media (min-width: 1024px) {
             .layout-grid {
-                grid-template-columns: 1fr 280px;
+                grid-template-columns: 1fr 300px;
             }
         }
 
@@ -109,31 +110,36 @@
             background-color: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             border: 1px solid #e2e8f0; margin-bottom: 24px;
         }
-        .card-title { font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .card-title { font-size: 22px; font-weight: 800; color: #0f172a; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
 
-        .alert-info { background-color: var(--primary-light); border-right: 4px solid var(--primary); padding: 16px; border-radius: 0 8px 8px 0; font-size: 14px; color: #0f2d2a; margin-bottom: 16px; }
-        .alert-warning { background-color: #fffbeb; border-right: 4px solid var(--warning); padding: 16px; border-radius: 0 8px 8px 0; color: #78350f; margin-bottom: 16px; }
+        .alert-info { background-color: var(--primary-light); border-right: 4px solid var(--primary); padding: 18px; border-radius: 0 8px 8px 0; font-size: 16px; color: #0f2d2a; margin-bottom: 18px; }
+        .alert-warning { background-color: #fffbeb; border-right: 4px solid var(--warning); padding: 18px; border-radius: 0 8px 8px 0; color: #78350f; font-size: 16px; margin-bottom: 18px; }
 
-        .drive-link-banner {
+        /* Sticky elements for practice tab */
+        .sticky-drive-banner {
+            position: sticky;
+            top: 60px;
+            z-index: 35;
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             border: 2px solid var(--primary-border);
             border-radius: 12px;
             padding: 16px 20px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 16px;
             flex-wrap: wrap;
-            box-shadow: 0 4px 12px rgba(15, 118, 110, 0.15);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
         }
+        
         .drive-btn {
             background-color: var(--primary);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 22px;
             border-radius: 8px;
             font-weight: 800;
-            font-size: 14px;
+            font-size: 16px;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -147,59 +153,62 @@
         }
 
         .table-responsive { overflow-x: auto; width: 100%; margin-top: 12px; }
-        table { width: 100%; border-collapse: collapse; text-align: center; font-size: 14px; }
-        th { background-color: var(--dark); color: white; padding: 12px; font-weight: 700; }
-        td { padding: 10px 12px; border: 1px solid #e2e8f0; }
+        table { width: 100%; border-collapse: collapse; text-align: center; font-size: 16px; }
+        th { background-color: var(--dark); color: white; padding: 14px; font-weight: 700; font-size: 16px; }
+        td { padding: 12px 14px; border: 1px solid #e2e8f0; font-size: 16px; }
 
-        .method-box { background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 16px; margin-top: 16px; }
+        .method-box { background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 18px; margin-top: 16px; font-size: 16px; }
 
         .hex-sidebar-card {
             background-color: #0f172a;
             border: 2px solid #0f766e;
             border-radius: 12px;
-            padding: 16px;
+            padding: 18px;
             color: white;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             position: sticky;
             top: 80px;
         }
         .hex-sidebar-title {
-            font-size: 15px;
+            font-size: 17px;
             font-weight: 800;
             color: #38bdf8;
             border-bottom: 1px solid #334155;
-            padding-bottom: 8px;
-            margin-bottom: 12px;
+            padding-bottom: 10px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
         .hex-table { width: 100%; border-collapse: collapse; }
-        .hex-table th { background-color: #1e293b; color: #94a3b8; font-size: 11px; padding: 4px; }
-        .hex-table td { padding: 4px 6px; border: 1px solid #334155; font-size: 12px; }
+        .hex-table th { background-color: #1e293b; color: #94a3b8; font-size: 13px; padding: 6px; }
+        .hex-table td { padding: 6px 8px; border: 1px solid #334155; font-size: 14px; }
         .hex-table tr:nth-child(even) { background-color: rgba(255,255,255,0.03); }
 
-        /* Interactive Student Practice Table Styles */
-        .student-helper-card {
+        /* Sticky Student Helper Card */
+        .sticky-student-helper {
+            position: sticky;
+            top: 155px;
+            z-index: 30;
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             border: 2px solid #38bdf8;
             border-radius: 12px;
             padding: 18px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             color: white;
-            box-shadow: 0 4px 12px rgba(15, 118, 110, 0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
         .student-helper-table {
             width: 100%;
             border-collapse: separate;
             border-spacing: 6px;
             margin-top: 10px;
-            direction: ltr; /* Left to Right for Binary Weights */
+            direction: ltr;
         }
         .student-helper-table th {
             background-color: #0f766e;
             color: #ffffff;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 800;
             padding: 10px;
             border-radius: 6px;
@@ -208,7 +217,7 @@
         .student-helper-table td {
             background-color: rgba(255, 255, 255, 0.07);
             border: 2px dashed #38bdf8;
-            height: 52px;
+            height: 54px;
             border-radius: 6px;
             padding: 0;
         }
@@ -218,7 +227,7 @@
             background: transparent;
             border: none;
             color: #38bdf8;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 800;
             text-align: center;
             outline: none;
@@ -232,19 +241,19 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: rgba(15, 23, 42, 0.8);
+            background-color: rgba(15, 23, 42, 0.9);
             border: 1px solid #334155;
             border-radius: 8px;
-            padding: 12px 16px;
+            padding: 12px 18px;
             margin-top: 12px;
+            font-size: 16px;
         }
 
         /* Quiz Styles */
         .quiz-container {
-            margin-top: 32px;
-            padding-top: 24px;
+            margin-top: 24px;
             background-color: #f8fafc;
-            padding: 20px;
+            padding: 24px;
             border-radius: 12px;
             border: 1px solid #cbd5e1;
         }
@@ -252,47 +261,47 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
             border-bottom: 2px solid #0f766e;
         }
         .quiz-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 800;
             color: #0f766e;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         .question-card {
             background-color: white;
             border: 1px solid #cbd5e1;
             border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 16px;
+            padding: 18px;
+            margin-bottom: 18px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
         .question-text {
             font-weight: 700;
-            font-size: 15px;
+            font-size: 17px;
             color: #0f172a;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
         .options-list {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
         }
         .option-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 14px;
+            gap: 12px;
+            padding: 12px 16px;
             border: 1px solid #e2e8f0;
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s;
-            font-size: 14px;
+            font-size: 16px;
             background-color: #ffffff;
         }
         .option-item:hover {
@@ -301,13 +310,13 @@
         }
         .option-item input[type="radio"] {
             accent-color: #0f766e;
-            transform: scale(1.2);
+            transform: scale(1.3);
         }
         .quiz-feedback {
-            margin-top: 10px;
-            padding: 10px;
+            margin-top: 12px;
+            padding: 12px;
             border-radius: 6px;
-            font-size: 13px;
+            font-size: 15px;
             font-weight: 600;
             display: none;
         }
@@ -327,14 +336,14 @@
             display: none;
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             color: white;
-            padding: 20px;
+            padding: 24px;
             border-radius: 12px;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 24px;
             border: 2px solid #38bdf8;
         }
         .quiz-result-score {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 900;
             color: #38bdf8;
         }
@@ -361,20 +370,21 @@
         }
         .gemini-bot-btn {
             background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-            color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px;
-            font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px;
+            color: white; text-decoration: none; padding: 10px 14px; border-radius: 8px;
+            font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px;
             transition: all 0.2s; border: 1px solid #38bdf8;
         }
         .gemini-bot-btn:hover { background: linear-gradient(135deg, #0369a1 0%, #075985 100%); transform: scale(1.02); }
 
-        .btn { background-color: var(--primary); color: white; border: none; padding: 8px 16px; font-size: 12px; font-weight: 700; border-radius: 6px; cursor: pointer; }
+        .btn { background-color: var(--primary); color: white; border: none; padding: 10px 18px; font-size: 14px; font-weight: 700; border-radius: 6px; cursor: pointer; }
         .btn-dark { background-color: var(--dark); }
-        .btn-action { background-color: #0284c7; font-size: 14px; padding: 10px 20px; border-radius: 8px; font-weight: 800; }
+        .btn-action { background-color: #0284c7; font-size: 14px; padding: 10px 16px; border-radius: 8px; font-weight: 800; }
         .btn-action:hover { background-color: #0369a1; }
-        .btn-refresh { background-color: #0d9488; font-size: 14px; padding: 10px 20px; border-radius: 8px; font-weight: 800; }
+        .btn-action.active-quiz { background-color: #0f766e; border: 2px solid #38bdf8; }
+        .btn-refresh { background-color: #0d9488; font-size: 15px; padding: 12px 24px; border-radius: 8px; font-weight: 800; }
         .btn-refresh:hover { background-color: #0f766e; }
 
-        footer { background-color: var(--dark); color: #94a3b8; padding: 24px 0; text-align: center; font-size: 12px; margin-top: auto; }
+        footer { background-color: var(--dark); color: #94a3b8; padding: 24px 0; text-align: center; font-size: 14px; margin-top: auto; }
         .font-mono { font-family: monospace, Calibri, sans-serif !important; }
         .ltr-text { direction: ltr; display: inline-block; unicode-bidi: embed; }
     </style>
@@ -387,8 +397,8 @@
             <div class="header-title-area">
                 <img src="https://lh3.googleusercontent.com/d/1BHxytxfATgrv3wpk_8slqpRX08p2Dzml" alt="אווטאר" class="crazy-avatar">
                 <div>
-                    <h1 style="font-size: 24px; font-weight: 800;">מערך שיעור פתיחה: המרת בסיסי ספירה</h1>
-                    <p style="font-size: 13px; opacity: 0.9;">מערך הקניה ותרגול פרונטלי (ללא מחשבים) למורה במגמת תקשוב</p>
+                    <h1 style="font-size: 26px; font-weight: 800;">מערך שיעור פתיחה: המרת בסיסי ספירה</h1>
+                    <p style="font-size: 15px; opacity: 0.9;">מערך הקניה ותרגול פרונטלי (ללא מחשבים) למורה במגמת תקשוב</p>
                 </div>
             </div>
             <div class="header-badges">
@@ -424,24 +434,24 @@
                             <strong>מטרת השיעור ללוח:</strong> להבין כיצד רכיבי תקשורת (מתגים, נתבים, כרטיסי רשת) מעבדים, מנתבים ומציגים כתובות ומידע.
                         </div>
                         
-                        <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 16px;">
-                            <div style="background-color: #f8fafc; padding: 16px; border-radius: 8px; border-right: 4px solid var(--secondary);">
-                                <h3 style="font-weight: 800; font-size: 16px; color: #0369a1; margin-bottom: 8px;">1. השפה הפיזיקלית של החומרה (הבסיס הבינארי)</h3>
-                                <p style="font-size: 14px; color: #334155;">
+                        <div style="display: flex; flex-direction: column; gap: 18px; margin-top: 18px;">
+                            <div style="background-color: #f8fafc; padding: 18px; border-radius: 8px; border-right: 4px solid var(--secondary);">
+                                <h3 style="font-weight: 800; font-size: 18px; color: #0369a1; margin-bottom: 8px;">1. השפה הפיזיקלית של החומרה (הבסיס הבינארי)</h3>
+                                <p style="font-size: 16px; color: #334155;">
                                     ציוד תקשורת ומחשבים פועלים באמצעות אותות חשמליים (מתח גבוה/נמוך), אור בסיבים אופטיים או גלי רדיו. הבסיס הבינארי (<span dir="ltr" class="ltr-text font-mono font-bold">0</span> ו-<span dir="ltr" class="ltr-text font-mono font-bold">1</span>) הוא הייצוג היחיד שמשקף את המצב הפיזי של החומרה ("יש מתח" / "אין מתח").
                                 </p>
                             </div>
 
-                            <div style="background-color: #f8fafc; padding: 16px; border-radius: 8px; border-right: 4px solid var(--primary);">
-                                <h3 style="font-weight: 800; font-size: 16px; color: var(--primary); margin-bottom: 8px;">2. חישובי כתובות <span dir="ltr" class="ltr-text font-mono">IP</span> ומסכות רשת (<span dir="ltr" class="ltr-text font-mono">Subnetting</span>)</h3>
-                                <p style="font-size: 14px; color: #334155;">
+                            <div style="background-color: #f8fafc; padding: 18px; border-radius: 8px; border-right: 4px solid var(--primary);">
+                                <h3 style="font-weight: 800; font-size: 18px; color: var(--primary); margin-bottom: 8px;">2. חישובי כתובות <span dir="ltr" class="ltr-text font-mono">IP</span> ומסכות רשת (<span dir="ltr" class="ltr-text font-mono">Subnetting</span>)</h3>
+                                <p style="font-size: 16px; color: #334155;">
                                     כל כתובת <span dir="ltr" class="ltr-text font-mono font-bold">IPv4</span> מורכבת מ-<span dir="ltr" class="ltr-text font-mono font-bold">32</span> ביטים המחולקים ל-<span dir="ltr" class="ltr-text font-mono font-bold">4</span> אוקטטות בנות <span dir="ltr" class="ltr-text font-mono font-bold">8</span> ביטים. כדי להבין כיצד נתב מקבל החלטת ניתוב, כיצד מבוצעת פעולת <span dir="ltr" class="ltr-text font-mono font-bold">AND</span> לוגי, וכדי לחלק רשתות לתתי-רשתות – חובה לשלוט בהמרה מבינארי לעשרוני ולהיפך.
                                 </p>
                             </div>
 
-                            <div style="background-color: #f8fafc; padding: 16px; border-radius: 8px; border-right: 4px solid var(--warning);">
-                                <h3 style="font-weight: 800; font-size: 16px; color: #b45309; margin-bottom: 8px;">3. ייצוג תמציתי של כתובות ארוכות (הבסיס ההקסדצימלי)</h3>
-                                <p style="font-size: 14px; color: #334155;">
+                            <div style="background-color: #f8fafc; padding: 18px; border-radius: 8px; border-right: 4px solid var(--warning);">
+                                <h3 style="font-weight: 800; font-size: 18px; color: #b45309; margin-bottom: 8px;">3. ייצוג תמציתי של כתובות ארוכות (הבסיס ההקסדצימלי)</h3>
+                                <p style="font-size: 16px; color: #334155;">
                                     כתובות פיזיות (<span dir="ltr" class="ltr-text font-mono font-bold">MAC Address</span>) בנות <span dir="ltr" class="ltr-text font-mono font-bold">48</span> ביט וכתובות <span dir="ltr" class="ltr-text font-mono font-bold">IPv6</span> בנות <span dir="ltr" class="ltr-text font-mono font-bold">128</span> ביט הן ארוכות מדי לצפייה אנושית בבינארית. הבסיס ההקסדצימלי מאפשר לכווץ <span dir="ltr" class="ltr-text font-mono font-bold">4</span> ביטים לספרה אחת, מה שמקל על אנשי תקשורת לקרוא ולהגדיר רכיבים.
                                 </p>
                             </div>
@@ -488,8 +498,8 @@
                         </div>
 
                         <div class="alert-warning" style="margin-top: 24px;">
-                            <h3 style="font-weight: 800; font-size: 16px; margin-bottom: 8px;">מדוע רק 3 הבסיסים הללו נפוצים בתקשורת?</h3>
-                            <ul style="list-style-type: disc; margin-right: 20px; font-size: 14px; line-height: 1.8;">
+                            <h3 style="font-weight: 800; font-size: 18px; margin-bottom: 8px;">מדוע רק 3 הבסיסים הללו נפוצים בתקשורת?</h3>
+                            <ul style="list-style-type: disc; margin-right: 20px; font-size: 16px; line-height: 1.8;">
                                 <li><strong>העשרוני:</strong> נועד אך ורק בשביל <strong>נוחות האדם</strong> (מערכת הספירה הטבעית לנו).</li>
                                 <li><strong>הבינארי:</strong> משקף בדיוק את <strong>הפיזיקה של המחשב</strong> (ספרה אחת = ביט אחד = חיווי חשמלי).</li>
                                 <li><strong>ההקסדצימלי:</strong> משמש כ<strong>גשר מושלם בין הבינארי לאדם</strong>. מכיוון ש-<span dir="ltr" class="ltr-text font-mono">2^4 = 16</span>, כל ספרה הקסדצימלית מייצגת בדיוק <span dir="ltr" class="ltr-text font-mono font-bold">Nibble</span> (ארבעה ביטים). זה מונע את הצורך בחישובים מורכבים במעבר מבינארי להקס.</li>
@@ -502,789 +512,593 @@
                 <!-- Tab 3: Conversion Methods & Helper Tables -->
                 <section id="content-conversion-methods" class="tab-content">
                     <div class="card">
-                        
-                        <div class="drive-link-banner">
+                        <div class="drive-link-banner" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 2px solid var(--primary-border); border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
                             <div>
-                                <h3 style="font-size: 16px; font-weight: 800; color: #38bdf8; margin-bottom: 4px;">📄 דף עזר להמרות - טבלאות לבגרות (יואל - סהר)</h3>
-                                <p style="font-size: 13px; color: #94a3b8;">צפה או הורד את מסמך ה-<span dir="ltr" class="ltr-text font-mono">PDF</span> המלא עם טבלאות העזר והשיטות המהירות להמרת בסיסים.</p>
+                                <h3 style="font-size: 18px; font-weight: 800; color: #38bdf8; margin-bottom: 4px;">📄 דף עזר להמרות - טבלאות לבגרות (יואל - סהר)</h3>
+                                <p style="font-size: 15px; color: #94a3b8;">צפה או הורד את מסמך ה-<span dir="ltr" class="ltr-text font-mono">PDF</span> המלא עם טבלאות העזר והשיטות המהירות להמרת בסיסים.</p>
                             </div>
                             <a href="https://drive.google.com/file/d/1FsoHiyyFYIElgTkhWrbIuExRMT-EQ5da/view?usp=sharing" target="_blank" class="drive-btn">
                                 <span>לחץ לדף עזר המרות</span>
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                             </a>
                         </div>
 
                         <h2 class="card-title"><span style="color: var(--primary);">■</span> טבלאות עזר לבגרות להפיכת בסיסים</h2>
-                        <p style="font-size: 13px; color: #64748b; margin-bottom: 16px;">
+                        <p style="font-size: 15px; color: #64748b; margin-bottom: 16px;">
                             הטבלה המאוחדת שלהלן מסנכרנת בין ספרות ה-<span dir="ltr" class="ltr-text font-mono">HEX</span>, הערך העשרוני (1-15) ומשקלי הביטים של האוקטטה:
                         </p>
 
                         <div class="table-responsive">
-                            <table style="background-color: var(--dark); color: white;">
+                            <table style="background-color: var(--dark); color: white; border-radius: 8px; overflow: hidden;">
                                 <thead>
-                                    <tr style="background-color: #1e293b; color: #38bdf8;">
-                                        <th>סוג הערך</th>
-                                        <th colspan="8">ספרות עשרוניות ובינאריות (1 עד 8)</th>
-                                        <th colspan="7">ספרות הקסדצימליות (<span dir="ltr" class="ltr-text font-mono">HEX</span>) גבוהות (9 עד F)</th>
+                                    <tr style="background-color: #1e293b;">
+                                        <th>Hex (הקס)</th>
+                                        <th>Decimal (עשרוני)</th>
+                                        <th>Nibble (4 ביטים: 8, 4, 2, 1)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr style="color: #fbbf24; font-weight: 800;">
-                                        <td style="color: white; font-weight: 700;">ספרה הקסדצימלית</td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">1</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">2</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">3</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">4</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">5</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">6</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">7</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">8</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">9</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">A</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">B</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">C</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">D</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">E</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">F</span></td>
-                                    </tr>
-                                    <tr style="color: #38bdf8;">
-                                        <td style="color: white; font-weight: 700;">ערך עשרוני מקביל</td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">1</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">2</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">3</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">4</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">5</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">6</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">7</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">8</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">9</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">10</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">11</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">12</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">13</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">14</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">15</span></td>
-                                    </tr>
-                                    <tr style="color: #34d399; font-weight: 800; border-top: 2px solid #334155;">
-                                        <td style="color: white; font-weight: 700;">משקל אוקטטה (מימין לשמאל)</td>
-                                        <td colspan="4" style="background-color: #020617; color: #94a3b8; font-size: 11px;">(חצי אוקטטה ימנית)</td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">1</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">2</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">4</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">8</span></td>
-                                        <td colspan="7" style="background-color: #020617; color: #94a3b8; font-size: 11px;">(משקלי אוקטטה שמאליים: 16, 32, 64, 128)</td>
-                                    </tr>
+                                    <tr><td>0</td><td>0</td><td class="font-mono">0000</td></tr>
+                                    <tr><td>1</td><td>1</td><td class="font-mono">0001</td></tr>
+                                    <tr><td>2</td><td>2</td><td class="font-mono">0010</td></tr>
+                                    <tr><td>3</td><td>3</td><td class="font-mono">0011</td></tr>
+                                    <tr><td>4</td><td>4</td><td class="font-mono">0100</td></tr>
+                                    <tr><td>5</td><td>5</td><td class="font-mono">0101</td></tr>
+                                    <tr><td>6</td><td>6</td><td class="font-mono">0110</td></tr>
+                                    <tr><td>7</td><td>7</td><td class="font-mono">0111</td></tr>
+                                    <tr><td>8</td><td>8</td><td class="font-mono">1000</td></tr>
+                                    <tr><td>9</td><td>9</td><td class="font-mono">1001</td></tr>
+                                    <tr style="background-color: rgba(56, 189, 248, 0.1);"><td><strong>A</strong></td><td>10</td><td class="font-mono">1010</td></tr>
+                                    <tr style="background-color: rgba(56, 189, 248, 0.1);"><td><strong>B</strong></td><td>11</td><td class="font-mono">1011</td></tr>
+                                    <tr style="background-color: rgba(56, 189, 248, 0.1);"><td><strong>C</strong></td><td>12</td><td class="font-mono">1100</td></tr>
+                                    <tr style="background-color: rgba(56, 189, 248, 0.1);"><td><strong>D</strong></td><td>13</td><td class="font-mono">1101</td></tr>
+                                    <tr style="background-color: rgba(56, 189, 248, 0.1);"><td><strong>E</strong></td><td>14</td><td class="font-mono">1110</td></tr>
+                                    <tr style="background-color: rgba(56, 189, 248, 0.1);"><td><strong>F</strong></td><td>15</td><td class="font-mono">1111</td></tr>
                                 </tbody>
                             </table>
                         </div>
 
-                        <div style="margin-top: 16px;" class="table-responsive">
-                            <table style="background-color: #020617; color: white;">
-                                <thead>
-                                    <tr style="color: #38bdf8;">
-                                        <th>מיקום ביט באוקטטה</th>
-                                        <th>ביט 0</th><th>ביט 1</th><th>ביט 2</th><th>ביט 3</th><th>ביט 4</th><th>ביט 5</th><th>ביט 6</th><th>ביט 7</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr style="color: #10b981; font-weight: 800; font-size: 16px;">
-                                        <td style="color: white; font-size: 13px;">משקל עשרוני למחשב</td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">1</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">2</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">4</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">8</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">16</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">32</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">64</span></td>
-                                        <td><span dir="ltr" class="ltr-text font-mono">128</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div style="display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 24px;">
-                            <div class="method-box">
-                                <h3 style="font-weight: 800; font-size: 16px; color: var(--primary);">1. עשרוני (רגיל) לבינארי - שיטת "האם נכנס"</h3>
-                                <p style="font-size: 13px; color: #334155; margin-top: 6px;">
-                                    בודקים משמאל לימין בטבלה: <strong>"האם 128 נכנס?"</strong><br>
-                                    • אם <strong>כן</strong> – רושמים <span dir="ltr" class="ltr-text font-mono font-bold">1</span> ומחשבים שארית.<br>
-                                    • אם <strong>לא</strong> – רושמים <span dir="ltr" class="ltr-text font-mono font-bold">0</span>.<br>
-                                    ושוב בודקים לגבי המשקל הבא (<span dir="ltr" class="ltr-text font-mono">64</span>): האם נכנס בשארית? אם כן רושמים <span dir="ltr" class="ltr-text font-mono font-bold">1</span>, אם לא רושמים <span dir="ltr" class="ltr-text font-mono font-bold">0</span>.
-                                </p>
-                            </div>
-
-                            <div class="method-box">
-                                <h3 style="font-weight: 800; font-size: 16px; color: var(--secondary);">2. בינארי לעשרוני (רגיל)</h3>
-                                <p style="font-size: 13px; color: #334155; margin-top: 6px;">
-                                    רושמים את המספר הבינארי מתחת לטבלת המשקלים (<span dir="ltr" class="ltr-text font-mono">128, 64, 32, 16, 8, 4, 2, 1</span>) ו<strong>מסכמים רק איפה שכתוב 1</strong>.
-                                </p>
-                            </div>
-
-                            <div class="method-box">
-                                <h3 style="font-weight: 800; font-size: 16px; color: #b45309;">3. המרת עשרוני (רגיל) להקסדצימלי - שיטת החלוקה ב-16</h3>
-                                <p style="font-size: 13px; color: #334155; margin-top: 6px;">
-                                    מבצעים חלוקה ב-<span dir="ltr" class="ltr-text font-mono font-bold">16</span>. את השארית רושמים. שוב מחלקים את התוצאה ב-<span dir="ltr" class="ltr-text font-mono font-bold">16</span> ורושמים את השארית <strong>משמאל למה שכתבנו קודם</strong>.<br>
-                                    <strong>קביעת השארית:</strong> קובעים לפי הכפלת התוצאה השלמה מחדש ב-<span dir="ltr" class="ltr-text font-mono font-bold">16</span>.<br>
-                                    <em>דוגמה מהמסמך (<span dir="ltr" class="ltr-text font-mono">100</span>):</em> מחלקים ב-<span dir="ltr" class="ltr-text font-mono">16</span>. התוצאה השלמה היא <span dir="ltr" class="ltr-text font-mono">6</span>. מכפילים <span dir="ltr" class="ltr-text font-mono">6 * 16</span> ומקבלים <span dir="ltr" class="ltr-text font-mono">96</span>. השארית היא <span dir="ltr" class="ltr-text font-mono">100 - 96 = 4</span>. רושמים <span dir="ltr" class="ltr-text font-mono font-bold">64</span> ב-<span dir="ltr" class="ltr-text font-mono">HEX</span>.
-                                </p>
-                            </div>
-
-                            <div class="method-box">
-                                <h3 style="font-weight: 800; font-size: 16px; color: #0f766e;">4. המרת הקסדצימלי לעשרוני (רגיל) - סולם חזקות 16</h3>
-                                <p style="font-size: 13px; color: #334155; margin-top: 6px;">
-                                    רושמים את התווים מימין לשמאל ומכפילים לפי ערכי החזקות של <span dir="ltr" class="ltr-text font-mono">16</span>:
-                                </p>
-                                <div class="table-responsive" style="margin-top: 8px;">
-                                    <table style="font-size: 11px; background-color: #1e293b; color: white;">
-                                        <thead>
-                                            <tr style="color: #38bdf8;">
-                                                <th>חזקת 16</th>
-                                                <th><span dir="ltr" class="ltr-text font-mono">16^0</span></th>
-                                                <th><span dir="ltr" class="ltr-text font-mono">16^1</span></th>
-                                                <th><span dir="ltr" class="ltr-text font-mono">16^2</span></th>
-                                                <th><span dir="ltr" class="ltr-text font-mono">16^3</span></th>
-                                                <th><span dir="ltr" class="ltr-text font-mono">16^4</span></th>
-                                                <th><span dir="ltr" class="ltr-text font-mono">16^5</span></th>
-                                                <th><span dir="ltr" class="ltr-text font-mono">16^6</span></th>
-                                                <th><span dir="ltr" class="ltr-text font-mono">16^7</span></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr style="color: #34d399; font-weight: 700;">
-                                                <td>ערך עשרוני</td>
-                                                <td><span dir="ltr" class="ltr-text font-mono">1</span></td>
-                                                <td><span dir="ltr" class="ltr-text font-mono">16</span></td>
-                                                <td><span dir="ltr" class="ltr-text font-mono">256</span></td>
-                                                <td><span dir="ltr" class="ltr-text font-mono">4,096</span></td>
-                                                <td><span dir="ltr" class="ltr-text font-mono">65,536</span></td>
-                                                <td><span dir="ltr" class="ltr-text font-mono">1,048,576</span></td>
-                                                <td><span dir="ltr" class="ltr-text font-mono">16,777,216</span></td>
-                                                <td><span dir="ltr" class="ltr-text font-mono">268,435,456</span></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                        <div class="method-box">
+                            <h3 style="font-weight: 800; font-size: 18px; color: var(--primary); margin-bottom: 8px;">💡 השיטה המהירה להמרה מעשרוני לבינארי: שיטת "האם נכנס?"</h3>
+                            <p style="font-size: 16px; color: #334155;">
+                                כותבים את משקלי האוקטטה המלאה: <span dir="ltr" class="ltr-text font-mono font-bold">128, 64, 32, 16, 8, 4, 2, 1</span>. עוברים משמאל לימין ושואלים: "האם המשקל נכנס במספר שנותר?" אם כן – רושמים <span class="font-mono font-bold">1</span> ומחסרים. אם לא – רושמים <span class="font-mono font-bold">0</span>.
+                            </p>
                         </div>
                     </div>
                 </section>
 
-                <!-- Tab 4: Practice & Full Solutions + Quiz Section -->
+                <!-- Tab 4: Practice & Guided Exercises (Interactive & Sticky) -->
                 <section id="content-practice-solutions" class="tab-content">
-                    <div class="card">
-                        <h2 class="card-title"><span style="color: var(--primary);">■</span> דף תרגול פרונטלי ומפתח תשובות מלא (60 תרגילים + בחן את עצמך)</h2>
-                        <p style="font-size: 13px; color: #64748b; margin-bottom: 16px;">
-                            טאב זה חולק ל-<span dir="ltr" class="ltr-text font-mono">6</span> תתי-לשוניות, <span dir="ltr" class="ltr-text font-mono">10</span> תרגילים בכל נושא כולל פתרון מלא. מתחת לתרגילים מופיע בוחן אמריקאי אינטראקטיבי לקבלת משוב וציון מיידי, כולל אפשרות לתרגול חוזר עם שאלות חדשות בכל פעם.
-                        </p>
+                    
+                    <!-- STICKY DRIVER BANNER -->
+                    <div class="sticky-drive-banner">
+                        <div>
+                            <h3 style="font-size: 18px; font-weight: 800; color: #38bdf8; margin-bottom: 4px;">📄 דף עזר להמרות - טבלאות לבגרות (נשאר נגיש בגלילה)</h3>
+                            <p style="font-size: 14px; color: #94a3b8;">דף עזר מהיר ב-Drive עם טבלאות ניבלים ומשקלי ביטים לעבודה מהירה.</p>
+                        </div>
+                        <a href="https://drive.google.com/file/d/1FsoHiyyFYIElgTkhWrbIuExRMT-EQ5da/view?usp=sharing" target="_blank" class="drive-btn">
+                            <span>פתאום שכחת? פתח דף עזר</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </a>
+                    </div>
 
-                        <!-- INTERACTIVE STUDENT HELPER TABLE BANNER -->
-                        <div class="student-helper-card">
-                            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px;">
-                                <h3 style="font-size: 15px; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 8px;">
-                                    <span>🧮 מחשבון משקלים אינטראקטיבי לתלמיד (128 עד 1)</span>
-                                </h3>
-                                <span style="font-size: 11px; background-color: #0f766e; padding: 2px 8px; border-radius: 4px; color: white;" dir="ltr" class="ltr-text font-mono">8 Bits Octet</span>
-                            </div>
-                            <p style="font-size: 12px; color: #94a3b8; margin-bottom: 8px;">
-                                הקלד <strong>1</strong> או <strong>0</strong> במשבצות שלמטה (משמאל לימין: 128 עד 1) כדי לראות את הסיכום העשרוני האוטומטי מתחת לטבלה:
-                            </p>
-                            
+                    <!-- STICKY INTERACTIVE STUDENT CALCULATOR -->
+                    <div class="sticky-student-helper">
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <h3 style="font-size: 18px; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 8px;">
+                                <span>🧮 מחשבון עזר אינטראקטיבי לתלמיד (משקלי אוקטטה)</span>
+                            </h3>
+                            <button onclick="resetStudentTable()" class="btn btn-dark" style="font-size: 12px; padding: 4px 10px;">אפס ביטים</button>
+                        </div>
+                        <p style="font-size: 14px; color: #cbd5e1; margin-top: 4px;">הזן 0 או 1 בתיבות המשקלים לקבלת חישוב עשרוני מיידי בזמן הגלילה:</p>
+                        
+                        <div class="table-responsive" style="margin-top: 8px;">
+                            <table class="student-helper-table">
+                                <thead>
+                                    <tr>
+                                        <th>128</th>
+                                        <th>64</th>
+                                        <th>32</th>
+                                        <th>16</th>
+                                        <th>8</th>
+                                        <th>4</th>
+                                        <th>2</th>
+                                        <th>1</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" maxlength="1" id="bit-7" class="bit-input" oninput="calculateStudentBits()" placeholder="0"></td>
+                                        <td><input type="text" maxlength="1" id="bit-6" class="bit-input" oninput="calculateStudentBits()" placeholder="0"></td>
+                                        <td><input type="text" maxlength="1" id="bit-5" class="bit-input" oninput="calculateStudentBits()" placeholder="0"></td>
+                                        <td><input type="text" maxlength="1" id="bit-4" class="bit-input" oninput="calculateStudentBits()" placeholder="0"></td>
+                                        <td><input type="text" maxlength="1" id="bit-3" class="bit-input" oninput="calculateStudentBits()" placeholder="0"></td>
+                                        <td><input type="text" maxlength="1" id="bit-2" class="bit-input" oninput="calculateStudentBits()" placeholder="0"></td>
+                                        <td><input type="text" maxlength="1" id="bit-1" class="bit-input" oninput="calculateStudentBits()" placeholder="0"></td>
+                                        <td><input type="text" maxlength="1" id="bit-0" class="bit-input" oninput="calculateStudentBits()" placeholder="0"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="sum-result-box">
+                            <span style="font-weight: 700; color: #94a3b8;">תרגום עשרוני כולל:</span>
+                            <span id="student-calc-result" class="font-mono" style="font-size: 26px; font-weight: 900; color: #4ade80;">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Sub-Tabs Navigation for Practice & Quizzes -->
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;">
+                        <button onclick="switchSubTab('sub-dec2bin')" id="subtab-dec2bin" class="sub-tab-btn active">1. עשרוני לבינארי (15)</button>
+                        <button onclick="switchSubTab('sub-bin2dec')" id="subtab-bin2dec" class="sub-tab-btn">2. בינארי לעשרוני (15)</button>
+                        <button onclick="switchSubTab('sub-bin2hex')" id="subtab-bin2hex" class="sub-tab-btn">3. בינארי להקס (15)</button>
+                        <button onclick="switchSubTab('sub-hex2bin')" id="subtab-hex2bin" class="sub-tab-btn">4. הקס לבינארי (15)</button>
+                        <button onclick="switchSubTab('sub-quizzes')" id="subtab-quizzes" class="sub-tab-btn" style="background-color: #0284c7; color: white;">🏆 בחן את עצמך (אינטראקטיבי)</button>
+                    </div>
+
+                    <!-- Sub Tab Content 1: Dec -> Bin -->
+                    <div id="subcontent-dec2bin" class="sub-tab-content active">
+                        <div class="card">
+                            <h3 class="card-title"><span style="color: var(--primary);">■</span> 15 תרגילים: המרה מעשרוני לבינארי (כולל פתרונות)</h3>
                             <div class="table-responsive">
-                                <table class="student-helper-table">
+                                <table>
                                     <thead>
                                         <tr>
-                                            <th>128</th>
-                                            <th>64</th>
-                                            <th>32</th>
-                                            <th>16</th>
-                                            <th>8</th>
-                                            <th>4</th>
-                                            <th>2</th>
-                                            <th>1</th>
+                                            <th>#</th>
+                                            <th>עשרוני</th>
+                                            <th>בינארי (פתרון)</th>
+                                            <th>דרך חישוב ומעקב משקלים</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><input type="text" maxlength="1" class="bit-input" data-weight="128" oninput="calculateBitSum()"></td>
-                                            <td><input type="text" maxlength="1" class="bit-input" data-weight="64" oninput="calculateBitSum()"></td>
-                                            <td><input type="text" maxlength="1" class="bit-input" data-weight="32" oninput="calculateBitSum()"></td>
-                                            <td><input type="text" maxlength="1" class="bit-input" data-weight="16" oninput="calculateBitSum()"></td>
-                                            <td><input type="text" maxlength="1" class="bit-input" data-weight="8" oninput="calculateBitSum()"></td>
-                                            <td><input type="text" maxlength="1" class="bit-input" data-weight="4" oninput="calculateBitSum()"></td>
-                                            <td><input type="text" maxlength="1" class="bit-input" data-weight="2" oninput="calculateBitSum()"></td>
-                                            <td><input type="text" maxlength="1" class="bit-input" data-weight="1" oninput="calculateBitSum()"></td>
-                                        </tr>
+                                        <tr><td>1</td><td class="font-bold">192</td><td class="font-mono font-bold">11000000</td><td>128 + 64</td></tr>
+                                        <tr><td>2</td><td class="font-bold">168</td><td class="font-mono font-bold">10101000</td><td>128 + 32 + 8</td></tr>
+                                        <tr><td>3</td><td class="font-bold">255</td><td class="font-mono font-bold">11111111</td><td>כל הביטים דולקים (128+64+32+16+8+4+2+1)</td></tr>
+                                        <tr><td>4</td><td class="font-bold">10</td><td class="font-mono font-bold">00001010</td><td>8 + 2</td></tr>
+                                        <tr><td>5</td><td class="font-bold">1</td><td class="font-mono font-bold">00000001</td><td>1 בלבד</td></tr>
+                                        <tr><td>6</td><td class="font-bold">224</td><td class="font-mono font-bold">11100000</td><td>128 + 64 + 32</td></tr>
+                                        <tr><td>7</td><td class="font-bold">240</td><td class="font-mono font-bold">11110000</td><td>128 + 64 + 32 + 16</td></tr>
+                                        <tr><td>8</td><td class="font-bold">248</td><td class="font-mono font-bold">11111000</td><td>128 + 64 + 32 + 16 + 8</td></tr>
+                                        <tr><td>9</td><td class="font-bold">252</td><td class="font-mono font-bold">11111100</td><td>255 - 3</td></tr>
+                                        <tr><td>10</td><td class="font-bold">127</td><td class="font-mono font-bold">01111111</td><td>255 - 128</td></tr>
+                                        <tr><td>11</td><td class="font-bold">63</td><td class="font-mono font-bold">00111111</td><td>32 + 16 + 8 + 4 + 2 + 1</td></tr>
+                                        <tr><td>12</td><td class="font-bold">100</td><td class="font-mono font-bold">01100100</td><td>64 + 32 + 4</td></tr>
+                                        <tr><td>13</td><td class="font-bold">172</td><td class="font-mono font-bold">10101100</td><td>128 + 32 + 8 + 4</td></tr>
+                                        <tr><td>14</td><td class="font-bold">16</td><td class="font-mono font-bold">00010000</td><td>16 בלבד</td></tr>
+                                        <tr><td>15</td><td class="font-bold">85</td><td class="font-mono font-bold">01010101</td><td>64 + 16 + 4 + 1 (תבנית מסיכה חלופית)</td></tr>
                                     </tbody>
                                 </table>
                             </div>
-
-                            <div class="sum-result-box">
-                                <div style="font-size: 13px; font-weight: 700; color: #e2e8f0;">
-                                    פירוק חישוב: <span id="bit-calculation-text" style="color: #38bdf8; font-family: monospace;" dir="ltr">0</span>
-                                </div>
-                                <div style="font-size: 15px; font-weight: 800; color: #34d399;">
-                                    סה"כ עשרוני: <span id="bit-total-sum" style="font-size: 20px; font-family: monospace;" dir="ltr">0</span>
-                                </div>
-                            </div>
                         </div>
-
-                        <!-- Sub Tab Nav -->
-                        <div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 16px; border-bottom: 1px solid #e2e8f0;">
-                            <button onclick="switchSubTab('dec2bin')" id="subtab-dec2bin" class="sub-tab-btn active">עשרוני ← בינארי</button>
-                            <button onclick="switchSubTab('dec2hex')" id="subtab-dec2hex" class="sub-tab-btn">עשרוני ← הקס</button>
-                            <button onclick="switchSubTab('bin2dec')" id="subtab-bin2dec" class="sub-tab-btn">בינארי ← עשרוני</button>
-                            <button onclick="switchSubTab('bin2hex')" id="subtab-bin2hex" class="sub-tab-btn">בינארי ← הקס</button>
-                            <button onclick="switchSubTab('hex2dec')" id="subtab-hex2dec" class="sub-tab-btn">הקס ← עשרוני</button>
-                            <button onclick="switchSubTab('hex2bin')" id="subtab-hex2bin" class="sub-tab-btn">הקס ← בינארי</button>
-                        </div>
-
-                        <!-- Sub Tab 1: Dec to Bin -->
-                        <div id="subcontent-dec2bin" class="sub-tab-content active">
-                            <h3 style="font-weight: 800; font-size: 16px; margin-bottom: 12px; color: var(--primary);">10 תרגילי המרה מעשרוני לבינארי (<span dir="ltr" class="ltr-text font-mono">Dec → Bin</span>)</h3>
-                            <div class="table-responsive">
-                                <table>
-                                    <thead><tr><th>#</th><th>מספר עשרוני</th><th>תשובה בינארית (8 ביט)</th><th>דרך חישוב פירוק משקלים על הלוח</th></tr></thead>
-                                    <tbody>
-                                        <tr><td>1</td><td><strong dir="ltr" class="ltr-text font-mono">12</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">00001100</td><td><span dir="ltr" class="ltr-text font-mono">8 + 4</span></td></tr>
-                                        <tr><td>2</td><td><strong dir="ltr" class="ltr-text font-mono">45</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">00101101</td><td><span dir="ltr" class="ltr-text font-mono">32 + 8 + 4 + 1</span></td></tr>
-                                        <tr><td>3</td><td><strong dir="ltr" class="ltr-text font-mono">87</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">01010111</td><td><span dir="ltr" class="ltr-text font-mono">64 + 16 + 4 + 2 + 1</span></td></tr>
-                                        <tr><td>4</td><td><strong dir="ltr" class="ltr-text font-mono">101</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">01100101</td><td><span dir="ltr" class="ltr-text font-mono">64 + 32 + 4 + 1</span></td></tr>
-                                        <tr><td>5</td><td><strong dir="ltr" class="ltr-text font-mono">128</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">10000000</td><td><span dir="ltr" class="ltr-text font-mono">128</span> בלבד</td></tr>
-                                        <tr><td>6</td><td><strong dir="ltr" class="ltr-text font-mono">150</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">10010110</td><td><span dir="ltr" class="ltr-text font-mono">128 + 16 + 4 + 2</span></td></tr>
-                                        <tr><td>7</td><td><strong dir="ltr" class="ltr-text font-mono">192</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">11000000</td><td><span dir="ltr" class="ltr-text font-mono">128 + 64</span> (מזהה רשת Class C נפוץ)</td></tr>
-                                        <tr><td>8</td><td><strong dir="ltr" class="ltr-text font-mono">210</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">11010010</td><td><span dir="ltr" class="ltr-text font-mono">128 + 64 + 16 + 2</span></td></tr>
-                                        <tr><td>9</td><td><strong dir="ltr" class="ltr-text font-mono">240</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">11110000</td><td><span dir="ltr" class="ltr-text font-mono">128 + 64 + 32 + 16</span></td></tr>
-                                        <tr><td>10</td><td><strong dir="ltr" class="ltr-text font-mono">255</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">11111111</td><td>כל הביטים דלוקים (<span dir="ltr" class="ltr-text font-mono">128+64+32+16+8+4+2+1</span>)</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <!-- Quiz 1 -->
-                            <div class="quiz-container">
-                                <div class="quiz-header">
-                                    <div class="quiz-title">📝 בחן את עצמך: עשרוני לבינארי</div>
-                                    <span style="font-size: 12px; color: #64748b; font-weight: 700;">5 שאלות • 20 נקודות לשאלה</span>
-                                </div>
-                                <form id="quiz-dec2bin">
-                                    <div id="questions-dec2bin"></div>
-                                    <div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap;">
-                                        <button type="button" onclick="checkQuiz('dec2bin')" class="btn btn-action">בדוק תשובות וחשב ציון 🎯</button>
-                                        <button type="button" onclick="generateNewQuiz('dec2bin')" class="btn btn-refresh">תרגל שוב (שאלות חדשות) 🔄</button>
-                                    </div>
-                                </form>
-
-                                <div id="res-dec2bin" class="quiz-result-box">
-                                    <div style="font-size: 14px; color: #94a3b8;">הציון שלך בבוחן עשרוני לבינארי:</div>
-                                    <div class="quiz-result-score" id="score-dec2bin">0 / 100</div>
-                                    <div id="msg-dec2bin" style="margin-top: 8px; font-weight: 700; font-size: 15px;"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Sub Tab 2: Dec to Hex -->
-                        <div id="subcontent-dec2hex" class="sub-tab-content">
-                            <h3 style="font-weight: 800; font-size: 16px; margin-bottom: 12px; color: var(--primary);">10 תרגילי המרה מעשרוני להקסדצימלי (<span dir="ltr" class="ltr-text font-mono">Dec → Hex</span>)</h3>
-                            <div class="table-responsive">
-                                <table>
-                                    <thead><tr><th>#</th><th>מספר עשרוני</th><th>תשובה הקסדצימלית</th><th>דרך חישוב (פירוק לרביעיות בינאריות / חלוקה ב-16)</th></tr></thead>
-                                    <tbody>
-                                        <tr><td>1</td><td><strong dir="ltr" class="ltr-text font-mono">10</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">0A</td><td><span dir="ltr" class="ltr-text font-mono">10</span> בעשרוני שווה ל-<span dir="ltr" class="ltr-text font-mono">A</span> בבסיס <span dir="ltr" class="ltr-text font-mono">16</span></td></tr>
-                                        <tr><td>2</td><td><strong dir="ltr" class="ltr-text font-mono">31</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">1F</td><td><span dir="ltr" class="ltr-text font-mono">31 = 0001 | 1111</span> ← <span dir="ltr" class="ltr-text font-mono">1</span> ו-<span dir="ltr" class="ltr-text font-mono">15 (F)</span></td></tr>
-                                        <tr><td>3</td><td><strong dir="ltr" class="ltr-text font-mono">58</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">3A</td><td><span dir="ltr" class="ltr-text font-mono">58 = 0011 | 1010</span> ← <span dir="ltr" class="ltr-text font-mono">3</span> ו-<span dir="ltr" class="ltr-text font-mono">10 (A)</span></td></tr>
-                                        <tr><td>4</td><td><strong dir="ltr" class="ltr-text font-mono">99</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">63</td><td><span dir="ltr" class="ltr-text font-mono">99 = 0110 | 0011</span> ← <span dir="ltr" class="ltr-text font-mono">6</span> ו-<span dir="ltr" class="ltr-text font-mono">3</span></td></tr>
-                                        <tr><td>5</td><td><strong dir="ltr" class="ltr-text font-mono">127</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">7F</td><td><span dir="ltr" class="ltr-text font-mono">127 = 0111 | 1111</span> ← <span dir="ltr" class="ltr-text font-mono">7</span> ו-<span dir="ltr" class="ltr-text font-mono">15 (F)</span></td></tr>
-                                        <tr><td>6</td><td><strong dir="ltr" class="ltr-text font-mono">160</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">A0</td><td><span dir="ltr" class="ltr-text font-mono">160 = 1010 | 0000</span> ← <span dir="ltr" class="ltr-text font-mono">10 (A)</span> ו-<span dir="ltr" class="ltr-text font-mono">0</span></td></tr>
-                                        <tr><td>7</td><td><strong dir="ltr" class="ltr-text font-mono">188</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">BC</td><td><span dir="ltr" class="ltr-text font-mono">188 = 1011 | 1100</span> ← <span dir="ltr" class="ltr-text font-mono">11 (B)</span> ו-<span dir="ltr" class="ltr-text font-mono">12 (C)</span></td></tr>
-                                        <tr><td>8</td><td><strong dir="ltr" class="ltr-text font-mono">202</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">CA</td><td><span dir="ltr" class="ltr-text font-mono">202 = 1100 | 1010</span> ← <span dir="ltr" class="ltr-text font-mono">12 (C)</span> ו-<span dir="ltr" class="ltr-text font-mono">10 (A)</span></td></tr>
-                                        <tr><td>9</td><td><strong dir="ltr" class="ltr-text font-mono">224</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">E0</td><td><span dir="ltr" class="ltr-text font-mono">224 = 1110 | 0000</span> ← <span dir="ltr" class="ltr-text font-mono">14 (E)</span> ו-<span dir="ltr" class="ltr-text font-mono">0</span></td></tr>
-                                        <tr><td>10</td><td><strong dir="ltr" class="ltr-text font-mono">254</strong></td><td class="font-mono text-teal-700 font-bold" dir="ltr">FE</td><td><span dir="ltr" class="ltr-text font-mono">254 = 1111 | 1110</span> ← <span dir="ltr" class="ltr-text font-mono">15 (F)</span> ו-<span dir="ltr" class="ltr-text font-mono">14 (E)</span></td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <!-- Quiz 2 -->
-                            <div class="quiz-container">
-                                <div class="quiz-header">
-                                    <div class="quiz-title">📝 בחן את עצמך: עשרוני להקסדצימלי</div>
-                                    <span style="font-size: 12px; color: #64748b; font-weight: 700;">5 שאלות • 20 נקודות לשאלה</span>
-                                </div>
-                                <form id="quiz-dec2hex">
-                                    <div id="questions-dec2hex"></div>
-                                    <div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap;">
-                                        <button type="button" onclick="checkQuiz('dec2hex')" class="btn btn-action">בדוק תשובות וחשב ציון 🎯</button>
-                                        <button type="button" onclick="generateNewQuiz('dec2hex')" class="btn btn-refresh">תרגל שוב (שאלות חדשות) 🔄</button>
-                                    </div>
-                                </form>
-
-                                <div id="res-dec2hex" class="quiz-result-box">
-                                    <div style="font-size: 14px; color: #94a3b8;">הציון שלך בבוחן עשרוני להקסדצימלי:</div>
-                                    <div class="quiz-result-score" id="score-dec2hex">0 / 100</div>
-                                    <div id="msg-dec2hex" style="margin-top: 8px; font-weight: 700; font-size: 15px;"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Sub Tab 3: Bin to Dec -->
-                        <div id="subcontent-bin2dec" class="sub-tab-content">
-                            <h3 style="font-weight: 800; font-size: 16px; margin-bottom: 12px; color: var(--primary);">10 תרגילי המרה מבינארי לעשרוני (<span dir="ltr" class="ltr-text font-mono">Bin → Dec</span>)</h3>
-                            <div class="table-responsive">
-                                <table>
-                                    <thead><tr><th>#</th><th>מחרוזת בינארית</th><th>תשובה עשרונית</th><th>חישוב סכום משקלים</th></tr></thead>
-                                    <tbody>
-                                        <tr><td>1</td><td class="font-mono" dir="ltr">00000101</td><td class="font-bold text-teal-700" dir="ltr">5</td><td><span dir="ltr" class="ltr-text font-mono">4 + 1</span></td></tr>
-                                        <tr><td>2</td><td class="font-mono" dir="ltr">00010010</td><td class="font-bold text-teal-700" dir="ltr">18</td><td><span dir="ltr" class="ltr-text font-mono">16 + 2</span></td></tr>
-                                        <tr><td>3</td><td class="font-mono" dir="ltr">00110000</td><td class="font-bold text-teal-700" dir="ltr">48</td><td><span dir="ltr" class="ltr-text font-mono">32 + 16</span></td></tr>
-                                        <tr><td>4</td><td class="font-mono" dir="ltr">01001001</td><td class="font-bold text-teal-700" dir="ltr">73</td><td><span dir="ltr" class="ltr-text font-mono">64 + 8 + 1</span></td></tr>
-                                        <tr><td>5</td><td class="font-mono" dir="ltr">01111000</td><td class="font-bold text-teal-700" dir="ltr">120</td><td><span dir="ltr" class="ltr-text font-mono">64 + 32 + 16 + 8</span></td></tr>
-                                        <tr><td>6</td><td class="font-mono" dir="ltr">10000001</td><td class="font-bold text-teal-700" dir="ltr">129</td><td><span dir="ltr" class="ltr-text font-mono">128 + 1</span></td></tr>
-                                        <tr><td>7</td><td class="font-mono" dir="ltr">10101000</td><td class="font-bold text-teal-700" dir="ltr">168</td><td><span dir="ltr" class="ltr-text font-mono">128 + 32 + 8</span> (אוקטטה נפוצה ב-IP)</td></tr>
-                                        <tr><td>8</td><td class="font-mono" dir="ltr">11000001</td><td class="font-bold text-teal-700" dir="ltr">193</td><td><span dir="ltr" class="ltr-text font-mono">128 + 64 + 1</span></td></tr>
-                                        <tr><td>9</td><td class="font-mono" dir="ltr">11100000</td><td class="font-bold text-teal-700" dir="ltr">224</td><td><span dir="ltr" class="ltr-text font-mono">128 + 64 + 32</span></td></tr>
-                                        <tr><td>10</td><td class="font-mono" dir="ltr">11111100</td><td class="font-bold text-teal-700" dir="ltr">252</td><td><span dir="ltr" class="ltr-text font-mono">255 - 3 = 252</span> (מסכת /30)</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <!-- Quiz 3 -->
-                            <div class="quiz-container">
-                                <div class="quiz-header">
-                                    <div class="quiz-title">📝 בחן את עצמך: בינארי לעשרוני</div>
-                                    <span style="font-size: 12px; color: #64748b; font-weight: 700;">5 שאלות • 20 נקודות לשאלה</span>
-                                </div>
-                                <form id="quiz-bin2dec">
-                                    <div id="questions-bin2dec"></div>
-                                    <div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap;">
-                                        <button type="button" onclick="checkQuiz('bin2dec')" class="btn btn-action">בדוק תשובות וחשב ציון 🎯</button>
-                                        <button type="button" onclick="generateNewQuiz('bin2dec')" class="btn btn-refresh">תרגל שוב (שאלות חדשות) 🔄</button>
-                                    </div>
-                                </form>
-
-                                <div id="res-bin2dec" class="quiz-result-box">
-                                    <div style="font-size: 14px; color: #94a3b8;">הציון שלך בבוחן בינארי לעשרוני:</div>
-                                    <div class="quiz-result-score" id="score-bin2dec">0 / 100</div>
-                                    <div id="msg-bin2dec" style="margin-top: 8px; font-weight: 700; font-size: 15px;"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Sub Tab 4: Bin to Hex -->
-                        <div id="subcontent-bin2hex" class="sub-tab-content">
-                            <h3 style="font-weight: 800; font-size: 16px; margin-bottom: 12px; color: var(--primary);">10 תרגילי המרה מבינארי להקסדצימלי (<span dir="ltr" class="ltr-text font-mono">Bin → Hex</span>)</h3>
-                            <div class="table-responsive">
-                                <table>
-                                    <thead><tr><th>#</th><th>מחרוזת בינארית</th><th>תשובה הקסדצימלית</th><th>פיצול לשני Nibbles</th></tr></thead>
-                                    <tbody>
-                                        <tr><td>1</td><td class="font-mono" dir="ltr">00001111</td><td class="font-bold text-teal-700" dir="ltr">0F</td><td><span dir="ltr" class="ltr-text font-mono">0000 (0) | 1111 (15=F)</span></td></tr>
-                                        <tr><td>2</td><td class="font-mono" dir="ltr">00100110</td><td class="font-bold text-teal-700" dir="ltr">26</td><td><span dir="ltr" class="ltr-text font-mono">0010 (2) | 0110 (6)</span></td></tr>
-                                        <tr><td>3</td><td class="font-mono" dir="ltr">01011011</td><td class="font-bold text-teal-700" dir="ltr">5B</td><td><span dir="ltr" class="ltr-text font-mono">0101 (5) | 1011 (11=B)</span></td></tr>
-                                        <tr><td>4</td><td class="font-mono" dir="ltr">01111101</td><td class="font-bold text-teal-700" dir="ltr">7D</td><td><span dir="ltr" class="ltr-text font-mono">0111 (7) | 1101 (13=D)</span></td></tr>
-                                        <tr><td>5</td><td class="font-mono" dir="ltr">10010011</td><td class="font-bold text-teal-700" dir="ltr">93</td><td><span dir="ltr" class="ltr-text font-mono">1001 (9) | 0011 (3)</span></td></tr>
-                                        <tr><td>6</td><td class="font-mono" dir="ltr">10101111</td><td class="font-bold text-teal-700" dir="ltr">AF</td><td><span dir="ltr" class="ltr-text font-mono">1010 (10=A) | 1111 (15=F)</span></td></tr>
-                                        <tr><td>7</td><td class="font-mono" dir="ltr">11001000</td><td class="font-bold text-teal-700" dir="ltr">C8</td><td><span dir="ltr" class="ltr-text font-mono">1100 (12=C) | 1000 (8)</span></td></tr>
-                                        <tr><td>8</td><td class="font-mono" dir="ltr">11010101</td><td class="font-bold text-teal-700" dir="ltr">D5</td><td><span dir="ltr" class="ltr-text font-mono">1101 (13=D) | 0101 (5)</span></td></tr>
-                                        <tr><td>9</td><td class="font-mono" dir="ltr">11110010</td><td class="font-bold text-teal-700" dir="ltr">F2</td><td><span dir="ltr" class="ltr-text font-mono">1111 (15=F) | 0010 (2)</span></td></tr>
-                                        <tr><td>10</td><td class="font-mono" dir="ltr">11111010</td><td class="font-bold text-teal-700" dir="ltr">FA</td><td><span dir="ltr" class="ltr-text font-mono">1111 (15=F) | 1010 (10=A)</span></td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <!-- Quiz 4 -->
-                            <div class="quiz-container">
-                                <div class="quiz-header">
-                                    <div class="quiz-title">📝 בחן את עצמך: בינארי להקסדצימלי</div>
-                                    <span style="font-size: 12px; color: #64748b; font-weight: 700;">5 שאלות • 20 נקודות לשאלה</span>
-                                </div>
-                                <form id="quiz-bin2hex">
-                                    <div id="questions-bin2hex"></div>
-                                    <div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap;">
-                                        <button type="button" onclick="checkQuiz('bin2hex')" class="btn btn-action">בדוק תשובות וחשב ציון 🎯</button>
-                                        <button type="button" onclick="generateNewQuiz('bin2hex')" class="btn btn-refresh">תרגל שוב (שאלות חדשות) 🔄</button>
-                                    </div>
-                                </form>
-
-                                <div id="res-bin2hex" class="quiz-result-box">
-                                    <div style="font-size: 14px; color: #94a3b8;">הציון שלך בבוחן בינארי להקסדצימלי:</div>
-                                    <div class="quiz-result-score" id="score-bin2hex">0 / 100</div>
-                                    <div id="msg-bin2hex" style="margin-top: 8px; font-weight: 700; font-size: 15px;"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Sub Tab 5: Hex to Dec -->
-                        <div id="subcontent-hex2dec" class="sub-tab-content">
-                            <h3 style="font-weight: 800; font-size: 16px; margin-bottom: 12px; color: var(--primary);">10 תרגילי המרה מהקסדצימלי לעשרוני (<span dir="ltr" class="ltr-text font-mono">Hex → Dec</span>)</h3>
-                            <div class="table-responsive">
-                                <table>
-                                    <thead><tr><th>#</th><th>ערך הקסדצימלי</th><th>תשובה עשרונית</th><th>דרך חישוב מהירה על הלוח</th></tr></thead>
-                                    <tbody>
-                                        <tr><td>1</td><td class="font-mono" dir="ltr">0B</td><td class="font-bold text-teal-700" dir="ltr">11</td><td><span dir="ltr" class="ltr-text font-mono">B</span> שווה <span dir="ltr" class="ltr-text font-mono">11</span> בעשרוני</td></tr>
-                                        <tr><td>2</td><td class="font-mono" dir="ltr">15</td><td class="font-bold text-teal-700" dir="ltr">21</td><td><span dir="ltr" class="ltr-text font-mono">(1 * 16) + 5 = 21</span></td></tr>
-                                        <tr><td>3</td><td class="font-mono" dir="ltr">2E</td><td class="font-bold text-teal-700" dir="ltr">46</td><td><span dir="ltr" class="ltr-text font-mono">(2 * 16) + 14 (E) = 32 + 14 = 46</span></td></tr>
-                                        <tr><td>4</td><td class="font-mono" dir="ltr">4B</td><td class="font-bold text-teal-700" dir="ltr">75</td><td><span dir="ltr" class="ltr-text font-mono">(4 * 16) + 11 (B) = 64 + 11 = 75</span></td></tr>
-                                        <tr><td>5</td><td class="font-mono" dir="ltr">64</td><td class="font-bold text-teal-700" dir="ltr">100</td><td><span dir="ltr" class="ltr-text font-mono">(6 * 16) + 4 = 96 + 4 = 100</span></td></tr>
-                                        <tr><td>6</td><td class="font-mono" dir="ltr">80</td><td class="font-bold text-teal-700" dir="ltr">128</td><td><span dir="ltr" class="ltr-text font-mono">(8 * 16) + 0 = 128</span></td></tr>
-                                        <tr><td>7</td><td class="font-mono" dir="ltr">9F</td><td class="font-bold text-teal-700" dir="ltr">159</td><td><span dir="ltr" class="ltr-text font-mono">(9 * 16) + 15 (F) = 144 + 15 = 159</span></td></tr>
-                                        <tr><td>8</td><td class="font-mono" dir="ltr">B8</td><td class="font-bold text-teal-700" dir="ltr">184</td><td><span dir="ltr" class="ltr-text font-mono">(11 * 16) + 8 = 176 + 8 = 184</span></td></tr>
-                                        <tr><td>9</td><td class="font-mono" dir="ltr">D2</td><td class="font-bold text-teal-700" dir="ltr">210</td><td><span dir="ltr" class="ltr-text font-mono">(13 * 16) + 2 = 208 + 2 = 210</span></td></tr>
-                                        <tr><td>10</td><td class="font-mono" dir="ltr">FF</td><td class="font-bold text-teal-700" dir="ltr">255</td><td><span dir="ltr" class="ltr-text font-mono">(15 * 16) + 15 = 240 + 15 = 255</span></td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <!-- Quiz 5 -->
-                            <div class="quiz-container">
-                                <div class="quiz-header">
-                                    <div class="quiz-title">📝 בחן את עצמך: הקסדצימלי לעשרוני</div>
-                                    <span style="font-size: 12px; color: #64748b; font-weight: 700;">5 שאלות • 20 נקודות לשאלה</span>
-                                </div>
-                                <form id="quiz-hex2dec">
-                                    <div id="questions-hex2dec"></div>
-                                    <div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap;">
-                                        <button type="button" onclick="checkQuiz('hex2dec')" class="btn btn-action">בדוק תשובות וחשב ציון 🎯</button>
-                                        <button type="button" onclick="generateNewQuiz('hex2dec')" class="btn btn-refresh">תרגל שוב (שאלות חדשות) 🔄</button>
-                                    </div>
-                                </form>
-
-                                <div id="res-hex2dec" class="quiz-result-box">
-                                    <div style="font-size: 14px; color: #94a3b8;">הציון שלך בבוחן הקסדצימלי לעשרוני:</div>
-                                    <div class="quiz-result-score" id="score-hex2dec">0 / 100</div>
-                                    <div id="msg-hex2dec" style="margin-top: 8px; font-weight: 700; font-size: 15px;"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Sub Tab 6: Hex to Bin -->
-                        <div id="subcontent-hex2bin" class="sub-tab-content">
-                            <h3 style="font-weight: 800; font-size: 16px; margin-bottom: 12px; color: var(--primary);">10 תרגילי המרה מהקסדצימלי לבינארי (<span dir="ltr" class="ltr-text font-mono">Hex → Bin</span>)</h3>
-                            <div class="table-responsive">
-                                <table>
-                                    <thead><tr><th>#</th><th>ערך הקסדצימלי</th><th>תשובה בינארית (8 ביט)</th><th>הרכבת שתי רביעיות ביטים</th></tr></thead>
-                                    <tbody>
-                                        <tr><td>1</td><td class="font-mono" dir="ltr">03</td><td class="font-mono text-teal-700 font-bold" dir="ltr">00000011</td><td><span dir="ltr" class="ltr-text font-mono">0 (0000) | 3 (0011)</span></td></tr>
-                                        <tr><td>2</td><td class="font-mono" dir="ltr">1A</td><td class="font-mono text-teal-700 font-bold" dir="ltr">00011010</td><td><span dir="ltr" class="ltr-text font-mono">1 (0001) | A=10 (1010)</span></td></tr>
-                                        <tr><td>3</td><td class="font-mono" dir="ltr">3C</td><td class="font-mono text-teal-700 font-bold" dir="ltr">00111100</td><td><span dir="ltr" class="ltr-text font-mono">3 (0011) | C=12 (1100)</span></td></tr>
-                                        <tr><td>4</td><td class="font-mono" dir="ltr">5F</td><td class="font-mono text-teal-700 font-bold" dir="ltr">01011111</td><td><span dir="ltr" class="ltr-text font-mono">5 (0101) | F=15 (1111)</span></td></tr>
-                                        <tr><td>5</td><td class="font-mono" dir="ltr">72</td><td class="font-mono text-teal-700 font-bold" dir="ltr">01110010</td><td><span dir="ltr" class="ltr-text font-mono">7 (0111) | 2 (0010)</span></td></tr>
-                                        <tr><td>6</td><td class="font-mono" dir="ltr">8E</td><td class="font-mono text-teal-700 font-bold" dir="ltr">10001110</td><td><span dir="ltr" class="ltr-text font-mono">8 (1000) | E=14 (1110)</span></td></tr>
-                                        <tr><td>7</td><td class="font-mono" dir="ltr">A5</td><td class="font-mono text-teal-700 font-bold" dir="ltr">10100101</td><td><span dir="ltr" class="ltr-text font-mono">A=10 (1010) | 5 (0101)</span></td></tr>
-                                        <tr><td>8</td><td class="font-mono" dir="ltr">C1</td><td class="font-mono text-teal-700 font-bold" dir="ltr">11000001</td><td><span dir="ltr" class="ltr-text font-mono">C=12 (1100) | 1 (0001)</span></td></tr>
-                                        <tr><td>9</td><td class="font-mono" dir="ltr">E4</td><td class="font-mono text-teal-700 font-bold" dir="ltr">11100100</td><td><span dir="ltr" class="ltr-text font-mono">E=14 (1110) | 4 (0100)</span></td></tr>
-                                        <tr><td>10</td><td class="font-mono" dir="ltr">FD</td><td class="font-mono text-teal-700 font-bold" dir="ltr">11111101</td><td><span dir="ltr" class="ltr-text font-mono">F=15 (1111) | D=13 (1101)</span></td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <!-- Quiz 6 -->
-                            <div class="quiz-container">
-                                <div class="quiz-header">
-                                    <div class="quiz-title">📝 בחן את עצמך: הקסדצימלי לבינארי</div>
-                                    <span style="font-size: 12px; color: #64748b; font-weight: 700;">5 שאלות • 20 נקודות לשאלה</span>
-                                </div>
-                                <form id="quiz-hex2bin">
-                                    <div id="questions-hex2bin"></div>
-                                    <div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap;">
-                                        <button type="button" onclick="checkQuiz('hex2bin')" class="btn btn-action">בדוק תשובות וחשב ציון 🎯</button>
-                                        <button type="button" onclick="generateNewQuiz('hex2bin')" class="btn btn-refresh">תרגל שוב (שאלות חדשות) 🔄</button>
-                                    </div>
-                                </form>
-
-                                <div id="res-hex2bin" class="quiz-result-box">
-                                    <div style="font-size: 14px; color: #94a3b8;">הציון שלך בבוחן הקסדצימלי לבינארי:</div>
-                                    <div class="quiz-result-score" id="score-hex2bin">0 / 100</div>
-                                    <div id="msg-hex2bin" style="margin-top: 8px; font-weight: 700; font-size: 15px;"></div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
+
+                    <!-- Sub Tab Content 2: Bin -> Dec -->
+                    <div id="subcontent-bin2dec" class="sub-tab-content">
+                        <div class="card">
+                            <h3 class="card-title"><span style="color: var(--primary);">■</span> 15 תרגילים: המרה מבינארי לעשרוני (כולל פתרונות)</h3>
+                            <div class="table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>בינארי</th>
+                                            <th>עשרוני (פתרון)</th>
+                                            <th>פירוט סכום המשקלים</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>1</td><td class="font-mono font-bold">10000000</td><td class="font-bold">128</td><td>128 בלבד</td></tr>
+                                        <tr><td>2</td><td class="font-mono font-bold">11000000</td><td class="font-bold">192</td><td>128 + 64</td></tr>
+                                        <tr><td>3</td><td class="font-mono font-bold">11100000</td><td class="font-bold">224</td><td>128 + 64 + 32</td></tr>
+                                        <tr><td>4</td><td class="font-mono font-bold">11110000</td><td class="font-bold">240</td><td>128 + 64 + 32 + 16</td></tr>
+                                        <tr><td>5</td><td class="font-mono font-bold">11111000</td><td class="font-bold">248</td><td>128 + 64 + 32 + 16 + 8</td></tr>
+                                        <tr><td>6</td><td class="font-mono font-bold">11111100</td><td class="font-bold">252</td><td>128 + 64 + 32 + 16 + 8 + 4</td></tr>
+                                        <tr><td>7</td><td class="font-mono font-bold">11111110</td><td class="font-bold">254</td><td>255 - 1</td></tr>
+                                        <tr><td>8</td><td class="font-mono font-bold">11111111</td><td class="font-bold">255</td><td>סכום כל 8 המשקלים</td></tr>
+                                        <tr><td>9</td><td class="font-mono font-bold">00001001</td><td class="font-bold">9</td><td>8 + 1</td></tr>
+                                        <tr><td>10</td><td class="font-mono font-bold">00010001</td><td class="font-bold">17</td><td>16 + 1</td></tr>
+                                        <tr><td>11</td><td class="font-mono font-bold">00101000</td><td class="font-bold">40</td><td>32 + 8</td></tr>
+                                        <tr><td>12</td><td class="font-mono font-bold">01100000</td><td class="font-bold">96</td><td>64 + 32</td></tr>
+                                        <tr><td>13</td><td class="font-mono font-bold">10010110</td><td class="font-bold">150</td><td>128 + 16 + 4 + 2</td></tr>
+                                        <tr><td>14</td><td class="font-mono font-bold">10101101</td><td class="font-bold">173</td><td>128 + 32 + 8 + 4 + 1</td></tr>
+                                        <tr><td>15</td><td class="font-mono font-bold">01010100</td><td class="font-bold">84</td><td>64 + 16 + 4</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sub Tab Content 3: Bin -> Hex -->
+                    <div id="subcontent-bin2hex" class="sub-tab-content">
+                        <div class="card">
+                            <h3 class="card-title"><span style="color: var(--primary);">■</span> 15 תרגילים: המרה מבינארי להקסדצימלי (כולל פתרונות)</h3>
+                            <div class="table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>בינארי</th>
+                                            <th>חלוקה לניבלים (<span dir="ltr" class="ltr-text font-mono">Nibbles</span>)</th>
+                                            <th>הקס (פתרון)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>1</td><td class="font-mono font-bold">11000000</td><td class="font-mono">1100 | 0000</td><td class="font-mono font-bold">C0</td></tr>
+                                        <tr><td>2</td><td class="font-mono font-bold">10101000</td><td class="font-mono">1010 | 1000</td><td class="font-mono font-bold">A8</td></tr>
+                                        <tr><td>3</td><td class="font-mono font-bold">11111111</td><td class="font-mono">1111 | 1111</td><td class="font-mono font-bold">FF</td></tr>
+                                        <tr><td>4</td><td class="font-mono font-bold">00001010</td><td class="font-mono">0000 | 1010</td><td class="font-mono font-bold">0A</td></tr>
+                                        <tr><td>5</td><td class="font-mono font-bold">11110000</td><td class="font-mono">1111 | 0000</td><td class="font-mono font-bold">F0</td></tr>
+                                        <tr><td>6</td><td class="font-mono font-bold">11011110</td><td class="font-mono">1101 | 1110</td><td class="font-mono font-bold">DE</td></tr>
+                                        <tr><td>7</td><td class="font-mono font-bold">10101011</td><td class="font-mono">1010 | 1011</td><td class="font-mono font-bold">AB</td></tr>
+                                        <tr><td>8</td><td class="font-mono font-bold">11101101</td><td class="font-mono">1110 | 1101</td><td class="font-mono font-bold">ED</td></tr>
+                                        <tr><td>9</td><td class="font-mono font-bold">01000010</td><td class="font-mono">0100 | 0010</td><td class="font-mono font-bold">42</td></tr>
+                                        <tr><td>10</td><td class="font-mono font-bold">11111000</td><td class="font-mono">1111 | 1000</td><td class="font-mono font-bold">F8</td></tr>
+                                        <tr><td>11</td><td class="font-mono font-bold">00111100</td><td class="font-mono">0011 | 1100</td><td class="font-mono font-bold">3C</td></tr>
+                                        <tr><td>12</td><td class="font-mono font-bold">01110111</td><td class="font-mono">0111 | 0111</td><td class="font-mono font-bold">77</td></tr>
+                                        <tr><td>13</td><td class="font-mono font-bold">10000001</td><td class="font-mono">1000 | 0001</td><td class="font-mono font-bold">81</td></tr>
+                                        <tr><td>14</td><td class="font-mono font-bold">01011010</td><td class="font-mono">0101 | 1010</td><td class="font-mono font-bold">5A</td></tr>
+                                        <tr><td>15</td><td class="font-mono font-bold">10011001</td><td class="font-mono">1001 | 1001</td><td class="font-mono font-bold">99</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sub Tab Content 4: Hex -> Bin -->
+                    <div id="subcontent-hex2bin" class="sub-tab-content">
+                        <div class="card">
+                            <h3 class="card-title"><span style="color: var(--primary);">■</span> 15 תרגילים: המרה מהקסדצימלי לבינארי (כולל פתרונות)</h3>
+                            <div class="table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>הקס</th>
+                                            <th>המרה ל-2 ניבלים בנפרד</th>
+                                            <th>בינארי מלא (פתרון)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>1</td><td class="font-mono font-bold">1A</td><td class="font-mono">1 -> 0001, A -> 1010</td><td class="font-mono font-bold">00011010</td></tr>
+                                        <tr><td>2</td><td class="font-mono font-bold">FF</td><td class="font-mono">F -> 1111, F -> 1111</td><td class="font-mono font-bold">11111111</td></tr>
+                                        <tr><td>3</td><td class="font-mono font-bold">C0</td><td class="font-mono">C -> 1100, 0 -> 0000</td><td class="font-mono font-bold">11000000</td></tr>
+                                        <tr><td>4</td><td class="font-mono font-bold">80</td><td class="font-mono">8 -> 1000, 0 -> 0000</td><td class="font-mono font-bold">10000000</td></tr>
+                                        <tr><td>5</td><td class="font-mono font-bold">3C</td><td class="font-mono">3 -> 0011, C -> 1100</td><td class="font-mono font-bold">00111100</td></tr>
+                                        <tr><td>6</td><td class="font-mono font-bold">2E</td><td class="font-mono">2 -> 0010, E -> 1110</td><td class="font-mono font-bold">00101110</td></tr>
+                                        <tr><td>7</td><td class="font-mono font-bold">7B</td><td class="font-mono">7 -> 0111, B -> 1011</td><td class="font-mono font-bold">01111011</td></tr>
+                                        <tr><td>8</td><td class="font-mono font-bold">A5</td><td class="font-mono">A -> 1010, 5 -> 0101</td><td class="font-mono font-bold">10100101</td></tr>
+                                        <tr><td>9</td><td class="font-mono font-bold">9F</td><td class="font-mono">9 -> 1001, F -> 1111</td><td class="font-mono font-bold">10011111</td></tr>
+                                        <tr><td>10</td><td class="font-mono font-bold">D4</td><td class="font-mono">D -> 1101, 4 -> 0100</td><td class="font-mono font-bold">11010100</td></tr>
+                                        <tr><td>11</td><td class="font-mono font-bold">68</td><td class="font-mono">6 -> 0110, 8 -> 1000</td><td class="font-mono font-bold">01101000</td></tr>
+                                        <tr><td>12</td><td class="font-mono font-bold">B7</td><td class="font-mono">B -> 1011, 7 -> 0111</td><td class="font-mono font-bold">10110111</td></tr>
+                                        <tr><td>13</td><td class="font-mono font-bold">E1</td><td class="font-mono">E -> 1110, 1 -> 0001</td><td class="font-mono font-bold">11100001</td></tr>
+                                        <tr><td>14</td><td class="font-mono font-bold">49</td><td class="font-mono">4 -> 0100, 9 -> 1001</td><td class="font-mono font-bold">01001001</td></tr>
+                                        <tr><td>15</td><td class="font-mono font-bold">0F</td><td class="font-mono">0 -> 0000, F -> 1111</td><td class="font-mono font-bold">00001111</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sub Tab Content 5: Quizzes Interactive (ALL 6 QUIZZES NOW INCLUDED) -->
+                    <div id="subcontent-quizzes" class="sub-tab-content">
+                        <div class="card">
+                            <h2 class="card-title"><span style="color: #0284c7;">🏆</span> בחן את עצמך - מחולל בחנים אינטראקטיביים (6 סוגי המרות)</h2>
+                            <p style="font-size: 16px; color: #64748b; margin-bottom: 20px;">
+                                בחר את המועד או הנושא שברצונך לתרגל. המערכת תציג שאלות אמריקאיות, תבדוק את פתרונותיך ותעניק ציון ומשוב מיידי!
+                            </p>
+
+                            <!-- ALL 6 Quiz Type Selectors -->
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px;">
+                                <button onclick="loadQuiz('dec2bin')" id="btn-quiz-dec2bin" class="btn btn-action">עשרוני ← בינארי</button>
+                                <button onclick="loadQuiz('bin2dec')" id="btn-quiz-bin2dec" class="btn btn-action">בינארי ← עשרוני</button>
+                                <button onclick="loadQuiz('dec2hex')" id="btn-quiz-dec2hex" class="btn btn-action">עשרוני ← הקס</button>
+                                <button onclick="loadQuiz('hex2dec')" id="btn-quiz-hex2dec" class="btn btn-action">הקס ← עשרוני</button>
+                                <button onclick="loadQuiz('bin2hex')" id="btn-quiz-bin2hex" class="btn btn-action">בינארי ← הקס</button>
+                                <button onclick="loadQuiz('hex2bin')" id="btn-quiz-hex2bin" class="btn btn-action">הקס ← בינארי</button>
+                            </div>
+
+                            <!-- Quiz Render Area -->
+                            <div id="quiz-render-area"></div>
+                        </div>
+                    </div>
+
                 </section>
+
             </div>
 
-            <!-- Side Reference Column: Hex to Binary -->
-            <aside>
+            <!-- Sticky Sidebar: Nibble Table -->
+            <div>
                 <div class="hex-sidebar-card">
                     <div class="hex-sidebar-title">
-                        <span>טבלת ניבלים (<span dir="ltr" class="ltr-text font-mono">0-F</span>)</span>
-                        <span style="font-size: 10px; background-color: #0f766e; padding: 2px 6px; border-radius: 4px; color: white;" dir="ltr" class="ltr-text font-mono">4 Bits</span>
+                        <span>טבלת ניבלים (0-F)</span>
+                        <span style="font-size: 12px; color: #94a3b8; font-weight: normal;">4 ביטים</span>
                     </div>
-                    <p style="font-size: 11px; color: #94a3b8; margin-bottom: 8px;">ייצוג ספרה הקסדצימלית ב-<span dir="ltr" class="ltr-text font-mono">4</span> ביטים (<span dir="ltr" class="ltr-text font-mono">8-4-2-1</span>):</p>
                     <table class="hex-table">
                         <thead>
                             <tr>
-                                <th>עשרוני</th>
-                                <th>הקס (<span dir="ltr" class="ltr-text font-mono">Hex</span>)</th>
-                                <th>בינארי (<span dir="ltr" class="ltr-text font-mono">4 Bit</span>)</th>
+                                <th>HEX</th>
+                                <th>DEC</th>
+                                <th>BINARY</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>0</td><td class="font-mono font-bold text-teal-400" dir="ltr">0</td><td class="font-mono font-bold text-emerald-400" dir="ltr">0000</td></tr>
-                            <tr><td>1</td><td class="font-mono font-bold text-teal-400" dir="ltr">1</td><td class="font-mono font-bold text-emerald-400" dir="ltr">0001</td></tr>
-                            <tr><td>2</td><td class="font-mono font-bold text-teal-400" dir="ltr">2</td><td class="font-mono font-bold text-emerald-400" dir="ltr">0010</td></tr>
-                            <tr><td>3</td><td class="font-mono font-bold text-teal-400" dir="ltr">3</td><td class="font-mono font-bold text-emerald-400" dir="ltr">0011</td></tr>
-                            <tr><td>4</td><td class="font-mono font-bold text-teal-400" dir="ltr">4</td><td class="font-mono font-bold text-emerald-400" dir="ltr">0100</td></tr>
-                            <tr><td>5</td><td class="font-mono font-bold text-teal-400" dir="ltr">5</td><td class="font-mono font-bold text-emerald-400" dir="ltr">0101</td></tr>
-                            <tr><td>6</td><td class="font-mono font-bold text-teal-400" dir="ltr">6</td><td class="font-mono font-bold text-emerald-400" dir="ltr">0110</td></tr>
-                            <tr><td>7</td><td class="font-mono font-bold text-teal-400" dir="ltr">7</td><td class="font-mono font-bold text-emerald-400" dir="ltr">0111</td></tr>
-                            <tr><td>8</td><td class="font-mono font-bold text-teal-400" dir="ltr">8</td><td class="font-mono font-bold text-emerald-400" dir="ltr">1000</td></tr>
-                            <tr><td>9</td><td class="font-mono font-bold text-teal-400" dir="ltr">9</td><td class="font-mono font-bold text-emerald-400" dir="ltr">1001</td></tr>
-                            <tr><td>10</td><td class="font-mono font-bold text-amber-400" dir="ltr">A</td><td class="font-mono font-bold text-emerald-400" dir="ltr">1010</td></tr>
-                            <tr><td>11</td><td class="font-mono font-bold text-amber-400" dir="ltr">B</td><td class="font-mono font-bold text-emerald-400" dir="ltr">1011</td></tr>
-                            <tr><td>12</td><td class="font-mono font-bold text-amber-400" dir="ltr">C</td><td class="font-mono font-bold text-emerald-400" dir="ltr">1100</td></tr>
-                            <tr><td>13</td><td class="font-mono font-bold text-amber-400" dir="ltr">D</td><td class="font-mono font-bold text-emerald-400" dir="ltr">1101</td></tr>
-                            <tr><td>14</td><td class="font-mono font-bold text-amber-400" dir="ltr">E</td><td class="font-mono font-bold text-emerald-400" dir="ltr">1110</td></tr>
-                            <tr><td>15</td><td class="font-mono font-bold text-amber-400" dir="ltr">F</td><td class="font-mono font-bold text-emerald-400" dir="ltr">1111</td></tr>
+                            <tr><td class="font-bold text-teal-400">0</td><td>0</td><td class="font-mono">0000</td></tr>
+                            <tr><td class="font-bold text-teal-400">1</td><td>1</td><td class="font-mono">0001</td></tr>
+                            <tr><td class="font-bold text-teal-400">2</td><td>2</td><td class="font-mono">0010</td></tr>
+                            <tr><td class="font-bold text-teal-400">3</td><td>3</td><td class="font-mono">0011</td></tr>
+                            <tr><td class="font-bold text-teal-400">4</td><td>4</td><td class="font-mono">0100</td></tr>
+                            <tr><td class="font-bold text-teal-400">5</td><td>5</td><td class="font-mono">0101</td></tr>
+                            <tr><td class="font-bold text-teal-400">6</td><td>6</td><td class="font-mono">0110</td></tr>
+                            <tr><td class="font-bold text-teal-400">7</td><td>7</td><td class="font-mono">0111</td></tr>
+                            <tr><td class="font-bold text-teal-400">8</td><td>8</td><td class="font-mono">1000</td></tr>
+                            <tr><td class="font-bold text-teal-400">9</td><td>9</td><td class="font-mono">1001</td></tr>
+                            <tr><td class="font-bold text-amber-400">A</td><td>10</td><td class="font-mono">1010</td></tr>
+                            <tr><td class="font-bold text-amber-400">B</td><td>11</td><td class="font-mono">1011</td></tr>
+                            <tr><td class="font-bold text-amber-400">C</td><td>12</td><td class="font-mono">1100</td></tr>
+                            <tr><td class="font-bold text-amber-400">D</td><td>13</td><td class="font-mono">1101</td></tr>
+                            <tr><td class="font-bold text-amber-400">E</td><td>14</td><td class="font-mono">1110</td></tr>
+                            <tr><td class="font-bold text-amber-400">F</td><td>15</td><td class="font-mono">1111</td></tr>
                         </tbody>
                     </table>
                 </div>
-            </aside>
-            
+            </div>
+
         </div>
     </main>
 
-    <!-- Floating Crazy Bot Widget -->
+    <!-- Floating Crazy Bot for Teacher -->
     <div class="floating-bot-container">
-        <div id="bot-card" class="floating-bot-card">
+        <div id="bot-card" class="floating-bot-card" style="display: none;">
             <div class="bot-header">
-                <img src="https://lh3.googleusercontent.com/d/1t9QaPCKLvtAhWncetA83ALY8EIvpnFte" alt="Crazy Bot" class="bot-avatar-spinning">
+                <img src="https://lh3.googleusercontent.com/d/1BHxytxfATgrv3wpk_8slqpRX08p2Dzml" alt="הבוט המטורלל למורה" class="bot-avatar-spinning">
                 <div>
-                    <h4 style="font-size: 16px; font-weight: 800; color: #38bdf8;">הבוט המטורלל למורה</h4>
-                    <span style="font-size: 11px; color: #94a3b8;">עוזר הוראה לפתיחת שיעור</span>
+                    <h4 style="font-weight: 800; font-size: 17px; color: #38bdf8;">הבוט המטורלל למורה 🤪</h4>
+                    <span style="font-size: 13px; color: #94a3b8;">עוזר פדגוגי אישי בזמן אמת</span>
                 </div>
             </div>
-            <p id="bot-tip-text" style="font-size: 13px; line-height: 1.5; color: #e2e8f0;">
-                "טיפ לבגרות מתוך הדף עזר: כשממירים מעשרוני להקס, פשוט מחלקים ב-16, והשארית מהכפלת התוצאה השלמה מביאה לך את התו הימני!"
+            
+            <p id="bot-tip" style="font-size: 15px; line-height: 1.5; color: #f1f5f9; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px;">
+                "המורה, אל תשכח להזכיר להם שפעם בבינארית 0 ו-1 לא היו רק מספרים, אלא מתח חשמלי של ממש!"
             </p>
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-                <a href="https://gemini.google.com/gem/167016ac4a4b?usp=sharing" target="_blank" class="gemini-bot-btn">
-                    <span>פתח את הבוט המלא ב-<span dir="ltr" class="ltr-text font-mono">Gemini</span></span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                </a>
-                <div style="display: flex; gap: 8px;">
-                    <button onclick="generateBotTip()" class="btn" style="font-size: 11px; padding: 6px 12px; flex-grow: 1;">תן לי עוד טיפ ⚡</button>
-                    <button onclick="toggleBotCard()" class="btn btn-dark" style="font-size: 11px; padding: 6px 12px;">סגור</button>
-                </div>
-            </div>
+
+            <a href="https://gemini.google.com/gem/1yXszf3vD-uA48G24oR25K-zOQ2-eW8n" target="_blank" class="gemini-bot-btn">
+                <span>💬 פתח בצ'אט Gemini Gem למורה</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+
+            <button onclick="nextBotTip()" class="btn btn-refresh" style="width: 100%; text-align: center;">💡 תן לי עוד טיפ מטורלל!</button>
         </div>
 
         <button onclick="toggleBotCard()" class="bot-toggle-btn">
-            <span style="font-size: 20px;">🤖</span> הבוט המטורלל
+            <span>🤪 עוזר פדגוגי למורה</span>
         </button>
     </div>
 
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>מערך שיעור פתיחה מותאם למורה למגמת תקשוב | המרת בסיסים ללא צורך במחשבים</p>
+            <p>מערך שיעור פתיחה בתקשורת מחשבים © נבנה עבור מורי מגמת תקשוב | מותאם להוראה פרונטלית ולבגרות</p>
         </div>
     </footer>
 
     <!-- JavaScript Logic -->
     <script>
-        const teacherTips = [
-            "טיפ פדגוגי: כותבים את המספר 192 על הלוח ושואלים 'ממה הוא מורכב?' – 128 ועוד 64, ומראים איך שני הביטים השמאליים נדלקים!",
-            "זכור: בהמרה מהקס לבינארי, תמיד תדגיש לתלמידים להשלים ל-4 ביטים מלאים לכל תו (למשל 3 הופך ל-0011 ולא ל-11)!",
-            "טריק ללוח: 255 בבינארית הוא 8 אחדות. 254 הוא 8 אחדות פחות 1, כלומר 11111110!",
-            "בהמרת הקס לעשרונית: השיטה הקלה ללוח היא לעבור דרך הבינארי – זה מונע כפל מורכב ב-16!"
-        ];
+        // Tab Switcher Logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
 
-        // Dynamic Bit Table Calculation Function
-        function calculateBitSum() {
-            const inputs = document.querySelectorAll('.bit-input');
-            let total = 0;
-            let activeWeights = [];
-
-            inputs.forEach(input => {
-                const val = input.value.trim();
-                const weight = parseInt(input.getAttribute('data-weight'));
-
-                // Enforce 0 or 1 input
-                if (val === '1') {
-                    total += weight;
-                    activeWeights.push(weight);
-                } else if (val !== '0' && val !== '') {
-                    input.value = ''; // Reset invalid inputs
-                }
-            });
-
-            const sumDisplay = document.getElementById('bit-total-sum');
-            const calcDisplay = document.getElementById('bit-calculation-text');
-
-            sumDisplay.innerText = total;
-
-            if (activeWeights.length > 0) {
-                calcDisplay.innerText = activeWeights.join(' + ') + ` = ${total}`;
-            } else {
-                calcDisplay.innerText = '0';
-            }
+            document.getElementById('content-' + tabId).classList.add('active');
+            document.getElementById('tab-' + tabId).classList.add('active');
         }
 
-        // Store active quiz data dynamically
-        const quizDataStore = {};
+        // Sub-Tab Switcher Logic
+        function switchSubTab(subTabId) {
+            document.querySelectorAll('.sub-tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.sub-tab-btn').forEach(el => el.classList.remove('active'));
+
+            document.getElementById('subcontent-' + subTabId.replace('sub-', '')).classList.add('active');
+            document.getElementById('subtab-' + subTabId.replace('sub-', '')).classList.add('active');
+        }
+
+        // Student Practice Bit Calculator Logic
+        function calculateStudentBits() {
+            const weights = [128, 64, 32, 16, 8, 4, 2, 1];
+            let totalSum = 0;
+
+            for (let i = 0; i < 8; i++) {
+                const inputEl = document.getElementById(`bit-${i}`);
+                let val = inputEl.value.trim();
+
+                if (val !== '0' && val !== '1') {
+                    if (val !== '') {
+                        inputEl.value = '';
+                    }
+                    val = '0';
+                }
+
+                if (val === '1') {
+                    totalSum += weights[7 - i];
+                }
+            }
+
+            document.getElementById('student-calc-result').innerText = totalSum;
+        }
+
+        function resetStudentTable() {
+            for (let i = 0; i < 8; i++) {
+                document.getElementById(`bit-${i}`).value = '';
+            }
+            calculateStudentBits();
+        }
+
+        // Crazy Bot Tips logic
+        const crazyTips = [
+            "תגיד לתלמידים שאם הם שוכחים את משקל 128, שפשוט יכפילו 2 בעצמו 7 פעמים!",
+            "אם תלמיד שואל 'למה צריך הקסדצימלי', תשאל אותו אם הוא מעדיף לקרוא 1111111111111111 או בקיצור FFFF!",
+            "טיפ זהב לבגרות: במסכת רשת (Subnet Mask), האחדות תמיד מופיעות ברצף משמאל לימין ללא אפסים באמצע!",
+            "זכור: A בעשרוני זה 10, F זה 15. אין 16 בהקסדצימלי כי 10 בהקס הוא 16 בעשרוני!",
+            "נסה לאתגר אותם: 'כמה זה 255 ועוד 1 בבינארי?' (תשובה: גלישה ל-9 ביטים! 100000000)"
+        ];
+        let currentTipIndex = 0;
 
         function toggleBotCard() {
             const card = document.getElementById('bot-card');
-            card.style.display = (card.style.display === 'none') ? 'flex' : 'none';
+            card.style.display = card.style.display === 'none' ? 'flex' : 'none';
         }
 
-        function generateBotTip() {
-            const randomIndex = Math.floor(Math.random() * teacherTips.length);
-            document.getElementById('bot-tip-text').innerText = `"${teacherTips[randomIndex]}"`;
+        function nextBotTip() {
+            currentTipIndex = (currentTipIndex + 1) % crazyTips.length;
+            document.getElementById('bot-tip').innerText = `"${crazyTips[currentTipIndex]}"`;
         }
 
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
-            document.querySelectorAll('.tab-btn').forEach(b => b.className = 'tab-btn');
-            
-            const target = document.getElementById('content-' + tabId);
-            if (target) target.style.display = 'block';
-            
-            const btn = document.getElementById('tab-' + tabId);
-            if (btn) btn.className = 'tab-btn active';
-        }
-
-        function switchSubTab(subTabId) {
-            document.querySelectorAll('.sub-tab-content').forEach(c => c.style.display = 'none');
-            document.querySelectorAll('.sub-tab-btn').forEach(b => b.className = 'sub-tab-btn');
-            
-            const target = document.getElementById('subcontent-' + subTabId);
-            if (target) target.style.display = 'block';
-            
-            const btn = document.getElementById('subtab-' + subTabId);
-            if (btn) btn.className = 'sub-tab-btn active';
-        }
-
-        /* Helper Conversion Functions for Generator */
-        function toBin8(num) {
-            return num.toString(2).padStart(8, '0');
-        }
-        function toHex2(num) {
-            return num.toString(16).toUpperCase().padStart(2, '0');
-        }
-
-        /* Dynamic Quiz Question Generator */
-        function generateNewQuiz(quizKey) {
-            const container = document.getElementById('questions-' + quizKey);
-            const resBox = document.getElementById('res-' + quizKey);
-            if (resBox) resBox.style.display = 'none';
-
-            container.innerHTML = '';
-            quizDataStore[quizKey] = [];
-
-            // Generate 5 distinct numbers between 1 and 255
-            const nums = [];
-            while(nums.length < 5) {
-                let r = Math.floor(Math.random() * 254) + 1;
-                if(!nums.includes(r)) nums.push(r);
+        // ALL 6 QUIZZES DATA ENGINE
+        const quizData = {
+            dec2bin: {
+                title: "בחן את עצמך: המרה מעשרוני לבינארי",
+                questions: [
+                    { q: "מהו הייצוג הבינארי של המספר העשרוני 192?", options: ["11000000", "10101000", "11100000", "10000000"], correct: 0, explanation: "192 = 128 + 64" },
+                    { q: "מהו הייצוג הבינארי של המספר העשרוני 255?", options: ["11111110", "11111111", "01111111", "11110000"], correct: 1, explanation: "255 הוא סכום כל 8 המשקלים באוקטטה (128+64+32+16+8+4+2+1)." },
+                    { q: "מהו הייצוג הבינארי של המספר העשרוני 10?", options: ["00001100", "00001010", "00001001", "00010000"], correct: 1, explanation: "10 = 8 + 2" },
+                    { q: "מהו הייצוג הבינארי של המספר העשרוני 168?", options: ["10101000", "11000000", "10011000", "10110000"], correct: 0, explanation: "168 = 128 + 32 + 8" },
+                    { q: "מהו הייצוג הבינארי של המספר העשרוני 224?", options: ["11100000", "11000000", "11110000", "11010000"], correct: 0, explanation: "224 = 128 + 64 + 32" }
+                ]
+            },
+            bin2dec: {
+                title: "בחן את עצמך: המרה מבינארי לעשרוני",
+                questions: [
+                    { q: "מהו הערך העשרוני של הבינארי 11000000?", options: ["168", "192", "224", "128"], correct: 1, explanation: "128 + 64 = 192" },
+                    { q: "מהו הערך העשרוני של הבינארי 00001010?", options: ["8", "12", "10", "14"], correct: 2, explanation: "8 + 2 = 10" },
+                    { q: "מהו הערך העשרוני של הבינארי 11110000?", options: ["240", "224", "248", "252"], correct: 0, explanation: "128 + 64 + 32 + 16 = 240" },
+                    { q: "מהו הערך העשרוני של הבינארי 10101000?", options: ["192", "172", "168", "160"], correct: 2, explanation: "128 + 32 + 8 = 168" },
+                    { q: "מהו הערך העשרוני של הבינארי 01111111?", options: ["127", "128", "255", "63"], correct: 0, explanation: "255 - 128 = 127" }
+                ]
+            },
+            dec2hex: {
+                title: "בחן את עצמך: המרה מעשרוני להקסדצימלי",
+                questions: [
+                    { q: "מהו הייצוג ההקסדצימלי של המספר העשרוני 10?", options: ["A", "B", "10", "F"], correct: 0, explanation: "10 בעשרוני מיוצג ע״י האות A בהקסדצימלי." },
+                    { q: "מהו הייצוג ההקסדצימלי של המספר העשרוני 255?", options: ["FE", "FF", "F0", "EF"], correct: 1, explanation: "255 בעשרוני שווה ל- (15*16)+15 כלומר FF." },
+                    { q: "מהו הייצוג ההקסדצימלי של המספר העשרוני 192?", options: ["C0", "C8", "B0", "D0"], correct: 0, explanation: "192 מחולק ב-16 נותן בדיוק 12 (C) ללא שארית (0), כלומר C0." },
+                    { q: "מהו הייצוג ההקסדצימלי של המספר העשרוני 15?", options: ["E", "F", "15", "A"], correct: 1, explanation: "15 בעשרוני הוא הערך המקסימלי של ספרת הקס יחידה: F." },
+                    { q: "מהו הייצוג ההקסדצימלי של המספר העשרוני 168?", options: ["A8", "A6", "B8", "C8"], correct: 0, explanation: "168 = (10*16)+8 -> 10=A, 8=8 -> A8." }
+                ]
+            },
+            hex2dec: {
+                title: "בחן את עצמך: המרה מהקסדצימלי לעשרוני",
+                questions: [
+                    { q: "מהו הערך העשרוני של המספר ההקסדצימלי 1A?", options: ["26", "16", "24", "28"], correct: 0, explanation: "(1 * 16) + 10 (A) = 26." },
+                    { q: "מהו הערך העשרוני של המספר ההקסדצימלי FF?", options: ["254", "255", "250", "256"], correct: 1, explanation: "(15 * 16) + 15 = 240 + 15 = 255." },
+                    { q: "מהו הערך העשרוני של המספר ההקסדצימלי C0?", options: ["192", "168", "224", "180"], correct: 0, explanation: "(12 * 16) + 0 = 192." },
+                    { q: "מהו הערך העשרוני של המספר ההקסדצימלי 3C?", options: ["60", "48", "52", "64"], correct: 0, explanation: "(3 * 16) + 12 (C) = 48 + 12 = 60." },
+                    { q: "מהו הערך העשרוני של המספר ההקסדצימלי A5?", options: ["165", "175", "155", "160"], correct: 0, explanation: "(10 * 16) + 5 = 160 + 5 = 165." }
+                ]
+            },
+            bin2hex: {
+                title: "בחן את עצמך: המרה מבינארי להקסדצימלי",
+                questions: [
+                    { q: "מהו הייצוג ההקסדצימלי של הבינארי 11000000?", options: ["C0", "A8", "FF", "C8"], correct: 0, explanation: "1100 = C, 0000 = 0 -> C0" },
+                    { q: "מהו הייצוג ההקסדצימלי של הבינארי 10101000?", options: ["A8", "B8", "168", "AA"], correct: 0, explanation: "1010 = A, 1000 = 8 -> A8" },
+                    { q: "מהו הייצוג ההקסדצימלי של הבינארי 11111111?", options: ["FF", "EE", "F0", "0F"], correct: 0, explanation: "1111 = F, 1111 = F -> FF" },
+                    { q: "מהו הייצוג ההקסדצימלי של הבינארי 00001010?", options: ["0A", "0B", "10", "0F"], correct: 0, explanation: "0000 = 0, 1010 = A -> 0A" },
+                    { q: "מהו הייצוג ההקסדצימלי של הבינארי 11011110?", options: ["DE", "AD", "BE", "ED"], correct: 0, explanation: "1101 = D, 1110 = E -> DE" }
+                ]
+            },
+            hex2bin: {
+                title: "בחן את עצמך: המרה מהקסדצימלי לבינארי",
+                questions: [
+                    { q: "מהו הייצוג הבינארי של ההקס 1A?", options: ["00011010", "00101010", "00011011", "00011100"], correct: 0, explanation: "1 = 0001, A = 1010 -> 00011010" },
+                    { q: "מהו הייצוג הבינארי של ההקס FF?", options: ["11111111", "11110000", "00001111", "11101110"], correct: 0, explanation: "F = 1111, F = 1111 -> 11111111" },
+                    { q: "מהו הייצוג הבינארי של ההקס C0?", options: ["11000000", "10100000", "11100000", "11000001"], correct: 0, explanation: "C = 1100, 0 = 0000 -> 11000000" },
+                    { q: "מהו הייצוג הבינארי של ההקס 3C?", options: ["00111100", "00111010", "01001100", "00111101"], correct: 0, explanation: "3 = 0011, C = 1100 -> 00111100" },
+                    { q: "מהו הייצוג הבינארי של ההקס A5?", options: ["10100101", "10110101", "10100110", "10010101"], correct: 0, explanation: "A = 1010, 5 = 0101 -> 10100101" }
+                ]
             }
+        };
 
-            nums.forEach((val, index) => {
-                let qText = '', correctAns = '', explanation = '';
-                let distractorVals = [];
+        function loadQuiz(quizKey) {
+            // Update Active Quiz Button Styling
+            document.querySelectorAll('[id^="btn-quiz-"]').forEach(btn => btn.classList.remove('active-quiz'));
+            const activeBtn = document.getElementById('btn-quiz-' + quizKey);
+            if(activeBtn) activeBtn.classList.add('active-quiz');
 
-                if (quizKey === 'dec2bin') {
-                    qText = `${index + 1}. מהו הייצוג הבינארי (8 ביט) של המספר העשרוני ${val}?`;
-                    correctAns = toBin8(val);
-                    distractorVals = [val + 1, val - 1, val ^ 16].filter(v => v > 0 && v <= 255 && v !== val);
-                    explanation = `המספר העשרוני ${val} מורכב מהמשקלים: ${val} = ${toBin8(val)}`;
-                } 
-                else if (quizKey === 'dec2hex') {
-                    qText = `${index + 1}. מהו הייצוג ההקסדצימלי של המספר העשרוני ${val}?`;
-                    correctAns = toHex2(val);
-                    distractorVals = [val + 16, val - 1, val + 1].filter(v => v > 0 && v <= 255 && v !== val);
-                    explanation = `${val} בבסיס עשרוני שווה ל-${toHex2(val)} ב-HEX (${Math.floor(val/16)} פעמים 16 + שארית ${val%16}).`;
-                } 
-                else if (quizKey === 'bin2dec') {
-                    qText = `${index + 1}. מהו הערך העשרוני של המחרוזת הבינארית ${toBin8(val)}?`;
-                    correctAns = val.toString();
-                    distractorVals = [val + 2, val - 2, val + 16].filter(v => v > 0 && v <= 255 && v !== val);
-                    explanation = `סכום משקלי ה-1 במיקומים של ${toBin8(val)} נותן בדיוק ${val}.`;
-                } 
-                else if (quizKey === 'bin2hex') {
-                    qText = `${index + 1}. מהו הייצוג ההקסדצימלי של המחרוזת הבינארית ${toBin8(val)}?`;
-                    correctAns = toHex2(val);
-                    distractorVals = [val + 1, val + 16, val ^ 8].filter(v => v > 0 && v <= 255 && v !== val);
-                    explanation = `פיצול לשני Nibbles: ${toBin8(val).slice(0,4)} | ${toBin8(val).slice(4)} נותן ${toHex2(val)}.`;
-                } 
-                else if (quizKey === 'hex2dec') {
-                    qText = `${index + 1}. מהו הערך העשרוני של המספר ההקסדצימלי ${toHex2(val)}?`;
-                    correctAns = val.toString();
-                    distractorVals = [val + 4, val - 2, val + 16].filter(v => v > 0 && v <= 255 && v !== val);
-                    explanation = `${toHex2(val)} ב-HEX שווה ל- (${Math.floor(val/16)} * 16) + ${val%16} = ${val}.`;
-                } 
-                else if (quizKey === 'hex2bin') {
-                    qText = `${index + 1}. מהו הייצוג הבינארי (8 ביט) של המספר ההקסדצימלי ${toHex2(val)}?`;
-                    correctAns = toBin8(val);
-                    distractorVals = [val + 1, val - 1, val ^ 4].filter(v => v > 0 && v <= 255 && v !== val);
-                    explanation = `כל תו ב-${toHex2(val)} מתורגם ל-4 ביטים: ${toHex2(val)[0]} → ${toBin8(val).slice(0,4)}, ${toHex2(val)[1]} → ${toBin8(val).slice(4)}.`;
-                }
+            const data = quizData[quizKey];
+            const container = document.getElementById('quiz-render-area');
 
-                // Format choices
-                let choices = [correctAns];
-                distractorVals.forEach(d => {
-                    let formatted = '';
-                    if (quizKey === 'dec2bin' || quizKey === 'hex2bin') formatted = toBin8(d);
-                    else if (quizKey === 'dec2hex' || quizKey === 'bin2hex') formatted = toHex2(d);
-                    else formatted = d.toString();
-                    
-                    if(!choices.includes(formatted)) choices.push(formatted);
-                });
+            let html = `
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <div class="quiz-title">${data.title}</div>
+                        <span style="font-size: 14px; font-weight: bold; color: #64748b;">5 שאלות לבדיקה</span>
+                    </div>
+                    <form id="quiz-form-${quizKey}">
+            `;
 
-                while(choices.length < 4) {
-                    choices.push((val + choices.length * 3).toString());
-                }
+            data.questions.forEach((q, idx) => {
+                html += `
+                    <div class="question-card">
+                        <div class="question-text">${idx + 1}. ${q.q}</div>
+                        <div class="options-list">
+                `;
 
-                // Shuffle options
-                choices.sort(() => Math.random() - 0.5);
-
-                quizDataStore[quizKey].push({
-                    correctAns: correctAns,
-                    explanation: explanation
-                });
-
-                // Build HTML Question Card
-                const qCard = document.createElement('div');
-                qCard.className = 'question-card';
-                qCard.id = `q-${quizKey}-${index + 1}`;
-
-                let optionsHTML = '';
-                choices.forEach((choice, cIdx) => {
-                    optionsHTML += `
+                q.options.forEach((opt, optIdx) => {
+                    html += `
                         <label class="option-item">
-                            <input type="radio" name="q${index + 1}" value="${choice}">
-                            <span class="font-mono dir-ltr">${choice}</span>
+                            <input type="radio" name="q_${quizKey}_${idx}" value="${optIdx}">
+                            <span class="font-mono">${opt}</span>
                         </label>
                     `;
                 });
 
-                qCard.innerHTML = `
-                    <div class="question-text">${qText}</div>
-                    <div class="options-list">${optionsHTML}</div>
-                    <div class="quiz-feedback" id="fb-${quizKey}-${index + 1}"></div>
+                html += `
+                        </div>
+                        <div id="fb_${quizKey}_${idx}" class="quiz-feedback"></div>
+                    </div>
                 `;
-
-                container.appendChild(qCard);
             });
+
+            html += `
+                    </form>
+                    <div style="display: flex; gap: 12px; margin-top: 20px;">
+                        <button onclick="submitQuiz('${quizKey}')" class="btn btn-action">בדוק תשובות והצג ציון</button>
+                        <button onclick="loadQuiz('${quizKey}')" class="btn btn-dark">אפס שאלון</button>
+                    </div>
+
+                    <div id="res-${quizKey}" class="quiz-result-box">
+                        <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 8px;">תוצאות הבוחן</h3>
+                        <div id="score-${quizKey}" class="quiz-result-score">0 / 100</div>
+                        <p id="msg-${quizKey}" style="margin-top: 10px; font-size: 16px; font-weight: 700;"></p>
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML = html;
         }
 
-        /* Universal Quiz Checking Function */
-        function checkQuiz(quizKey) {
-            const data = quizDataStore[quizKey];
-            if (!data) return;
-
+        function submitQuiz(quizKey) {
+            const data = quizData[quizKey];
             let score = 0;
-            const form = document.getElementById('quiz-' + quizKey);
+            const pointsPerQ = 100 / data.questions.length;
 
-            data.forEach((q, i) => {
-                const selected = form.querySelector(`input[name="q${i+1}"]:checked`);
-                const fbDiv = document.getElementById(`fb-${quizKey}-${i+1}`);
+            data.questions.forEach((q, idx) => {
+                const selected = document.querySelector(`input[name="q_${quizKey}_${idx}"]:checked`);
+                const fbDiv = document.getElementById(`fb_${quizKey}_${idx}`);
 
-                if (selected && selected.value === q.correctAns) {
-                    score += 20;
+                if (!selected) {
+                    fbDiv.className = "quiz-feedback incorrect";
+                    fbDiv.innerHTML = `⚠️ לא נבחרה תשובה. התשובה הנכונה היא: <strong class="font-mono dir-ltr">${q.options[q.correct]}</strong>. ${q.explanation}`;
+                    return;
+                }
+
+                const userAns = parseInt(selected.value);
+                if (userAns === q.correct) {
+                    score += pointsPerQ;
                     fbDiv.className = "quiz-feedback correct";
                     fbDiv.innerHTML = `✓ תשובה נכונה! ${q.explanation}`;
                 } else {
                     fbDiv.className = "quiz-feedback incorrect";
-                    fbDiv.innerHTML = `✗ תשובה שגויה. התשובה הנכונה היא: <strong class="font-mono dir-ltr">${q.correctAns}</strong>. ${q.explanation}`;
+                    fbDiv.innerHTML = `✗ תשובה שגויה. התשובה הנכונה היא: <strong class="font-mono dir-ltr">${q.options[q.correct]}</strong>. ${q.explanation}`;
                 }
             });
 
@@ -1302,15 +1116,15 @@
                 msgDiv.innerHTML = "👍 עבודה טובה! מומלץ לעבור על ההסברים בשאלות שטעית בהן.";
                 msgDiv.style.color = "#fbbf24";
             } else {
-                msgDiv.innerHTML = "💪 אל תתייאש! לחץ על 'תרגל שוב' לניסיון נוסף.";
+                msgDiv.innerHTML = "💪 אל תתייאש! לחץ על 'אפס שאלון' לניסיון נוסף.";
                 msgDiv.style.color = "#f87171";
             }
         }
 
-        // Initialize Quizzes on Load
+        // Initialize Default View on Load
         window.onload = function() {
-            const keys = ['dec2bin', 'dec2hex', 'bin2dec', 'bin2hex', 'hex2dec', 'hex2bin'];
-            keys.forEach(k => generateNewQuiz(k));
+            loadQuiz('dec2bin');
+            calculateStudentBits();
         };
     </script>
 </body>
