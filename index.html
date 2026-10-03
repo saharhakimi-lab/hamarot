@@ -4,508 +4,465 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>מערך שיעור למורה: המרת בסיסים בתקשורת מחשבים</title>
-    
-    <!-- Lucide Icons & Tailwind CSS -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&family=Secular+One&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700;800&family=Heebo:wght@400;500;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* =========================================================
-           עיצוב: רקעים בהירים חזותיים, פונטים מעוצבים, מסגור מושגים באנגלית
-           ========================================================= */
         :root {
-            --primary: #0f766e;
-            --primary-light: #f0fdfa;
-            --primary-border: #99f6e4;
-            --secondary: #0369a1;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --success: #10b981;
-            --error: #ef4444;
-            --warning: #f59e0b;
+            --bg: #fbf8ee;
+            --paper: #ffffff;
+            --ink: #20150f;
+            --soft: #3b2b22;
+            --muted: #5a4a40;
+            --line: #e6d9bf;
+            --red: #b91c1c;
+            --red-text: #a11a1a;
+            --red-soft: #fcebe7;
+            --red-edge: #e9b8ae;
+            --term: #0b5d73;
+            --term-soft: #e1f3f8;
+            --aside-bg: #f6eadc;
+            --aside-edge: #e2c9a8;
+            --aside-ink: #5b3a1a;
 
-            --ink: #1e293b;
-            --ink-deep: #1e1b4b;
-            --red-soft: #fecaca;
-            --red-mid: #fca5a5;
-            --red-ink: #7f1d1d;
-            --rose: #be123c;
-            --violet: #7c3aed;
-            --sky: #0284c7;
+            --c-sky: #0e7490;   --c-sky-bg: #e3f4f9;
+            --c-green: #047857; --c-green-bg: #e1f5ee;
+            --c-amber: #b45309; --c-amber-bg: #fdf1dd;
+            --c-violet: #6d28d9; --c-violet-bg: #efe8fb;
 
-            --font-body: 'Rubik', 'Heebo', 'Assistant', Calibri, system-ui, -apple-system, 'Segoe UI', sans-serif;
-            --font-display: 'Secular One', 'Rubik', 'Heebo', Calibri, system-ui, sans-serif;
-            --font-code: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Courier New', monospace;
+            --ok-bg: #d8f3e6; --ok-edge: #0b6b4a;
+            --bad-bg: #fcdcd6; --bad-edge: #a11a1a;
+            --shadow: 0 10px 30px -12px rgba(120, 40, 20, 0.18);
+
+            --font-body: 'Heebo', 'Assistant', system-ui, sans-serif;
+            --font-display: 'Rubik', 'Heebo', system-ui, sans-serif;
+            --font-code: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
 
             --nav-h: 70px;
             --banner-h: 92px;
         }
 
-        @keyframes spinAround {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        @keyframes aurora {
-            0%   { transform: translate3d(0, 0, 0) scale(1) rotate(0); }
-            100% { transform: translate3d(3%, -4%, 0) scale(1.15) rotate(6deg); }
+        body.dark {
+            --bg: #1a1412;
+            --paper: #251c18;
+            --ink: #f8efe7;
+            --soft: #eadfd5;
+            --muted: #d0c0b3;
+            --line: #43352d;
+            --red-text: #ff9b9b;
+            --red-soft: #3c1f1c;
+            --red-edge: #6d3a33;
+            --term: #7fdcf0;
+            --term-soft: #123640;
+            --aside-bg: #3a2c20;
+            --aside-edge: #6b5237;
+            --aside-ink: #f6dfc0;
+            --c-sky: #7fdcf0;   --c-sky-bg: rgba(14, 116, 144, 0.22);
+            --c-green: #6ee7b7; --c-green-bg: rgba(4, 120, 87, 0.24);
+            --c-amber: #fcd34d; --c-amber-bg: rgba(180, 83, 9, 0.26);
+            --c-violet: #c4b5fd; --c-violet-bg: rgba(109, 40, 217, 0.26);
+            --shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.6);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; font-size: 20px; }
+        @media (max-width: 600px) { html { font-size: 18px; } }
 
         html body {
             font-family: var(--font-body);
-            background-color: #fdf8f4;
+            font-weight: 500;
+            background: var(--bg);
             color: var(--ink);
-            line-height: 1.7;
+            line-height: 1.8;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            font-size: 16px;
-            position: relative;
             overflow-x: hidden;
+            transition: background-color 0.25s ease, color 0.25s ease;
         }
+
         button, input { font-family: inherit; }
+        button { cursor: pointer; }
+        h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 800; }
+        :focus-visible { outline: 3px solid #f59e0b; outline-offset: 3px; }
 
-        h1, h2, h3, h4 { font-family: var(--font-display); font-synthesis: none; letter-spacing: 0.2px; }
-
-        /* ---------- רקע אורורה בהיר + ספרות בינאריות שקופות ---------- */
-        body::before {
-            content: "";
-            position: fixed; inset: -20%;
-            z-index: -2;
-            background:
-                radial-gradient(40% 40% at 15% 20%, rgba(252,165,165,.55), transparent 70%),
-                radial-gradient(35% 35% at 85% 15%, rgba(56,189,248,.45), transparent 70%),
-                radial-gradient(45% 45% at 70% 85%, rgba(167,139,250,.40), transparent 70%),
-                radial-gradient(35% 35% at 10% 90%, rgba(253,224,71,.35), transparent 70%);
-            filter: blur(30px);
-            animation: aurora 26s ease-in-out infinite alternate;
-        }
-        body::after {
-            content: "";
-            position: fixed; inset: 0;
-            z-index: -1;
-            pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg font-family='monospace' font-weight='700' fill='%239f1239' fill-opacity='.07'%3E%3Ctext x='16' y='38' font-size='20'%3E0101%3C/text%3E%3Ctext x='140' y='72' font-size='28'%3E1%3C/text%3E%3Ctext x='44' y='130' font-size='18'%3EFF%3C/text%3E%3Ctext x='160' y='162' font-size='22'%3E1100%3C/text%3E%3Ctext x='86' y='212' font-size='26'%3E0%3C/text%3E%3Ctext x='190' y='222' font-size='16'%3EA8%3C/text%3E%3C/g%3E%3C/svg%3E");
-            background-size: 240px 240px;
-        }
-
-        body .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 16px; }
+        body .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 16px; }
 
         /* ---------- כותרת עליונה ---------- */
         header {
-            position: relative;
-            background: rgba(255,255,255,.62);
-            backdrop-filter: blur(18px) saturate(1.5);
-            -webkit-backdrop-filter: blur(18px) saturate(1.5);
-            color: var(--ink);
-            padding: 24px 0;
-            border-bottom: 1px solid rgba(255,255,255,.8);
-            box-shadow: 0 10px 40px -14px rgba(127,29,29,.28);
+            background: var(--paper);
+            border-bottom: 2px solid var(--line);
+            padding: 16px 0;
         }
         .header-content { display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 16px; }
-        @media (min-width: 768px) { .header-content { flex-direction: row; } }
-
+        @media (min-width: 900px) { .header-content { flex-direction: row; } }
         .header-title-area { display: flex; align-items: center; gap: 16px; }
-
-        header h1 {
-            background: linear-gradient(90deg, #be123c, #7c3aed, #0284c7);
-            -webkit-background-clip: text; background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-            line-height: 1.35;
-        }
-        header p { color: #475569; }
-        header p .aside { -webkit-text-fill-color: currentColor; }
-
+        header h1 { font-size: 1.5rem; line-height: 1.3; color: var(--red-text); }
+        header p { font-size: 0.85rem; line-height: 1.5; color: var(--muted); font-weight: 500; }
         .crazy-avatar {
-            width: 64px; height: 64px; border-radius: 50%; object-fit: cover;
-            border: 0;
-            box-shadow: 0 0 0 4px #fff, 0 0 0 7px var(--red-mid), 0 12px 28px rgba(190,18,60,.35);
-            animation: spinAround 10s linear infinite;
+            width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+            border: 3px solid var(--red); background: #fff;
         }
-
-        .header-badges { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+        .header-badges { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; align-items: center; }
         .badge {
-            background: #fff; border: 1.5px solid var(--red-mid);
-            color: var(--red-ink); font-size: 13px; font-weight: 700; padding: 6px 16px; border-radius: 9999px;
-            box-shadow: 0 4px 12px -6px rgba(190,18,60,.4);
+            background: var(--paper); border: 2px solid var(--line); color: var(--ink);
+            font-size: 0.85rem; font-weight: 700; padding: 4px 16px; border-radius: 12px; line-height: 1.7;
         }
-        .badge-success { background: #ecfdf5; color: #065f46; border-color: #6ee7b7; box-shadow: 0 4px 12px -6px rgba(16,185,129,.5); }
+        .badge-success { border-color: var(--ok-edge); color: var(--ok-edge); }
+        body.dark .badge-success { color: #6ee7b7; border-color: #6ee7b7; }
+        .mode-btn {
+            min-height: 48px; padding: 0 18px; border-radius: 12px;
+            background: var(--paper); color: var(--ink); border: 2px solid var(--line);
+            font-weight: 700; font-size: 0.85rem;
+        }
+        .mode-btn:hover { border-color: var(--red); }
 
-        /* ---------- ניווט טאבים ---------- */
+        /* ---------- כפתורי הטאבים ---------- */
         .nav-tabs-container {
-            background: rgba(255,255,255,.78);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(252,165,165,.35);
-            position: sticky; top: 0; z-index: 50;
+            background: var(--bg);
+            border-bottom: 2px solid var(--line);
+            z-index: 50;
         }
-        nav { display: flex; gap: 10px; overflow-x: auto; padding: 10px 0; scrollbar-width: thin; }
+        @media (min-width: 1100px) { .nav-tabs-container { position: sticky; top: 0; } }
+        nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 12px 0; }
+        @media (max-width: 1099px) { nav { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 560px) { nav { grid-template-columns: 1fr; } }
 
-        .tab-btn {
-            background: rgba(255,255,255,.8);
-            border: 1.5px solid rgba(252,165,165,.5);
-            border-radius: 18px;
-            padding: 10px 18px;
-            font-size: 15px; font-weight: 700;
-            color: #334155;
-            cursor: pointer; white-space: nowrap;
-            transition: background .2s, box-shadow .2s, transform .2s;
+        .tab-btn, .sub-tab-btn {
+            display: flex; align-items: center; gap: 12px;
+            min-height: 68px; padding: 10px 16px;
+            text-align: right;
+            border-radius: 14px;
+            border: 2px solid var(--line);
+            background: var(--paper);
+            color: var(--ink);
+            font-size: 0.85rem; font-weight: 800; line-height: 1.4;
+            transition: border-color 0.15s ease, background-color 0.15s ease;
         }
-        .tab-btn:hover { background: rgba(254,226,226,.85); box-shadow: 0 8px 20px -10px rgba(239,68,68,.45); }
-        .tab-btn.active,
-        .tab-btn.active:hover {
-            background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
-            color: var(--red-ink);
-            border-color: #f87171;
-            font-weight: 800;
-            box-shadow: 0 10px 24px -8px rgba(248,113,113,.65), 0 0 0 4px rgba(254,202,202,.5);
+        .tab-btn:hover, .sub-tab-btn:hover { border-color: var(--red); }
+        .tab-btn.active, .sub-tab-btn.active {
+            background: #b91c1c; border-color: #b91c1c; color: #fff;
         }
+        .tab-btn .num, .sub-tab-btn .num {
+            flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%;
+            display: inline-grid; place-items: center;
+            background: var(--red-soft); color: var(--red-text);
+            font-family: var(--font-display); font-weight: 800; font-size: 0.9rem; line-height: 1;
+        }
+        .tab-btn.active .num, .sub-tab-btn.active .num { background: #fff; color: #b91c1c; }
+        .tab-btn.active .aside, .sub-tab-btn.active .aside { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.5); color: #fff; }
+        .tab-btn.active .aside .num, .sub-tab-btn.active .aside .num { background: none; color: #fff; width: auto; height: auto; }
+        .tab-btn .aside .num, .sub-tab-btn .aside .num { background: none; width: auto; height: auto; color: inherit; font-family: var(--font-code); }
 
-        .sub-tab-btn {
-            background: rgba(255,255,255,.85); border: 1.5px solid #fecdd3; padding: 9px 16px; font-size: 15px; font-weight: 700;
-            color: #475569; border-radius: 14px; cursor: pointer; transition: background .2s, box-shadow .2s;
-        }
-        .sub-tab-btn:hover { background: #fff1f2; border-color: var(--red-mid); }
-        .sub-tab-btn.active {
-            background: linear-gradient(135deg, #fecaca, #fca5a5) !important;
-            color: var(--red-ink) !important;
-            border-color: #f87171 !important;
-            box-shadow: 0 8px 20px -8px rgba(248,113,113,.7), 0 0 0 3px rgba(254,202,202,.55);
-        }
-
-        :focus-visible { outline: 3px solid #7c3aed; outline-offset: 2px; }
+        .sub-tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 20px; }
+        @media (max-width: 1100px) { .sub-tabs { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 560px) { .sub-tabs { grid-template-columns: 1fr; } }
+        .sub-tab-btn.quiz-sub { background: #ffd400; border-color: #20150f; color: #000; }
+        .sub-tab-btn.quiz-sub.active { background: #ffd400; color: #000; box-shadow: 0 0 0 4px rgba(185, 28, 28, 0.55); }
+        .sub-tab-btn.quiz-sub .aside { background: rgba(255,255,255,0.6); border-color: #20150f; color: #000; }
 
         /* ---------- פריסה ---------- */
         .layout-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
-        @media (min-width: 1024px) { .layout-grid { grid-template-columns: 1fr 300px; } }
-
-        main { flex-grow: 1; padding: 32px 0; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        .sub-tab-content { display: none; }
-        .sub-tab-content.active { display: block; }
+        @media (min-width: 1100px) { .layout-grid { grid-template-columns: 1fr 310px; } }
+        main { flex-grow: 1; padding: 28px 0; }
+        .tab-content, .sub-tab-content { display: none; }
+        .tab-content.active, .sub-tab-content.active { display: block; }
 
         /* ---------- כרטיסים ---------- */
         .card {
-            position: relative; overflow: hidden;
-            background: rgba(255,255,255,.74);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(255,255,255,.9);
-            border-radius: 28px;
-            padding: 30px 28px 26px;
+            background: var(--paper);
+            border: 2px solid var(--line);
+            border-radius: 22px;
+            padding: clamp(22px, 3.5vw, 40px);
             margin-bottom: 24px;
-            box-shadow: 0 20px 50px -22px rgba(76,29,149,.3), inset 0 1px 0 #fff;
-        }
-        .card::before {
-            content: ""; position: absolute; inset: 0 0 auto 0; height: 6px;
-            background: linear-gradient(90deg, #fb7185, #a78bfa, #38bdf8);
+            box-shadow: var(--shadow);
         }
         .card-title {
-            font-size: 24px; font-weight: 800; color: var(--ink-deep);
-            margin-bottom: 20px; display: flex; align-items: center; gap: 12px; line-height: 1.4;
+            font-size: clamp(1.45rem, 3.8vw, 1.9rem); color: var(--red-text);
+            margin-bottom: 18px; line-height: 1.4;
         }
-        .card-title > span:first-child {
-            flex: none;
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 36px; height: 36px; border-radius: 12px;
-            background: linear-gradient(135deg, #fb7185, #a78bfa);
-            color: #fff !important; font-size: 16px; font-family: var(--font-body);
-            box-shadow: 0 8px 16px -8px rgba(190,18,60,.6);
+        h3.card-title { font-size: clamp(1.3rem, 3.4vw, 1.6rem); }
+        .card p.intro { font-size: 1.05rem; color: var(--soft); margin-bottom: 16px; max-width: 46em; }
+
+        /* ---------- תיבות הסבר ---------- */
+        .stack { display: flex; flex-direction: column; gap: 16px; margin-top: 18px; }
+        .box {
+            padding: 20px 22px; border-radius: 18px;
+            border-right: 8px solid var(--accent);
+            background: var(--bg-fill);
         }
+        .box h3 { font-size: 1.25rem; color: var(--accent); margin-bottom: 8px; line-height: 1.5; }
+        .box p { font-size: 1.05rem; color: var(--ink); max-width: 46em; }
+        .box.sky { --accent: var(--c-sky); --bg-fill: var(--c-sky-bg); }
+        .box.teal { --accent: var(--c-green); --bg-fill: var(--c-green-bg); }
+        .box.amber { --accent: var(--c-amber); --bg-fill: var(--c-amber-bg); }
 
         .alert-info {
-            background: linear-gradient(135deg, #f0fdfa, #e0f2fe);
-            border-right: 6px solid var(--primary);
-            padding: 18px 20px; border-radius: 18px; font-size: 16px; color: #0f2d2a; margin-bottom: 18px;
-            box-shadow: 0 10px 24px -16px rgba(15,118,110,.5);
+            background: var(--c-sky-bg); border-right: 8px solid var(--c-sky);
+            padding: 18px 22px; border-radius: 18px; font-size: 1.1rem; color: var(--ink); margin-bottom: 18px;
         }
         .alert-warning {
-            background: linear-gradient(135deg, #fffbeb, #fff1f2);
-            border-right: 6px solid var(--warning);
-            padding: 18px 20px; border-radius: 18px; color: #78350f; font-size: 16px; margin-bottom: 18px;
-            box-shadow: 0 10px 24px -16px rgba(245,158,11,.55);
+            background: var(--c-amber-bg); border-right: 8px solid var(--c-amber);
+            padding: 20px 24px; border-radius: 18px; color: var(--ink); font-size: 1.05rem; margin-top: 24px;
         }
-        .alert-warning li::marker { color: #f43f5e; }
-
-        /* ---------- באנר דרייב דביק ---------- */
-        .sticky-drive-banner {
-            position: sticky;
-            top: calc(var(--nav-h) + 8px);
-            z-index: 35;
-            background: linear-gradient(135deg, #fef9c3 0%, #fed7aa 55%, #fecdd3 100%);
-            border: 2px solid #fb923c;
-            color: #7c2d12;
-            border-radius: 20px;
-            padding: 16px 20px;
-            margin-bottom: 16px;
-            display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-            box-shadow: 0 14px 30px -16px rgba(234,88,12,.55);
-        }
-        .drive-btn {
-            background: linear-gradient(135deg, #0f766e, #0369a1);
-            color: white;
-            padding: 12px 22px;
-            border-radius: 14px;
-            font-weight: 800; font-size: 16px; text-decoration: none;
-            display: flex; align-items: center; gap: 8px;
-            transition: transform .2s, filter .2s;
-            box-shadow: 0 10px 22px -10px rgba(3,105,161,.8);
-        }
-        .drive-btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
-
-        /* ---------- טבלאות ---------- */
-        .table-responsive { overflow-x: auto; width: 100%; margin-top: 12px; border-radius: 18px; }
-        table {
-            width: 100%; border-collapse: separate; border-spacing: 0;
-            text-align: center; font-size: 16px;
-            border: 1px solid #fecdd3; border-radius: 18px; overflow: hidden;
-            background: rgba(255,255,255,.8);
-        }
-        th {
-            background: linear-gradient(135deg, #ffe4e6, #ede9fe 60%, #e0f2fe);
-            color: var(--ink-deep); padding: 14px; font-weight: 800; font-size: 16px;
-            border-bottom: 2px solid #fda4af;
-        }
-        td { padding: 12px 14px; border-bottom: 1px solid #ffe4e6; font-size: 16px; background: rgba(255,255,255,.7); }
-        tbody tr:nth-child(even) td { background: rgba(255,241,242,.75); }
-        tbody tr:hover td { background: #fef9c3; }
-        tbody tr:last-child td { border-bottom: 0; }
-        tbody tr.hex-row td { background: rgba(224,242,254,.75); }
-        tbody tr.hex-row:hover td { background: #fef9c3; }
+        .alert-warning h3 { font-size: 1.25rem; margin-bottom: 10px; color: var(--c-amber); }
+        .alert-warning ul { list-style: disc; margin-right: 22px; line-height: 1.9; }
+        .alert-warning li { margin-bottom: 10px; }
+        .alert-warning li::marker { color: var(--red); }
 
         .method-box {
-            background: linear-gradient(135deg, #fffbeb, #fef9c3);
-            border: 2px dashed #fbbf24; border-radius: 20px; padding: 20px; margin-top: 18px; font-size: 16px;
+            background: var(--c-amber-bg);
+            border: 2px dashed var(--c-amber); border-radius: 18px; padding: 20px 24px; margin-top: 22px;
         }
+        .method-box h3 { font-size: 1.25rem; color: var(--c-amber); margin-bottom: 8px; }
+        .method-box p { font-size: 1.05rem; }
 
-        /* ---------- סרגל צד: טבלת ניבלים ---------- */
-        .hex-sidebar-card {
-            background: linear-gradient(165deg, #fff7ed 0%, #fff1f2 50%, #eff6ff 100%);
-            border: 2px solid #fdba74;
-            border-radius: 24px;
-            padding: 18px;
+        /* ---------- באנרים של דף העזר ---------- */
+        .drive-link-banner, .sticky-drive-banner {
+            background: var(--c-amber-bg);
+            border: 2px solid var(--c-amber);
+            border-radius: 18px;
+            padding: 16px 20px;
+            margin-bottom: 18px;
+            display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
             color: var(--ink);
-            box-shadow: 0 20px 40px -22px rgba(234,88,12,.5);
-            position: sticky;
-            top: calc(var(--nav-h) + 12px);
         }
-        .hex-sidebar-title {
-            font-family: var(--font-display);
-            font-size: 18px; color: #9a3412;
-            border-bottom: 2px dashed #fdba74;
-            padding-bottom: 10px; margin-bottom: 14px;
-            display: flex; align-items: center; justify-content: space-between; gap: 8px;
+        .drive-link-banner h3, .sticky-drive-banner h3 { font-size: 1.15rem; color: var(--c-amber); margin-bottom: 4px; line-height: 1.5; }
+        .drive-link-banner p, .sticky-drive-banner p { font-size: 0.9rem; color: var(--ink); line-height: 1.6; }
+        @media (min-width: 1100px) {
+            .sticky-drive-banner { position: sticky; top: calc(var(--nav-h) + 8px); z-index: 35; }
         }
-        .hex-table { border: 0; border-radius: 0; background: transparent; overflow: visible; }
-        .hex-table th { background: #fff; color: #7c2d12; font-size: 13px; padding: 6px; border-bottom: 2px solid #fdba74; }
-        .hex-table td { padding: 5px 8px; border-bottom: 1px solid #fed7aa; font-size: 14px; background: rgba(255,255,255,.6); }
-        .hex-table tbody tr:nth-child(even) td { background: rgba(255,237,213,.55); }
-        .hex-table .text-teal-400 { color: #0f766e; }
-        .hex-table .text-amber-400 { color: #be123c; }
+        .drive-btn {
+            background: var(--red); color: #fff;
+            padding: 0 24px; min-height: 52px;
+            border-radius: 14px;
+            font-weight: 800; font-size: 0.9rem; text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+        }
+        .drive-btn:hover { background: #991b1b; }
+        .drive-btn svg { width: 1.1rem; height: 1.1rem; }
 
-        /* ---------- מחשבון עזר לתלמיד ---------- */
-        .sticky-student-helper-container {
-            position: sticky;
-            top: calc(var(--nav-h) + var(--banner-h) + 24px);
-            z-index: 40;
-            margin-bottom: 24px;
+        /* ---------- טבלאות ---------- */
+        .table-responsive { overflow-x: auto; width: 100%; margin-top: 12px; border-radius: 16px; }
+        table {
+            width: 100%; border-collapse: separate; border-spacing: 0;
+            text-align: center; font-size: 0.95rem;
+            border: 2px solid var(--line); border-radius: 16px; overflow: hidden;
+            background: var(--paper);
+        }
+        th {
+            background: var(--red-soft); color: var(--ink);
+            padding: 12px; font-weight: 800; font-size: 0.95rem; line-height: 1.5;
+            border-bottom: 2px solid var(--red-edge);
+        }
+        td { padding: 10px 12px; border-bottom: 1px solid var(--line); background: var(--paper); line-height: 1.6; }
+        tbody tr:nth-child(even) td { background: var(--bg); }
+        tbody tr:hover td { background: var(--c-amber-bg); }
+        tbody tr:last-child td { border-bottom: 0; }
+        tbody tr.hex-row td { background: var(--term-soft); }
+        .font-bold { font-weight: 800; }
+        .font-mono { font-family: var(--font-code); direction: ltr; unicode-bidi: isolate; }
+        .dir-ltr { direction: ltr; unicode-bidi: isolate; }
+
+        /* ---------- תפריט משנה תרגול ---------- */
+        .sticky-student-helper-container { margin-bottom: 20px; }
+        @media (min-width: 1100px) {
+            .sticky-student-helper-container { position: sticky; top: calc(var(--nav-h) + var(--banner-h) + 24px); z-index: 40; }
         }
         .hover-calculator-wrapper {
-            background: linear-gradient(135deg, #e0f2fe 0%, #ede9fe 100%);
-            border: 2px solid #7dd3fc;
-            border-radius: 20px;
+            background: var(--paper);
+            border: 2px solid var(--c-sky);
+            border-radius: 18px;
             padding: 12px 18px;
-            color: var(--ink);
-            box-shadow: 0 16px 34px -16px rgba(2,132,199,.55);
-            transition: all .3s cubic-bezier(.4,0,.2,1);
+            box-shadow: var(--shadow);
             cursor: pointer;
         }
         .hover-calculator-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+        .hover-calculator-header h3 { font-size: 1.1rem; color: var(--c-sky); line-height: 1.5; }
+        .calc-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .calc-toggle-badge {
-            background-color: #0284c7; color: white; font-size: 12px; font-weight: 800;
-            padding: 4px 12px; border-radius: 20px; transition: all .2s;
+            background-color: var(--c-sky); color: #fff; font-size: 0.8rem; font-weight: 800;
+            padding: 4px 14px; border-radius: 10px;
         }
-        .hover-calculator-body { max-height: 0; opacity: 0; overflow: hidden; transition: all .35s ease-in-out; margin-top: 0; }
+        body.dark .calc-toggle-badge { color: #06242c; }
+        .hover-calculator-body { max-height: 0; opacity: 0; overflow: hidden; transition: max-height .3s ease, opacity .3s ease; margin-top: 0; }
         .hover-calculator-wrapper:hover .hover-calculator-body,
-        .hover-calculator-wrapper.open .hover-calculator-body { max-height: 320px; opacity: 1; margin-top: 12px; }
-        .hover-calculator-wrapper:hover .calc-toggle-badge,
-        .hover-calculator-wrapper.open .calc-toggle-badge { background-color: #10b981; }
+        .hover-calculator-wrapper.open .hover-calculator-body { max-height: 420px; opacity: 1; margin-top: 12px; }
+        .hover-calculator-body p { font-size: 0.9rem; color: var(--soft); }
 
         .student-helper-table {
             width: 100%; border: 0; border-radius: 0; overflow: visible; background: transparent;
             border-collapse: separate; border-spacing: 6px; margin-top: 8px; direction: ltr;
         }
         .student-helper-table th {
-            background: #fff; color: #0c4a6e; font-size: 16px; font-weight: 800;
-            padding: 6px; border-radius: 10px; border: 1.5px solid #7dd3fc;
+            background: var(--c-sky-bg); color: var(--c-sky); font-size: 1rem; font-weight: 800;
+            padding: 6px; border-radius: 10px; border: 2px solid var(--c-sky); font-family: var(--font-code);
         }
-        .student-helper-table td {
-            background: rgba(255,255,255,.85) !important;
-            border: 2px dashed #38bdf8; height: 48px; border-radius: 10px; padding: 0;
-        }
+        .student-helper-table td { background: var(--paper) !important; border: 2px dashed var(--c-sky); height: 56px; border-radius: 10px; padding: 0; }
         .bit-input {
-            width: 100%; height: 100%; background: transparent; border: none; color: #0369a1;
-            font-size: 22px; font-weight: 800; text-align: center; outline: none;
-            font-family: var(--font-code);
+            width: 100%; height: 100%; background: transparent; border: none; color: var(--ink);
+            font-size: 1.5rem; font-weight: 800; text-align: center; outline: none; font-family: var(--font-code);
         }
-        .bit-input:focus { background-color: rgba(56,189,248,.22); border-radius: 8px; }
+        .bit-input:focus { background-color: var(--c-sky-bg); border-radius: 8px; }
         .sum-result-box {
             display: flex; align-items: center; justify-content: space-between;
-            background-color: rgba(255,255,255,.9); border: 1.5px solid #bae6fd; border-radius: 14px;
-            padding: 10px 16px; margin-top: 10px; font-size: 15px;
+            background-color: var(--c-green-bg); border: 2px solid var(--c-green); border-radius: 14px;
+            padding: 8px 18px; margin-top: 10px; font-size: 1rem;
         }
+        .sum-result-box > span:first-child { font-weight: 800; }
+        #student-calc-result { font-size: 1.7rem; font-weight: 800; color: var(--c-green); }
 
-        /* ---------- בחנים ---------- */
+        /* ---------- בחנים: פונט שחור על רקע בהיר ---------- */
+        .card p.quiz-intro { font-size: 1.05rem; color: var(--soft); margin-bottom: 20px; max-width: 46em; }
+        .quiz-selectors { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
         .quiz-container {
-            margin-top: 24px;
-            background: linear-gradient(160deg, rgba(255,255,255,.85), rgba(255,241,242,.8));
-            padding: 24px; border-radius: 24px; border: 1.5px solid #fecdd3;
+            margin-top: 24px; background: #ffffff; padding: 24px; border-radius: 20px; border: 2px solid #20150f;
         }
+        .quiz-container, .quiz-container * { color: #000; }
+        .quiz-container .eng-tag { color: #000; border-color: #000; background: #f0f0f0; }
         .quiz-header {
             display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
-            margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px dashed #fda4af;
+            margin-bottom: 22px; padding-bottom: 12px; border-bottom: 2px dashed #20150f;
         }
-        .quiz-title { font-family: var(--font-display); font-size: 21px; color: var(--rose); display: flex; align-items: center; gap: 10px; }
-        .question-card {
-            background-color: rgba(255,255,255,.92); border: 1.5px solid #e9d5ff; border-radius: 20px;
-            padding: 18px; margin-bottom: 18px; box-shadow: 0 10px 24px -18px rgba(76,29,149,.5);
-        }
-        .question-text { font-weight: 700; font-size: 17px; color: var(--ink-deep); margin-bottom: 14px; }
+        .quiz-title { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; }
+        .quiz-count { font-size: 0.85rem; font-weight: 700; }
+        .question-card { background: #fff; border: 2px solid #20150f; border-radius: 16px; padding: 18px; margin-bottom: 18px; }
+        .question-text { font-weight: 800; font-size: 1.1rem; margin-bottom: 14px; line-height: 1.7; }
         .options-list { display: flex; flex-direction: column; gap: 10px; }
         .option-item {
-            display: flex; align-items: center; gap: 12px; padding: 12px 16px;
-            border: 1.5px solid #e2e8f0; border-radius: 14px; cursor: pointer;
-            transition: all .2s; font-size: 16px; background-color: #ffffff;
+            display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 16px;
+            border: 2px solid #bdbdbd; border-radius: 12px; cursor: pointer;
+            font-size: 1.05rem; background: #fff;
         }
-        .option-item:hover { background-color: #fff1f2; border-color: var(--red-mid); transform: translateX(-4px); }
-        .option-item:has(input:checked) { background-color: #ffe4e6; border-color: #fb7185; }
-        .option-item input[type="radio"] { accent-color: #ef4444; transform: scale(1.3); }
-        .quiz-feedback { margin-top: 12px; padding: 12px 14px; border-radius: 14px; font-size: 15px; font-weight: 600; display: none; }
-        .quiz-feedback.correct { background-color: #d1fae5; color: #065f46; border: 1px solid #34d399; display: block; }
-        .quiz-feedback.incorrect { background-color: #fee2e2; color: #991b1b; border: 1px solid #f87171; display: block; }
-        .quiz-feedback .num { color: inherit; }
+        .option-item:hover { border-color: #000; }
+        .option-item:has(input:checked) { border-color: #000; background: #fff4b8; font-weight: 700; }
+        .option-item input[type="radio"] { width: 24px; height: 24px; accent-color: #000; flex-shrink: 0; }
+        .quiz-feedback { margin-top: 12px; padding: 12px 16px; border-radius: 12px; font-size: 1rem; font-weight: 600; line-height: 1.8; display: none; }
+        .quiz-feedback.correct { background: var(--ok-bg); border: 2px solid var(--ok-edge); display: block; }
+        .quiz-feedback.incorrect { background: var(--bad-bg); border: 2px solid var(--bad-edge); display: block; }
+        .quiz-container .num, .quiz-container .aside { color: #000; }
+        .quiz-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
         .quiz-result-box {
-            display: none;
-            background: linear-gradient(135deg, #fef9c3 0%, #fce7f3 50%, #e0f2fe 100%);
-            color: var(--ink); padding: 24px; border-radius: 24px; text-align: center; margin-top: 24px;
-            border: 2px solid #f9a8d4;
+            display: none; background: #fff4b8; border: 2px solid #000; padding: 24px; border-radius: 18px;
+            text-align: center; margin-top: 24px;
         }
-        .quiz-result-score { font-family: var(--font-code); font-size: 38px; font-weight: 800; color: var(--rose); direction: ltr; }
+        .result-title { font-size: 1.3rem; margin-bottom: 8px; }
+        .quiz-result-score { font-family: var(--font-code); font-size: 2.4rem; font-weight: 800; direction: ltr; }
+        .result-msg { margin-top: 10px; font-size: 1.05rem; font-weight: 700; }
 
-        /* ---------- בוט עזר צף ---------- */
-        .floating-bot-container {
-            position: fixed; bottom: 24px; left: 24px; z-index: 1000;
-            display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+        /* ---------- סרגל צד: טבלת ניבלים ---------- */
+        .hex-sidebar-card {
+            background: var(--paper); border: 2px solid var(--line); border-radius: 22px; padding: 18px;
+            box-shadow: var(--shadow);
         }
-        .floating-bot-card {
-            width: 380px; max-width: calc(100vw - 48px);
-            background: linear-gradient(165deg, #ffffff, #fff1f2 60%, #f5f3ff);
-            border: 2px solid var(--red-mid); border-radius: 24px;
-            padding: 20px; color: var(--ink);
-            box-shadow: 0 24px 50px -16px rgba(190,18,60,.45);
-            display: flex; flex-direction: column; gap: 12px; transition: all .3s ease;
+        @media (min-width: 1100px) { .hex-sidebar-card { position: sticky; top: calc(var(--nav-h) + 12px); } }
+        .hex-sidebar-title {
+            font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; color: var(--red-text);
+            border-bottom: 2px dashed var(--line); padding-bottom: 10px; margin-bottom: 12px;
+            display: flex; align-items: center; justify-content: space-between; gap: 8px; line-height: 1.5;
         }
-        .bot-header { display: flex; align-items: center; gap: 14px; border-bottom: 2px dashed #fda4af; padding-bottom: 12px; }
-        .bot-avatar-spinning {
-            width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
-            border: 3px solid #fff; box-shadow: 0 0 0 4px var(--red-mid), 0 10px 22px rgba(190,18,60,.35);
-            animation: spinAround 12s linear infinite;
-        }
-        .bot-toggle-btn {
-            background-color: #fff; border: 2px solid var(--red-mid); color: var(--red-ink); padding: 12px 20px;
-            border-radius: 9999px; font-weight: 800; font-size: 15px; cursor: pointer;
-            display: flex; align-items: center; gap: 10px;
-            box-shadow: 0 0 0 6px rgba(254,202,202,.6), 0 14px 30px rgba(190,18,60,.3);
-        }
-        .gemini-bot-btn {
-            background: linear-gradient(135deg, #0ea5e9, #6366f1);
-            color: white; text-decoration: none; padding: 10px 14px; border-radius: 14px;
-            font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px;
-            transition: filter .2s, transform .2s; box-shadow: 0 12px 24px -12px rgba(79,70,229,.8);
-        }
-        .gemini-bot-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+        .hex-sidebar-title span span:not(.num):not(.aside) { font-weight: 500; }
+        .hex-table { border: 0; border-radius: 0; background: transparent; overflow: visible; font-size: 0.85rem; }
+        .hex-table th { font-size: 0.75rem; padding: 6px 4px; }
+        .hex-table td { padding: 3px 6px; font-size: 0.85rem; line-height: 1.5; }
+        .hex-table .text-teal-400 { color: var(--c-green); }
+        .hex-table .text-amber-400 { color: var(--red-text); }
 
         /* ---------- כפתורים ---------- */
         .btn {
-            background: linear-gradient(135deg, #e11d48, #7c3aed); color: white; border: none;
-            padding: 10px 18px; font-size: 14px; font-weight: 700; border-radius: 14px; cursor: pointer;
-            box-shadow: 0 10px 22px -12px rgba(124,58,237,.8); transition: filter .2s, transform .2s;
+            background: var(--red); color: #fff; border: 2px solid var(--red);
+            min-height: 52px; padding: 0 24px; font-size: 0.9rem; font-weight: 800; border-radius: 14px;
         }
-        .btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
-        .btn-dark { background: linear-gradient(135deg, #64748b, #475569); box-shadow: 0 10px 22px -12px rgba(71,85,105,.8); }
-        .btn-action { background: linear-gradient(135deg, #0ea5e9, #6366f1); font-size: 14px; padding: 10px 16px; border-radius: 14px; font-weight: 800; }
-        .btn-action.active-quiz { background: linear-gradient(135deg, #e11d48, #7c3aed); box-shadow: 0 0 0 4px rgba(254,202,202,.8); }
-        .btn-refresh { background: linear-gradient(135deg, #e11d48, #7c3aed); font-size: 15px; padding: 12px 24px; border-radius: 14px; font-weight: 800; }
+        .btn:hover { background: #991b1b; border-color: #991b1b; }
+        .btn-dark { background: var(--paper); color: var(--ink); border: 2px solid var(--line); }
+        .btn-dark:hover { background: var(--paper); border-color: var(--red); }
+        .btn-action { background: var(--paper); color: var(--red-text); border: 2px solid var(--red); }
+        .btn-action:hover { background: var(--red-soft); border-color: var(--red); }
+        .btn-action.active-quiz { background: var(--red); color: #fff; }
+        .btn-refresh { min-height: 52px; width: 100%; text-align: center; }
+        .quiz-container .btn { color: #fff; background: #20150f; border-color: #20150f; }
+        .quiz-container .btn * { color: #fff; }
+        .quiz-container .btn-dark { background: #fff; color: #000; border-color: #000; }
+        .quiz-container .btn-action { background: #ffd400; color: #000; border-color: #000; }
+
+        /* ---------- בוט עזר צף ---------- */
+        .floating-bot-container { position: fixed; bottom: 20px; left: 20px; z-index: 1000; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+        .floating-bot-card {
+            width: 340px; max-width: calc(100vw - 40px);
+            background: var(--paper); color: var(--ink);
+            border: 2px solid var(--line); border-radius: 20px;
+            padding: 18px; box-shadow: 0 14px 34px rgba(0,0,0,0.3);
+            display: flex; flex-direction: column; gap: 12px;
+        }
+        .bot-header { display: flex; align-items: center; gap: 14px; border-bottom: 2px dashed var(--line); padding-bottom: 12px; }
+        .bot-header h4 { font-size: 1.05rem; color: var(--red-text); line-height: 1.4; }
+        .bot-header span.sub { font-size: 0.8rem; color: var(--muted); }
+        .bot-avatar-spinning {
+            width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+            border: 3px solid var(--red); background: #fff;
+        }
+        #bot-tip { font-size: 0.9rem; line-height: 1.7; color: var(--ink); background: var(--bg); border: 2px dashed var(--red-edge); padding: 12px; border-radius: 14px; }
+        .bot-toggle-btn {
+            display: flex; align-items: center; gap: 10px;
+            background: var(--paper); border: 2px solid var(--red); color: var(--red-text);
+            padding: 0 22px; min-height: 60px; border-radius: 9999px; font-weight: 800; font-size: 0.85rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+        .gemini-bot-btn {
+            background: var(--red); color: #fff; text-decoration: none; padding: 12px 14px; border-radius: 14px;
+            font-size: 0.85rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .gemini-bot-btn:hover { background: #991b1b; }
+        .gemini-bot-btn svg { width: 1rem; height: 1rem; }
+        .gemini-bot-btn .eng-tag { color: #0c4a6e; }
 
         footer {
-            background: rgba(255,255,255,.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            color: #475569; padding: 24px 0; text-align: center; font-size: 14px; margin-top: auto;
-            border-top: 1px solid rgba(252,165,165,.45);
+            background: var(--paper); color: var(--muted); padding: 22px 0 110px; text-align: center; font-size: 0.8rem;
+            margin-top: auto; border-top: 2px solid var(--line);
         }
 
         /* =========================================================
            כללי כתיבה: RTL לעברית, LTR למונחים באנגלית ולמספרים
            ========================================================= */
-        body .font-mono { font-family: var(--font-code); direction: ltr; unicode-bidi: isolate; }
-        .ltr-text { direction: ltr; display: inline-block; unicode-bidi: isolate; }
-
-        /* מסגור מושגים באנגלית */
         .eng-tag {
             display: inline-block;
             direction: ltr; unicode-bidi: isolate; text-align: left;
             font-family: var(--font-code);
-            font-size: .86em; font-weight: 700; line-height: 1.4;
-            padding: 0 9px; margin: 0 3px;
-            border-radius: 9px;
-            color: #0c4a6e;
-            background: linear-gradient(180deg, #ffffff, #f1f5f9);
-            border: 1px solid rgba(100,116,139,.4);
-            box-shadow: 0 2px 0 rgba(148,163,184,.35);
+            font-size: .8em; font-weight: 700; line-height: 1.5;
+            padding: 0 .45em; margin: 0 .15em;
+            border-radius: 7px;
+            border: 1.5px solid var(--term);
+            background: var(--term-soft);
+            color: var(--term);
             white-space: nowrap;
         }
-        th .eng-tag { color: var(--ink-deep); }
+        th .eng-tag { color: var(--term); }
 
-        /* מספרים, ביטים וביטויי חישוב: תמיד משמאל לימין */
         .num {
             direction: ltr; unicode-bidi: isolate;
             font-family: var(--font-code);
             font-weight: 700; font-size: .94em;
-            color: var(--rose);
+            color: var(--red-text);
         }
-        .alert-warning .num, .method-box .num { color: #9f1239; }
+        .alert-warning .num, .method-box .num, .box .num { color: inherit; }
 
-        /* תוכן שהיה בסוגריים: מוצג כתגית רכה */
         .aside {
             display: inline;
             padding: 1px 10px; margin: 0 3px;
             border-radius: 999px;
-            background: rgba(167,139,250,.16);
-            border: 1px solid rgba(124,58,237,.25);
-            color: #4c1d95; font-weight: 600; font-size: .92em;
+            background: var(--aside-bg);
+            border: 1px solid var(--aside-edge);
+            color: var(--aside-ink); font-weight: 600; font-size: .92em;
             -webkit-box-decoration-break: clone; box-decoration-break: clone;
         }
-        .tab-btn.active .aside, .sub-tab-btn.active .aside { background: rgba(255,255,255,.55); border-color: rgba(127,29,29,.25); color: var(--red-ink); }
         .aside .num { color: inherit; }
 
         ::-webkit-scrollbar { height: 10px; width: 10px; }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(#fca5a5, #a78bfa); border-radius: 10px; }
-        ::-webkit-scrollbar-track { background: #fff1f2; }
+        ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
 
-        @media (max-width: 640px) {
-            .card { padding: 24px 18px 20px; border-radius: 22px; }
-            .card-title { font-size: 20px; }
-            header h1 { font-size: 22px !important; }
-        }
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
         }
@@ -519,13 +476,14 @@
             <div class="header-title-area">
                 <img src="https://lh3.googleusercontent.com/d/1BHxytxfATgrv3wpk_8slqpRX08p2Dzml" alt="אווטאר" class="crazy-avatar">
                 <div>
-                    <h1 style="font-size: 26px; font-weight: 800;">מערך שיעור פתיחה: המרת בסיסי ספירה</h1>
-                    <p style="font-size: 15px; opacity: 0.9;">מערך הקניה ותרגול פרונטלי <span class="aside">ללא מחשבים</span> למורה במגמת תקשוב</p>
+                    <h1>מערך שיעור פתיחה: המרת בסיסי ספירה</h1>
+                    <p>מערך הקניה ותרגול פרונטלי <span class="aside">ללא מחשבים</span> למורה במגמת תקשוב</p>
                 </div>
             </div>
             <div class="header-badges">
                 <span class="badge">תקשוב ותקשורת מחשבים</span>
                 <span class="badge badge-success">לשימוש המורה בלבד</span>
+                <button class="mode-btn" id="darkToggleBtn" onclick="toggleDark()">🌙 מצב לילה</button>
             </div>
         </div>
     </header>
@@ -534,10 +492,10 @@
     <div class="nav-tabs-container">
         <div class="container">
             <nav>
-                <button onclick="switchTab('importance')" id="tab-importance" class="tab-btn active"><span class="num" dir="ltr">1</span>. חשיבות בסיסי הספירה בתקשוב</button>
-                <button onclick="switchTab('bases-overview')" id="tab-bases-overview" class="tab-btn"><span class="num" dir="ltr">2</span>. הבסיסים הנפוצים והסיבה לשימוש בהם</button>
-                <button onclick="switchTab('conversion-methods')" id="tab-conversion-methods" class="tab-btn"><span class="num" dir="ltr">3</span>. שיטות החישוב וטבלאות עזר לבגרות</button>
-                <button onclick="switchTab('practice-solutions')" id="tab-practice-solutions" class="tab-btn"><span class="num" dir="ltr">4</span>. תרגול פרונטלי מודרך <span class="aside"><span class="num" dir="ltr">60</span> תרגילים + בחן את עצמך</span></button>
+                <button onclick="switchTab('importance')" id="tab-importance" class="tab-btn active"><span class="num">1</span><span class="lbl">חשיבות בסיסי הספירה בתקשוב</span></button>
+                <button onclick="switchTab('bases-overview')" id="tab-bases-overview" class="tab-btn"><span class="num">2</span><span class="lbl">הבסיסים הנפוצים והסיבה לשימוש בהם</span></button>
+                <button onclick="switchTab('conversion-methods')" id="tab-conversion-methods" class="tab-btn"><span class="num">3</span><span class="lbl">שיטות החישוב וטבלאות עזר לבגרות</span></button>
+                <button onclick="switchTab('practice-solutions')" id="tab-practice-solutions" class="tab-btn"><span class="num">4</span><span class="lbl">תרגול פרונטלי מודרך <span class="aside"><span class="num" dir="ltr">60</span> תרגילים + בחן את עצמך</span></span></button>
             </nav>
         </div>
     </div>
@@ -551,29 +509,29 @@
                 <!-- Tab 1: Importance -->
                 <section id="content-importance" class="tab-content active">
                     <div class="card">
-                        <h2 class="card-title"><span style="color: var(--primary);">■</span> חשיבות בסיסי ספירה למקצוע התקשוב ותקשורת מחשבים</h2>
+                        <h2 class="card-title">חשיבות בסיסי ספירה למקצוע התקשוב ותקשורת מחשבים</h2>
                         <div class="alert-info">
                             <strong>מטרת השיעור ללוח:</strong> להבין כיצד רכיבי תקשורת <span class="aside">מתגים, נתבים, כרטיסי רשת</span> מעבדים, מנתבים ומציגים כתובות ומידע.
                         </div>
                         
-                        <div style="display: flex; flex-direction: column; gap: 18px; margin-top: 18px;">
-                            <div style="background: linear-gradient(135deg, #e0f2fe, #f0f9ff); padding: 20px; border-radius: 20px; border-right: 6px solid var(--secondary); box-shadow: 0 12px 26px -18px rgba(3,105,161,.6);">
-                                <h3 style="font-weight: 800; font-size: 18px; color: #0369a1; margin-bottom: 8px;"><span class="num" dir="ltr">1</span>. השפה הפיזיקלית של החומרה <span class="aside">הבסיס הבינארי</span></h3>
-                                <p style="font-size: 16px; color: #334155;">
-                                    ציוד תקשורת ומחשבים פועלים באמצעות אותות חשמליים <span class="aside">מתח גבוה/נמוך</span>, אור בסיבים אופטיים או גלי רדיו. הבסיס הבינארי <span class="aside"><span class="num" dir="ltr">0</span> ו-<span class="num" dir="ltr">1</span></span> הוא הייצוג היחיד שמשקף את המצב הפיזי של החומרה <span class="aside">"יש מתח" / "אין מתח"</span>.
+                        <div class="stack">
+                            <div class="box sky">
+                                <h3><span class="num" dir="ltr">1</span>. השפה הפיזיקלית של החומרה <span class="aside">הבסיס הבינארי</span></h3>
+                                <p>
+                                    ציוד תקשורת ומחשבים פועלים באמצעות אותות חשמליים <span class="aside">מתח גבוה/נמוך</span>, אור בסיבים אופטיים או גלי רדיו. הבסיס הבינארי <span class="aside"><span class="num" dir="ltr">0</span> ו-<span class="num" dir="ltr">1</span></span> הוא הייצוג היחיד שמשקף את המצב הפיזי של החומרה <span class="aside">יש מתח או אין מתח</span>.
                                 </p>
                             </div>
 
-                            <div style="background: linear-gradient(135deg, #ccfbf1, #f0fdfa); padding: 20px; border-radius: 20px; border-right: 6px solid var(--primary); box-shadow: 0 12px 26px -18px rgba(15,118,110,.6);">
-                                <h3 style="font-weight: 800; font-size: 18px; color: var(--primary); margin-bottom: 8px;"><span class="num" dir="ltr">2</span>. חישובי כתובות <span class="eng-tag" dir="ltr">IP</span> ומסכות רשת <span class="eng-tag" dir="ltr">Subnetting</span></h3>
-                                <p style="font-size: 16px; color: #334155;">
+                            <div class="box teal">
+                                <h3><span class="num" dir="ltr">2</span>. חישובי כתובות <span class="eng-tag" dir="ltr">IP</span> ומסכות רשת <span class="eng-tag" dir="ltr">Subnetting</span></h3>
+                                <p>
                                     כל כתובת <span class="eng-tag" dir="ltr">IPv4</span> מורכבת מ-<span class="num" dir="ltr">32</span> ביטים המחולקים ל-<span class="num" dir="ltr">4</span> אוקטטות בנות <span class="num" dir="ltr">8</span> ביטים. כדי להבין כיצד נתב מקבל החלטת ניתוב, כיצד מבוצעת פעולת <span class="eng-tag" dir="ltr">AND</span> לוגי, וכדי לחלק רשתות לתתי-רשתות – חובה לשלוט בהמרה מבינארי לעשרוני ולהיפך.
                                 </p>
                             </div>
 
-                            <div style="background: linear-gradient(135deg, #fef3c7, #ffe4e6); padding: 20px; border-radius: 20px; border-right: 6px solid var(--warning); box-shadow: 0 12px 26px -18px rgba(245,158,11,.7);">
-                                <h3 style="font-weight: 800; font-size: 18px; color: #b45309; margin-bottom: 8px;"><span class="num" dir="ltr">3</span>. ייצוג תמציתי של כתובות ארוכות <span class="aside">הבסיס ההקסדצימלי</span></h3>
-                                <p style="font-size: 16px; color: #334155;">
+                            <div class="box amber">
+                                <h3><span class="num" dir="ltr">3</span>. ייצוג תמציתי של כתובות ארוכות <span class="aside">הבסיס ההקסדצימלי</span></h3>
+                                <p>
                                     כתובות פיזיות <span class="eng-tag" dir="ltr">MAC Address</span> בנות <span class="num" dir="ltr">48</span> ביט וכתובות <span class="eng-tag" dir="ltr">IPv6</span> בנות <span class="num" dir="ltr">128</span> ביט הן ארוכות מדי לצפייה אנושית בבינארית. הבסיס ההקסדצימלי מאפשר לכווץ <span class="num" dir="ltr">4</span> ביטים לספרה אחת, מה שמקל על אנשי תקשורת לקרוא ולהגדיר רכיבים.
                                 </p>
                             </div>
@@ -584,7 +542,7 @@
                 <!-- Tab 2: Bases Overview -->
                 <section id="content-bases-overview" class="tab-content">
                     <div class="card">
-                        <h2 class="card-title"><span style="color: var(--primary);">■</span> סקירת הבסיסים והסיבה שרק הם נפוצים בתקשורת</h2>
+                        <h2 class="card-title">סקירת הבסיסים והסיבה שרק הם נפוצים בתקשורת</h2>
                         
                         <div class="table-responsive">
                             <table>
@@ -619,9 +577,9 @@
                             </table>
                         </div>
 
-                        <div class="alert-warning" style="margin-top: 24px;">
-                            <h3 style="font-weight: 800; font-size: 18px; margin-bottom: 8px;">מדוע רק <span class="num" dir="ltr">3</span> הבסיסים הללו נפוצים בתקשורת?</h3>
-                            <ul style="list-style-type: disc; margin-right: 20px; font-size: 16px; line-height: 1.8;">
+                        <div class="alert-warning">
+                            <h3>מדוע רק <span class="num" dir="ltr">3</span> הבסיסים הללו נפוצים בתקשורת?</h3>
+                            <ul>
                                 <li><strong>העשרוני:</strong> נועד אך ורק בשביל <strong>נוחות האדם</strong> <span class="aside">מערכת הספירה הטבעית לנו</span>.</li>
                                 <li><strong>הבינארי:</strong> משקף בדיוק את <strong>הפיזיקה של המחשב</strong> <span class="aside">ספרה אחת = ביט אחד = חיווי חשמלי</span>.</li>
                                 <li><strong>ההקסדצימלי:</strong> משמש כ<strong>גשר מושלם בין הבינארי לאדם</strong>. מכיוון ש-<span class="num" dir="ltr">2^4 = 16</span>, כל ספרה הקסדצימלית מייצגת בדיוק <span class="eng-tag" dir="ltr">Nibble</span> <span class="aside">ארבעה ביטים</span>. זה מונע את הצורך בחישובים מורכבים במעבר מבינארי להקס.</li>
@@ -634,10 +592,10 @@
                 <!-- Tab 3: Conversion Methods & Helper Tables -->
                 <section id="content-conversion-methods" class="tab-content">
                     <div class="card">
-                        <div class="drive-link-banner" style="background: linear-gradient(135deg, #e0f2fe 0%, #ede9fe 100%); border: 2px solid #7dd3fc; border-radius: 20px; padding: 16px 20px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+                        <div class="drive-link-banner">
                             <div>
-                                <h3 style="font-size: 18px; font-weight: 800; color: #0369a1; margin-bottom: 4px;">📄 דף עזר להמרות - טבלאות לבגרות <span class="aside"> סהר</span></h3>
-                                <p style="font-size: 15px; color: #475569;">צפה או הורד את מסמך ה-<span class="eng-tag" dir="ltr">PDF</span> המלא עם טבלאות העזר והשיטות המהירות להמרת בסיסים.</p>
+                                <h3>📄 דף עזר להמרות - טבלאות לבגרות <span class="aside"> סהר</span></h3>
+                                <p>צפה או הורד את מסמך ה-<span class="eng-tag" dir="ltr">PDF</span> המלא עם טבלאות העזר והשיטות המהירות להמרת בסיסים.</p>
                             </div>
                             <a href="https://drive.google.com/file/d/1FsoHiyyFYIElgTkhWrbIuExRMT-EQ5da/view?usp=sharing" target="_blank" class="drive-btn">
                                 <span>לחץ לדף עזר המרות</span>
@@ -645,8 +603,8 @@
                             </a>
                         </div>
 
-                        <h2 class="card-title"><span style="color: var(--primary);">■</span> טבלאות עזר לבגרות להפיכת בסיסים</h2>
-                        <p style="font-size: 15px; color: #64748b; margin-bottom: 16px;">
+                        <h2 class="card-title">טבלאות עזר לבגרות להפיכת בסיסים</h2>
+                        <p class="intro">
                             הטבלה המאוחדת שלהלן מסנכרנת בין ספרות ה-<span class="eng-tag" dir="ltr">HEX</span>, הערך העשרוני <span class="aside"><span class="num" dir="ltr">1-15</span></span> ומשקלי הביטים של האוקטטה:
                         </p>
 
@@ -681,9 +639,9 @@
                         </div>
 
                         <div class="method-box">
-                            <h3 style="font-weight: 800; font-size: 18px; color: var(--primary); margin-bottom: 8px;">💡 השיטה المהירה להמרה מעשרוני לבינארי: שיטת "האם נכנס?"</h3>
-                            <p style="font-size: 16px; color: #334155;">
-                                כותבים את משקלי האוקטטה המלאה: <span class="num" dir="ltr">128, 64, 32, 16, 8, 4, 2, 1</span>. עוברים משמאל לימין ושואלים: "האם המשקל נכנס במספר שנותר?" אם כן – רושמים <span class="num" dir="ltr">1</span> ומחסרים. אם לא – רושמים <span class="num" dir="ltr">0</span>.
+                            <h3>💡 השיטה המהירה להמרה מעשרוני לבינארי: שיטת האם נכנס?</h3>
+                            <p>
+                                כותבים את משקלי האוקטטה המלאה: <span class="num" dir="ltr">128, 64, 32, 16, 8, 4, 2, 1</span>. עוברים משמאל לימין ושואלים: האם המשקל נכנס במספר שנותר? אם כן – רושמים <span class="num" dir="ltr">1</span> ומחסרים. אם לא – רושמים <span class="num" dir="ltr">0</span>.
                             </p>
                         </div>
                     </div>
@@ -695,8 +653,8 @@
                     <!-- STICKY DRIVER BANNER -->
                     <div class="sticky-drive-banner">
                         <div>
-                            <h3 style="font-size: 18px; font-weight: 800; color: #9a3412; margin-bottom: 4px;">📄 דף עזר להמרות - טבלאות לבגרות <span class="aside">נשאר נגיש בגלילה</span></h3>
-                            <p style="font-size: 14px; color: #7c2d12;">דף עזר מהיר ב-<span class="eng-tag" dir="ltr">Drive</span> עם טבלאות ניבלים ומשקלי ביטים לעבודה מהירה.</p>
+                            <h3>📄 דף עזר להמרות - טבלאות לבגרות <span class="aside">נשאר נגיש בגלילה</span></h3>
+                            <p>דף עזר מהיר ב-<span class="eng-tag" dir="ltr">Drive</span> עם טבלאות ניבלים ומשקלי ביטים לעבודה מהירה.</p>
                         </div>
                         <a href="https://drive.google.com/file/d/1FsoHiyyFYIElgTkhWrbIuExRMT-EQ5da/view?usp=sharing" target="_blank" class="drive-btn">
                             <span>פתאום שכחת? פתח דף עזר</span>
@@ -708,18 +666,18 @@
                     <div class="sticky-student-helper-container">
                         <div class="hover-calculator-wrapper" id="calcWrapper" onclick="toggleCalcClick(event)">
                             <div class="hover-calculator-header">
-                                <h3 style="font-size: 16px; font-weight: 800; color: #0369a1; display: flex; align-items: center; gap: 8px;">
+                                <h3>
                                     <span>🧮 מחשבון עזר לתלמיד <span class="aside">משקלי אוקטטה</span></span>
                                 </h3>
-                                <div style="display: flex; align-items: center; gap: 10px;">
+                                <div class="calc-actions">
                                     <span class="calc-toggle-badge">👈 העבר עכבר / לחץ לפתיחה</span>
-                                    <button onclick="event.stopPropagation(); resetStudentTable();" class="btn btn-dark" style="font-size: 11px; padding: 3px 8px;">איפוס</button>
+                                    <button onclick="event.stopPropagation(); resetStudentTable();" class="btn btn-dark">איפוס</button>
                                 </div>
                             </div>
                             
                             <!-- Expandable Content on Hover / Click -->
                             <div class="hover-calculator-body" onclick="event.stopPropagation();">
-                                <p style="font-size: 13px; color: #475569;">הזן <span class="num" dir="ltr">0</span> או <span class="num" dir="ltr">1</span> בתיבות המשקלים לקבלת חישוב עשרוני מיידי:</p>
+                                <p>הזן <span class="num" dir="ltr">0</span> או <span class="num" dir="ltr">1</span> בתיבות המשקלים לקבלת חישוב עשרוני מיידי:</p>
                                 
                                 <div class="table-responsive">
                                     <table class="student-helper-table">
@@ -751,26 +709,26 @@
                                 </div>
 
                                 <div class="sum-result-box">
-                                    <span style="font-weight: 700; color: #64748b;">תרגום עשרוני כולל:</span>
-                                    <span id="student-calc-result" class="font-mono" style="font-size: 24px; font-weight: 900; color: #047857;">0</span>
+                                    <span>תרגום עשרוני כולל:</span>
+                                    <span id="student-calc-result" class="font-mono">0</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Sub-Tabs Navigation for Practice & Quizzes -->
-                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;">
-                        <button onclick="switchSubTab('sub-dec2bin')" id="subtab-dec2bin" class="sub-tab-btn active"><span class="num" dir="ltr">1</span>. עשרוני לבינארי <span class="aside"><span class="num" dir="ltr">15</span></span></button>
-                        <button onclick="switchSubTab('sub-bin2dec')" id="subtab-bin2dec" class="sub-tab-btn"><span class="num" dir="ltr">2</span>. בינארי לעשרוני <span class="aside"><span class="num" dir="ltr">15</span></span></button>
-                        <button onclick="switchSubTab('sub-bin2hex')" id="subtab-bin2hex" class="sub-tab-btn"><span class="num" dir="ltr">3</span>. בינארי להקס <span class="aside"><span class="num" dir="ltr">15</span></span></button>
-                        <button onclick="switchSubTab('sub-hex2bin')" id="subtab-hex2bin" class="sub-tab-btn"><span class="num" dir="ltr">4</span>. הקס לבינארי <span class="aside"><span class="num" dir="ltr">15</span></span></button>
-                        <button onclick="switchSubTab('sub-quizzes')" id="subtab-quizzes" class="sub-tab-btn" style="background: linear-gradient(135deg, #fef9c3, #fecdd3); border-color: #fb7185; color: #881337;">🏆 בחן את עצמך <span class="aside">אינטראקטיבי</span></button>
+                    <div class="sub-tabs">
+                        <button onclick="switchSubTab('sub-dec2bin')" id="subtab-dec2bin" class="sub-tab-btn active"><span class="num">1</span><span class="lbl">עשרוני לבינארי <span class="aside"><span class="num" dir="ltr">15</span></span></span></button>
+                        <button onclick="switchSubTab('sub-bin2dec')" id="subtab-bin2dec" class="sub-tab-btn"><span class="num">2</span><span class="lbl">בינארי לעשרוני <span class="aside"><span class="num" dir="ltr">15</span></span></span></button>
+                        <button onclick="switchSubTab('sub-bin2hex')" id="subtab-bin2hex" class="sub-tab-btn"><span class="num">3</span><span class="lbl">בינארי להקס <span class="aside"><span class="num" dir="ltr">15</span></span></span></button>
+                        <button onclick="switchSubTab('sub-hex2bin')" id="subtab-hex2bin" class="sub-tab-btn"><span class="num">4</span><span class="lbl">הקס לבינארי <span class="aside"><span class="num" dir="ltr">15</span></span></span></button>
+                        <button onclick="switchSubTab('sub-quizzes')" id="subtab-quizzes" class="sub-tab-btn quiz-sub">🏆 בחן את עצמך <span class="aside">אינטראקטיבי</span></button>
                     </div>
 
                     <!-- Sub Tab Content 1: Dec -> Bin -->
                     <div id="subcontent-dec2bin" class="sub-tab-content active">
                         <div class="card">
-                            <h3 class="card-title"><span style="color: var(--primary);">■</span> <span class="num" dir="ltr">15</span> תרגילים: המרה מעשרוני לבינארי <span class="aside">כולל פתרונות</span></h3>
+                            <h3 class="card-title"><span class="num" dir="ltr">15</span> תרגילים: המרה מעשרוני לבינארי <span class="aside">כולל פתרונות</span></h3>
                             <div class="table-responsive">
                                 <table>
                                     <thead>
@@ -806,7 +764,7 @@
                     <!-- Sub Tab Content 2: Bin -> Dec -->
                     <div id="subcontent-bin2dec" class="sub-tab-content">
                         <div class="card">
-                            <h3 class="card-title"><span style="color: var(--primary);">■</span> <span class="num" dir="ltr">15</span> תרגילים: המרה מבינארי לעשרוני <span class="aside">כולל פתרונות</span></h3>
+                            <h3 class="card-title"><span class="num" dir="ltr">15</span> תרגילים: המרה מבינארי לעשרוני <span class="aside">כולל פתרונות</span></h3>
                             <div class="table-responsive">
                                 <table>
                                     <thead>
@@ -842,7 +800,7 @@
                     <!-- Sub Tab Content 3: Bin -> Hex -->
                     <div id="subcontent-bin2hex" class="sub-tab-content">
                         <div class="card">
-                            <h3 class="card-title"><span style="color: var(--primary);">■</span> <span class="num" dir="ltr">15</span> תרגילים: המרה מבינארי להקסדצימלי <span class="aside">כולל פתרונות</span></h3>
+                            <h3 class="card-title"><span class="num" dir="ltr">15</span> תרגילים: המרה מבינארי להקסדצימלי <span class="aside">כולל פתרונות</span></h3>
                             <div class="table-responsive">
                                 <table>
                                     <thead>
@@ -878,7 +836,7 @@
                     <!-- Sub Tab Content 4: Hex -> Bin -->
                     <div id="subcontent-hex2bin" class="sub-tab-content">
                         <div class="card">
-                            <h3 class="card-title"><span style="color: var(--primary);">■</span> <span class="num" dir="ltr">15</span> תרגילים: המרה מהקסדצימלי לבינארי <span class="aside">כולל פתרונות</span></h3>
+                            <h3 class="card-title"><span class="num" dir="ltr">15</span> תרגילים: המרה מהקסדצימלי לבינארי <span class="aside">כולל פתרונות</span></h3>
                             <div class="table-responsive">
                                 <table>
                                     <thead>
@@ -914,13 +872,13 @@
                     <!-- Sub Tab Content 5: Quizzes Interactive -->
                     <div id="subcontent-quizzes" class="sub-tab-content">
                         <div class="card">
-                            <h2 class="card-title"><span style="color: #0284c7;">🏆</span> בחן את עצמך - מחולל בחנים אינטראקטיביים <span class="aside"><span class="num" dir="ltr">6</span> סוגי המרות</span></h2>
-                            <p style="font-size: 16px; color: #64748b; margin-bottom: 20px;">
+                            <h2 class="card-title"><span>🏆</span> בחן את עצמך - מחולל בחנים אינטראקטיביים <span class="aside"><span class="num" dir="ltr">6</span> סוגי המרות</span></h2>
+                            <p class="quiz-intro">
                                 בחר את המועד או הנושא שברצונך לתרגל. המערכת תציג שאלות אמריקאיות, תבדוק את פתרונותיך ותעניק ציון ומשוב מיידי!
                             </p>
 
                             <!-- ALL 6 Quiz Type Selectors -->
-                            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px;">
+                            <div class="quiz-selectors">
                                 <button onclick="loadQuiz('dec2bin')" id="btn-quiz-dec2bin" class="btn btn-action">עשרוני ← בינארי</button>
                                 <button onclick="loadQuiz('bin2dec')" id="btn-quiz-bin2dec" class="btn btn-action">בינארי ← עשרוני</button>
                                 <button onclick="loadQuiz('dec2hex')" id="btn-quiz-dec2hex" class="btn btn-action">עשרוני ← הקס</button>
@@ -943,7 +901,7 @@
                 <div class="hex-sidebar-card">
                     <div class="hex-sidebar-title">
                         <span>טבלת ניבלים <span class="aside"><span class="num" dir="ltr">0-F</span></span></span>
-                        <span style="font-size: 12px; color: #9a3412; font-weight: normal;"><span class="num" dir="ltr">4</span> ביטים</span>
+                        <span><span class="num" dir="ltr">4</span> ביטים</span>
                     </div>
                     <table class="hex-table">
                         <thead>
@@ -984,13 +942,13 @@
             <div class="bot-header">
                 <img src="https://lh3.googleusercontent.com/d/1BHxytxfATgrv3wpk_8slqpRX08p2Dzml" alt="הבוט המטורלל למורה" class="bot-avatar-spinning">
                 <div>
-                    <h4 style="font-weight: 800; font-size: 17px; color: #be123c;">הבוט המטורלל למורה 🤪</h4>
-                    <span style="font-size: 13px; color: #64748b;">עוזר פדגוגי אישי בזמן אמת</span>
+                    <h4>הבוט המטורלל למורה 🤪</h4>
+                    <span class="sub">עוזר פדגוגי אישי בזמן אמת</span>
                 </div>
             </div>
             
-            <p id="bot-tip" style="font-size: 15px; line-height: 1.5; color: #1e293b; background: #ffffff; border: 1.5px dashed #fda4af; padding: 12px; border-radius: 14px;">
-                "המורה, אל תשכח להזכיר להם שפעם בבינארית <span class="num" dir="ltr">0</span> ו-<span class="num" dir="ltr">1</span> לא היו רק מספרים, אלא מתח חשמלי של ממש!"
+            <p id="bot-tip">
+                המורה, אל תשכח להזכיר להם שפעם בבינארית <span class="num" dir="ltr">0</span> ו-<span class="num" dir="ltr">1</span> לא היו רק מספרים, אלא מתח חשמלי של ממש!
             </p>
 
             <a href="https://gemini.google.com/gem/1yXszf3vD-uA48G24oR25K-zOQ2-eW8n" target="_blank" class="gemini-bot-btn">
@@ -998,7 +956,7 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
             </a>
 
-            <button onclick="nextBotTip()" class="btn btn-refresh" style="width: 100%; text-align: center;">💡 תן לי עוד טיפ מטורלל!</button>
+            <button onclick="nextBotTip()" class="btn btn-refresh">💡 תן לי עוד טיפ מטורלל!</button>
         </div>
 
         <button onclick="toggleBotCard()" class="bot-toggle-btn">
@@ -1086,10 +1044,10 @@
         // Crazy Bot Tips logic
         const crazyTips = [
             "תגיד לתלמידים שאם הם שוכחים את משקל <span class='num' dir='ltr'>128</span>, שפשוט יכפילו <span class='num' dir='ltr'>2</span> בעצמו <span class='num' dir='ltr'>7</span> פעמים!",
-            "אם תלמיד שואל 'למה צריך הקסדצימלי', תשאל אותו אם הוא מעדיף לקרוא <span class='num' dir='ltr'>1111111111111111</span> או בקיצור <span class='num' dir='ltr'>FFFF</span>!",
+            "אם תלמיד שואל למה צריך הקסדצימלי, תשאל אותו אם הוא מעדיף לקרוא <span class='num' dir='ltr'>1111111111111111</span> או בקיצור <span class='num' dir='ltr'>FFFF</span>!",
             "טיפ זהב לבגרות: במסכת רשת <span class='eng-tag' dir='ltr'>Subnet Mask</span>, האחדות תמיד מופיעות ברצף משמאל לימין ללא אפסים באמצע!",
             "זכור: <span class='num' dir='ltr'>A</span> בעשרוני זה <span class='num' dir='ltr'>10, F</span> זה <span class='num' dir='ltr'>15</span>. אין <span class='num' dir='ltr'>16</span> בהקסדצימלי כי <span class='num' dir='ltr'>10</span> בהקס הוא <span class='num' dir='ltr'>16</span> בעשרוני!",
-            "נסה לאתגר אותם: 'כמה זה <span class='num' dir='ltr'>255</span> ועוד <span class='num' dir='ltr'>1</span> בבינארי?' <span class='aside'>תשובה: גלישה ל-<span class='num' dir='ltr'>9</span> ביטים! <span class='num' dir='ltr'>100000000</span></span>"
+            "נסה לאתגר אותם: כמה זה <span class='num' dir='ltr'>255</span> ועוד <span class='num' dir='ltr'>1</span> בבינארי? <span class='aside'>תשובה: גלישה ל-<span class='num' dir='ltr'>9</span> ביטים! <span class='num' dir='ltr'>100000000</span></span>"
         ];
         let currentTipIndex = 0;
 
@@ -1100,7 +1058,7 @@
 
         function nextBotTip() {
             currentTipIndex = (currentTipIndex + 1) % crazyTips.length;
-            document.getElementById('bot-tip').innerHTML = `"${crazyTips[currentTipIndex]}"`;
+            document.getElementById('bot-tip').innerHTML = crazyTips[currentTipIndex];
         }
 
         // ALL 6 QUIZZES DATA ENGINE
@@ -1129,20 +1087,20 @@
                 title: "בחן את עצמך: המרה מעשרוני להקסדצימלי",
                 questions: [
                     { q: "מהו הייצוג ההקסדצימלי של המספר העשרוני <span class='num' dir='ltr'>10</span>?", options: ["A", "B", "10", "F"], correct: 0, explanation: "<span class='num' dir='ltr'>10</span> בעשרוני מיוצג ע״י האות <span class='num' dir='ltr'>A</span> בהקסדצימלי." },
-                    { q: "מהו הייצוג ההקסדצימלי של המספר העשרוני <span class='num' dir='ltr'>255</span>?", options: ["FE", "FF", "F0", "EF"], correct: 1, explanation: "<span class='num' dir='ltr'>255</span> בעשרוני שווה ל- <span class='num' dir='ltr'>15*16+15</span> כלומר <span class='num' dir='ltr'>FF</span>." },
+                    { q: "מהו הייצוג ההקסדצימלי של המספר העשרוני <span class='num' dir='ltr'>255</span>?", options: ["FE", "FF", "F0", "EF"], correct: 1, explanation: "<span class='num' dir='ltr'>255</span> בעשרוני שווה ל- <span class='num' dir='ltr'>15 × 16+15</span> כלומר <span class='num' dir='ltr'>FF</span>." },
                     { q: "מהו הייצוג ההקסדצימלי של המספר העשרוני <span class='num' dir='ltr'>192</span>?", options: ["C0", "C8", "B0", "D0"], correct: 0, explanation: "<span class='num' dir='ltr'>192</span> מחולק ב-<span class='num' dir='ltr'>16</span> נותן בדיוק <span class='num' dir='ltr'>12 <span class='aside'>C</span></span> ללא שארית <span class='aside'><span class='num' dir='ltr'>0</span></span>, כלומר <span class='num' dir='ltr'>C0</span>." },
                     { q: "מהו הייצוג ההקסדצימלי של המספר העשרוני <span class='num' dir='ltr'>15</span>?", options: ["E", "F", "15", "A"], correct: 1, explanation: "<span class='num' dir='ltr'>15</span> בעשרוני הוא הערך המקסימלי של ספרת הקס יחידה: <span class='num' dir='ltr'>F</span>." },
-                    { q: "מהו הייצוג ההקסדצימלי של המספר העשרוני <span class='num' dir='ltr'>168</span>?", options: ["A8", "A6", "B8", "C8"], correct: 0, explanation: "<span class='num' dir='ltr'>168 = 10*16+8 -> 10=A, 8=8 -> A8</span>." }
+                    { q: "מהו הייצוג ההקסדצימלי של המספר העשרוני <span class='num' dir='ltr'>168</span>?", options: ["A8", "A6", "B8", "C8"], correct: 0, explanation: "<span class='num' dir='ltr'>168 = 10 × 16+8 -> 10=A, 8=8 -> A8</span>." }
                 ]
             },
             hex2dec: {
                 title: "בחן את עצמך: המרה מהקסדצימלי לעשרוני",
                 questions: [
-                    { q: "מהו הערך העשרוני של המספר ההקסדצימלי <span class='num' dir='ltr'>1A</span>?", options: ["26", "16", "24", "28"], correct: 0, explanation: "<span class='num' dir='ltr'>1 * 16 + 10 <span class='aside'>A</span> = 26</span>." },
-                    { q: "מהו הערך העשרוני של המספר ההקסדצימלי <span class='num' dir='ltr'>FF</span>?", options: ["254", "255", "250", "256"], correct: 1, explanation: "<span class='num' dir='ltr'>15 * 16 + 15 = 240 + 15 = 255</span>." },
-                    { q: "מהו הערך העשרוני של המספר ההקסדצימלי <span class='num' dir='ltr'>C0</span>?", options: ["192", "168", "224", "180"], correct: 0, explanation: "<span class='num' dir='ltr'>12 * 16 + 0 = 192</span>." },
-                    { q: "מהו הערך העשרוני של המספר ההקסדצימלי <span class='num' dir='ltr'>3C</span>?", options: ["60", "48", "52", "64"], correct: 0, explanation: "<span class='num' dir='ltr'>3 * 16 + 12 <span class='aside'>C</span> = 48 + 12 = 60</span>." },
-                    { q: "מהו הערך העשרוני של המספר ההקסדצימלי <span class='num' dir='ltr'>A5</span>?", options: ["165", "175", "155", "160"], correct: 0, explanation: "<span class='num' dir='ltr'>10 * 16 + 5 = 160 + 5 = 165</span>." }
+                    { q: "מהו הערך העשרוני של המספר ההקסדצימלי <span class='num' dir='ltr'>1A</span>?", options: ["26", "16", "24", "28"], correct: 0, explanation: "<span class='num' dir='ltr'>1 × 16 + 10 <span class='aside'>A</span> = 26</span>." },
+                    { q: "מהו הערך העשרוני של המספר ההקסדצימלי <span class='num' dir='ltr'>FF</span>?", options: ["254", "255", "250", "256"], correct: 1, explanation: "<span class='num' dir='ltr'>15 × 16 + 15 = 240 + 15 = 255</span>." },
+                    { q: "מהו הערך העשרוני של המספר ההקסדצימלי <span class='num' dir='ltr'>C0</span>?", options: ["192", "168", "224", "180"], correct: 0, explanation: "<span class='num' dir='ltr'>12 × 16 + 0 = 192</span>." },
+                    { q: "מהו הערך העשרוני של המספר ההקסדצימלי <span class='num' dir='ltr'>3C</span>?", options: ["60", "48", "52", "64"], correct: 0, explanation: "<span class='num' dir='ltr'>3 × 16 + 12 <span class='aside'>C</span> = 48 + 12 = 60</span>." },
+                    { q: "מהו הערך העשרוני של המספר ההקסדצימלי <span class='num' dir='ltr'>A5</span>?", options: ["165", "175", "155", "160"], correct: 0, explanation: "<span class='num' dir='ltr'>10 × 16 + 5 = 160 + 5 = 165</span>." }
                 ]
             },
             bin2hex: {
@@ -1180,7 +1138,7 @@
                 <div class="quiz-container">
                     <div class="quiz-header">
                         <div class="quiz-title">${data.title}</div>
-                        <span style="font-size: 14px; font-weight: bold; color: #64748b;">5 שאלות לבדיקה</span>
+                        <span class="quiz-count">5 שאלות לבדיקה</span>
                     </div>
                     <form id="quiz-form-${quizKey}">
             `;
@@ -1210,15 +1168,15 @@
 
             html += `
                     </form>
-                    <div style="display: flex; gap: 12px; margin-top: 20px;">
+                    <div class="quiz-actions">
                         <button onclick="submitQuiz('${quizKey}')" class="btn btn-action">בדוק תשובות והצג ציון</button>
                         <button onclick="loadQuiz('${quizKey}')" class="btn btn-dark">אפס שאלון</button>
                     </div>
 
                     <div id="res-${quizKey}" class="quiz-result-box">
-                        <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 8px;">תוצאות הבוחן</h3>
+                        <h3 class="result-title">תוצאות הבוחן</h3>
                         <div id="score-${quizKey}" class="quiz-result-score">0 / 100</div>
-                        <p id="msg-${quizKey}" style="margin-top: 10px; font-size: 16px; font-weight: 700;"></p>
+                        <p id="msg-${quizKey}" class="result-msg"></p>
                     </div>
                 </div>
             `;
@@ -1261,18 +1219,28 @@
 
             if (score === 100) {
                 msgDiv.innerHTML = "🏆 אלוף! שליטה מושלמת בחומר, כל הכבוד!";
-                msgDiv.style.color = "#047857";
             } else if (score >= 60) {
                 msgDiv.innerHTML = "👍 עבודה טובה! מומלץ לעבור על ההסברים בשאלות שטעית בהן.";
-                msgDiv.style.color = "#b45309";
             } else {
-                msgDiv.innerHTML = "💪 אל תתייאש! לחץ על 'אפס שאלון' לניסיון נוסף.";
-                msgDiv.style.color = "#b91c1c";
+                msgDiv.innerHTML = "💪 אל תתייאש! לחץ על אפס שאלון לניסיון נוסף.";
             }
+        }
+
+        // Dark mode
+        function applyDark(on) {
+            document.body.classList.toggle('dark', on);
+            document.getElementById('darkToggleBtn').textContent = on ? '☀️ מצב יום' : '🌙 מצב לילה';
+        }
+        function toggleDark() {
+            const on = !document.body.classList.contains('dark');
+            applyDark(on);
+            try { localStorage.setItem('base_lesson_dark', on ? '1' : '0'); } catch (e) {}
+            updateStickyOffsets();
         }
 
         // Initialize Default View on Load
         window.onload = function() {
+            try { applyDark(localStorage.getItem('base_lesson_dark') === '1'); } catch (e) {}
             loadQuiz('dec2bin');
             calculateStudentBits();
             updateStickyOffsets();
